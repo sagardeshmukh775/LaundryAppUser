@@ -18,57 +18,32 @@
 
 
             <TextView
+                android:id="@+id/memberregistration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ADDMITION FORM"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:textColor="@color/input_register_bg"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:text="MEMBER REGISTRATION"
+                android:textColor="@color/toolbar"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/memberdertails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Application Details :"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:textSize="16dp"/>
+                android:layout_marginTop="20dp"
+                android:text="Member Details :"
+                android:textColor="@color/toolbar"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/backgroundcolor"
-    android:layout_margin="5dp"
-    android:orientation="vertical">
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp">
-
-        <EditText
-            android:id="@+id/Doctorcunsoltunt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:hint="DOCTOR CONSULTANT"
-            android:textColor="@color/input_register_bg"
-            android:textColorHint="@android:color/white" />
-    </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/name"
@@ -76,778 +51,299 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:background="@drawable/edittextanimation"
                     android:hint="NAME"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/wardnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/edittextanimation"
+                            android:hint="Ward Number"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:textColor="@color/input_register_bg"
+                            android:textColorHint="@color/input_login_hint" />
+
+                        <EditText
+                            android:id="@+id/memberage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/edittextanimation"
+                            android:hint="AGE"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:padding="10dp"
+                            android:textColor="@color/input_register_bg"
+                            android:textColorHint="@color/input_login_hint" />
+
+                        <EditText
+                            android:id="@+id/dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/edittextanimation"
+                            android:hint="D.O.B"
+                            android:padding="10dp"
+                            android:textColor="@color/input_register_bg"
+                            android:textColorHint="@color/input_login_hint" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="50">
+
+
+                        <ImageView
+
+                            android:id="@+id/memberimage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
 
                 <EditText
-                    android:id="@+id/religion"
+                    android:id="@+id/education"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="RELIGION"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="EDUCATIN"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/ses"
+                <Spinner
+                    android:id="@+id/occupation"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="S.E.S"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                    android:background="@drawable/edittextanimation"
+                    android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/age"
+                    android:id="@+id/temporaryaddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="AGE"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="TEMPORARY ADDRESS"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/dob"
+                    android:id="@+id/permanentaddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="D.O.B"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="PERMANENT ADDRESS"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <Spinner
-                android:id="@+id/sexspinner"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center"/>
-
-            <Spinner
-                android:id="@+id/maritalstatus"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-
-            <Spinner
-                android:id="@+id/occupation"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-
-            <Spinner
-                android:id="@+id/education"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-
-            <Spinner
-                android:id="@+id/address"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/residencial"
+                    android:id="@+id/currentaddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="RESIDENTIAL"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="CURRENT ADDRESS"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="10">
+
+                    <Spinner
+                        android:id="@+id/countrycode"
+                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="7"
+                        android:background="@drawable/edittextanimation"
+                        android:padding="10dp" />
+
+                    <EditText
+                        android:id="@+id/contactnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/edittextanimation"
+                        android:hint="CONTACT NUMBER"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:padding="10dp"
+                        android:textColor="@color/input_register_bg"
+                        android:textColorHint="@color/input_login_hint" />
+
+                </LinearLayout>
+
 
                 <EditText
-                    android:id="@+id/office"
+                    android:id="@+id/cast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="OFFICE"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="CAST"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <Spinner
-                android:id="@+id/sourceofrefferal"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="GENDER" />
+
+                    <RadioGroup
+                        android:id="@+id/radioSex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Male" />
+
+                        <RadioButton
+                            android:id="@+id/radioFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:text="Female" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
 
                 <EditText
-                    android:id="@+id/diagnosis"
+                    android:id="@+id/voteridnumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="DIAGNOSIS"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="VOTER ID NUMBER"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="10dp"
                     android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@color/input_login_hint" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/dsmvcode"
-                    android:layout_width="match_parent"
+                <CheckBox
+                    android:id="@+id/relation"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="D.S.M V CODE"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="1.0dip"
+                    android:layout_marginBottom="1.0dip"
+                    android:layout_weight="1"
+                    android:padding="10.0dip"
+                    android:text="Relation"
+                    android:textSize="14.0dip" />
+
+            </LinearLayout>
 
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/reviseddignosis"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="REVISED DIAGNOSIS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/informant"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="INFORMANT"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/odp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="ODP"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-</LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" Physical Examination :"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-
-                android:textColor="@color/colorAccent"
-                android:textSize="16dp"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backgroundcolor"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/generalexamination"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="General Examination"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/cns"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="CNS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/cvs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="CVS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/pulse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="PULSE"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/bp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="BP"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/rs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="RS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/pa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="PA"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/imark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="IDENTIFICATION MARKS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/formulation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="FORMULATION"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/diagnosisphy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="DIAGNOSIS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/managementplan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="MANAGEMENT PLAN"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/investigations"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="INVESTIGATIONS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/refwithreasons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:hint="REFERRALS WITH REASONS"
-                android:textColor="@color/input_register_bg"
-                android:textColorHint="@android:color/white" />
-        </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/rehabilationneeds"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="REHABILITATION NEEDS"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/persnality"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="PERSNALITY"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/socialsupport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="SOCIAL SUPPORT"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" History :"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-
-                android:textColor="@color/colorAccent"
-                android:textSize="16dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backgroundcolor"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/pasthistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="PAST HISTORY"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/familyhistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="FAMILY HISTORY"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/dhandchildad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:hint="DEV HISTORY AND CHILDHOOD/ADOLESENCE"
-                android:textColor="@color/input_register_bg"
-                android:textColorHint="@android:color/white"/>
-        </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/occuhistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="OCCUPATIONAL HISTORY"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/personalhistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="PERSONAL/SEXUAL/MARITAL HISTORY"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-</LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mental Status Examination :"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:textSize="16dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backgroundcolor"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/apearanceandbehaviour"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="APPEARANCE AND BEHAVIOUR REPORT"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/speachmoodefect"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="SPEACH MOOD EFFECT"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/insightjugecodition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="INSIGHT JUDGMENT MEMORY CONDITION"
-                    android:textColor="@color/input_register_bg"
-                    android:textColorHint="@android:color/white"/>
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
 
             <Button
-                 android:id="@+id/submit"
-                 android:layout_width="250dp"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center"
-                 android:layout_marginLeft="10dp"
-                 android:layout_marginTop="30dp"
-                 android:layout_marginRight="10dp"
+                android:id="@+id/submit"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="30dp"
-                 android:background="@color/btn_logut_bg"
-                 android:gravity="center"
-                 android:textColor="@color/white"
-                 android:text="SUBMIT" />
+                android:background="@color/toolbar"
+                android:gravity="center"
+                android:text="SUBMIT"
+                android:textColor="@color/white" />
 
         </LinearLayout>
+
 
     </ScrollView>
 

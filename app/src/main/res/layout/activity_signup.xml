@@ -21,11 +21,11 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/doctorname"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true"
-                android:hint="Doctor Name"
+                android:hint="User Name"
                 android:imeActionId="@+id/login"
                 android:imeOptions="actionUnspecified"
                 android:maxLines="1"
@@ -41,34 +41,27 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/designation"
+                android:id="@+id/mobilenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:hint="Deignation"
-                android:imeActionId="@+id/login"
-                android:imeOptions="actionUnspecified"
+                android:hint="@string/hint_mobile"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/input_register_bg"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:hint="Contact"
-                android:imeActionId="@+id/login"
-                android:imeOptions="actionUnspecified"
                 android:inputType="number"
+                android:textColor="@color/input_register_bg"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/input_register_bg"
@@ -81,12 +74,14 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/pincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="Pin Code"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="6"
                 android:textColor="@color/input_register_bg"
                 />
 
@@ -111,6 +106,45 @@
                 />
 
         </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerselectusertype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:padding="10sp"
+            android:textColor="@color/input_register_bg"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/button_generate_otp"
+            style="@style/DefaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Generate OTP" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:hint="OTP"
+                android:imeOptions="actionUnspecified"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/input_register_bg"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:id="@+id/sign_up_button"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.smartloan.smtrick.jagrutiapp"
+        applicationId "com.smartloan.smtrick.laundryapp"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -45,9 +45,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
+
+    implementation 'com.theartofdev.edmodo:android-image-cropper:1.2.1'
     implementation files('libs/jxl.jar')
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

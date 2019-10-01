@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#26ae90</color>
+    <color name="colorPrimary">#3498DB</color>
     <color name="colorPrimaryDark">#a8a8a8</color>
-    <color name="colorAccent">#26ae90</color>
-    <color name="bg_login">#26ae90</color>
+    <color name="colorAccent">#3498DB</color>
+    <color name="bg_login">#ff4500</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
@@ -13,11 +13,18 @@
     <color name="input_register">#888888</color>
     <color name="input_register_bg">#3b4148</color>
     <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
+    <color name="btn_login">#3498DB</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#26ae90</color>
+    <color name="btn_logut_bg">#3498DB</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
     <color name="backgroundcolor">#e0f2ec</color>
+
+    <item type="color" name="hederbackground">#ec6f70</item>
+    <color name="mainTextColor">#343d43</color>
+
+    <color name="toolbar">#3498DB</color>
+    <color name="whatsapp">#25D366</color>
+    <item type="color" name="whitetextcolor">#000000</item>
 </resources>

@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "249052156361",
-    "firebase_url": "https://jagrutiapp.firebaseio.com",
-    "project_id": "jagrutiapp",
-    "storage_bucket": "jagrutiapp.appspot.com"
+    "project_number": "818270397083",
+    "firebase_url": "https://laundryapp-a2aa0.firebaseio.com",
+    "project_id": "laundryapp-a2aa0",
+    "storage_bucket": "laundryapp-a2aa0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:249052156361:android:544667f196c31591",
+        "mobilesdk_app_id": "1:818270397083:android:e007156cc425dd7181dc3e",
         "android_client_info": {
-          "package_name": "com.smartloan.smtrick.jagrutiapp"
+          "package_name": "com.smartloan.smtrick.laundryapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "249052156361-kkscigfj1vgok9dr0ed5fmussgs0p00e.apps.googleusercontent.com",
+          "client_id": "818270397083-676jbdtmn29o7ps5l098m3gbq2bplhuh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartloan.smtrick.laundryapp",
+            "certificate_hash": "a058c77ec79e3080dd24bca3ee8567f802573eb9"
+          }
+        },
+        {
+          "client_id": "818270397083-d5d13gbun90a0l92ke85tsg8qm731ges.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVckStdGWKe5QhN0LNyuNNULS7DJuRbIs"
+          "current_key": "AIzaSyCXxIXiGykOafvy4-4wlOCN2cW-A-Y4jfU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "249052156361-kkscigfj1vgok9dr0ed5fmussgs0p00e.apps.googleusercontent.com",
+              "client_id": "818270397083-d5d13gbun90a0l92ke85tsg8qm731ges.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

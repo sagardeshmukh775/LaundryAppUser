@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jagruti</string>
+    <string name="app_name">Laundry</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -8,7 +8,6 @@
     <string name="action_settings">Settings</string>
     <string name="dismiss">dismiss</string>
     <string name="action_sign_in_short">Register</string>
-    <string name="email">Email</string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="change_email">Change Email</string>
@@ -19,6 +18,7 @@
     <string name="title_activity_profile">Firebase</string>
     <string name="title_activity_login">Sign in</string>
     <string name="hint_email">Email</string>
+    <string name="hint_mobile">Mobile Number</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
     <string name="btn_login">LOGIN</string>
@@ -56,5 +56,52 @@ Specialists in installations of wood floors and claddings, we at Samar Floor hav
 
 We also supply an extensive range of quality prefinished engineered flooring, covering a wide selection of timber colors and finishes. The allure of laminate flooring lies not only in its representation of real hardwood and its incredible durability, but also in the ease with which these floors are installed and maintained. Our laminate flooring is available in a plethora of styles and designs.Our Wooden Floors are committed to being eco-friendly. We take great pride in the quality of both our materials and workmanship.After discussing your options and requirements with you, our comprehensive quotes leave nothing to surprise and we aim to work in with your building budget. Each installation comes with our warrantee and our after sales service means we are able to remedy any problems that occur.We at SAMAR AGENCIES enjoy the challenge of the new and interesting projects we undertake. The large varieties of projects we have worked on over the years are testament to our high standards and quality of workmanship.</string>
     <string name="title_activity_cropimage">Cropimage</string>
+
+    <string name="reg_member">Member Registration</string>
+    <string name="mem_details">Member Details</string>
+    <string name="mem_ward">WARD NUMBER</string>
+    <string name="mem_name">NAME</string>
+    <string name="mem_age">AGE</string>
+    <string name="mem_dob">D.O.B.</string>
+    <string name="mem_education">EDUCATION</string>
+    <string name="mem_occupation">OCCUPATION</string>
+    <string name="mem_tempaddress">TEMPORARY ADDRESS</string>
+    <string name="mem_peraddress">PERMANENT ADDRESS</string>
+    <string name="mem_curaddress">CURRENT ADDRESS</string>
+    <string name="mem_contact">CONTACT NUMBER</string>
+    <string name="mem_cast">CAST</string>
+    <string name="mem_gender">GENDER</string>
+    <string name="mem_male">Male</string>
+    <string name="mem_female">Female</string>
+    <string name="mem_voteridnumber">VOTER ID NUMBER</string>
+    <string name="mem_relative">RELATION</string>
+    <string name="mem_submit">SUBMIT</string>
+
+    <string name="rel_name">MAIN PERSON NAME</string>
+    <string name="rel_contact">CONTACT NUMBER</string>
+    <string name="rel_address">ADDRESS</string>
+    <string name="rel_details">Relation Details</string>
+    <string name="rel_form">RELATION FORM</string>
+
+    <string name="report_heading">Select from Date and to Date</string>
+    <string name="report_fromdate">From Date</string>
+    <string name="report_todate">To Date</string>
+    <string name="report_PDF">PDF</string>
+
+    <string name="generate_pdf_english">Generate PDF</string>
+
+    <string name="mem_report_details_english">MEMBER REPORT DETAILS</string>
+
+    <string name="mem_update">UPDATE</string>
+
+    <string name="loading">Loading</string>
+    <string name="PLEASE_WAIT">Please Wait</string>
+    <string name="please_wait">Please wait</string>
+    <string name="MOBILE_NUMBER_SHOULD_NOT_BE_EMPTY">Mobile number should not be empty.</string>
+    <string name="MOBILE_NUMBER_ALREADY_REGISTER">Mobile number already register.</string>
+    <string name="INVALID_MOBILE_NUMBER">Invalid mobile number.</string>
+    <string name="PASSWORD_SHOULD_NOT_BE_EMPTY">Password should not be empty.</string>
+    <string name="SIGNING_IN">Signing in</string>
+    <string name="login_fail_try_again">Login fail, please try again with correct login details.</string>
 
 </resources>
