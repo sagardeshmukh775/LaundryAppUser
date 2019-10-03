@@ -24,7 +24,7 @@ public class Fragment_Users extends Fragment {
 
     private DatabaseReference mdatabase;
 
-    private List<Users> mUsers;
+    private List<User> mUsers;
     private ProgressDialog progressDialog;
 
     private RecyclerView userrecycler;
@@ -39,7 +39,7 @@ public class Fragment_Users extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_users, container, false);
 
-//        userrecycler = (RecyclerView) view.findViewById(R.id.userRecycler);
+        userrecycler = (RecyclerView) view.findViewById(R.id.userRecycler);
         userrecycler.setHasFixedSize(true);
         userrecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -55,17 +55,17 @@ public class Fragment_Users extends Fragment {
 
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
 
-                    Users users = userSnapshot.getValue(Users.class);
+                    User users = userSnapshot.getValue(User.class);
                     mUsers.add(users);
                 }
-                UsersAdapter usersAdapter = new UsersAdapter(mUsers);
+                Service_Providers_Adapter usersAdapter = new Service_Providers_Adapter(mUsers);
                 userrecycler.setAdapter(usersAdapter);
                 progressDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                progressDialog.dismiss();
             }
         });
 

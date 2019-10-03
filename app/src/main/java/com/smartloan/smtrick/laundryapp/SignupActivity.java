@@ -66,8 +66,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
         String[] Userstypeall = new String[]{
-                "User",
-                "Service Provider"};
+                "USER",
+                "SERVICE PROVIDER"};
         spinnerRole = (Spinner) findViewById(R.id.spinnerselectusertype);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, R.layout.sppinner_layout_listitem, Userstypeall

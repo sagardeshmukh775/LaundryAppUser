@@ -5,26 +5,26 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/memberregistration"
+            android:id="@+id/serviceproviders"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Register Member"/>
+            android:title="Service Providers"/>
         <item
-            android:id="@+id/relationform"
+            android:id="@+id/requests"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Relation Form"/>
+            android:title="Requests"/>
         <item
-            android:id="@+id/viewmembers"
+            android:id="@+id/user_requests"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Members"/>
+            android:title="User Requests"/>
         <item
-            android:id="@+id/reports"
+            android:id="@+id/users"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Reports" />
+            android:title="Admin Users" />
 
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Settings" />
+<!--        <item-->
+<!--            android:id="@+id/settings"-->
+<!--            android:icon="@drawable/ic_menu_gallery"-->
+<!--            android:title="Settings" />-->
 
         <item
             android:id="@+id/logout"

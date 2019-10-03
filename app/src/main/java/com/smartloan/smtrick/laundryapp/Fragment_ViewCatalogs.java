@@ -305,13 +305,13 @@ public class Fragment_ViewCatalogs extends Fragment {
 
                     for (DataSnapshot usersnapshot : dataSnapshot.getChildren()) {
 
-                        Language = usersnapshot.child("language").getValue(String.class);
-                        if (Language.equalsIgnoreCase("Marathi")) {
-                            setLanguage();
-                        } else if (Language.equalsIgnoreCase("English")) {
-                            edtSearch.setHint("Search Text...");
-                            setLeeds();
-                        }
+//                        Language = usersnapshot.child("language").getValue(String.class);
+//                        if (Language.equalsIgnoreCase("Marathi")) {
+//                            setLanguage();
+//                        } else if (Language.equalsIgnoreCase("English")) {
+//                            edtSearch.setHint("Search Text...");
+//                            setLeeds();
+//                        }
                     }
                 }
 

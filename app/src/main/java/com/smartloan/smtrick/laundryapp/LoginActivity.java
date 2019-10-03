@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        checkLoginState();
+
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
         appSharedPreference = new AppSharedPreference(this);
         userRepository = new UserRepositoryImpl(this);
+
+        checkLoginState();
 
         inputMobile = (EditText) findViewById(R.id.number);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -124,8 +126,20 @@ public class LoginActivity extends AppCompatActivity {
 
                         progressDialog.dismissDialog();
                         String userid = upload.getUserid();
-                        Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                        signInUserData(userid);
+
+                        if (inputPassword.getText().toString().equalsIgnoreCase(upload.getPassword())) {
+                            appSharedPreference.addUserDetails(upload);
+                            appSharedPreference.createUserLoginSession();
+                            Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                            if (upload.getRole().equalsIgnoreCase("USER")) {
+                                logintoapp();
+                            }else if (upload.getRole().equalsIgnoreCase("SERVICE PROVIDER")){
+                                logintoapp();
+                            }
+                        }else {
+                            Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+
+                        }
 
                     }
 
@@ -144,38 +158,39 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void signInUserData(final String userId) {
-        userRepository.readUserByUserId(userId, new CallBack() {
-            @Override
-            public void onSuccess(Object object) {
-                if (object != null) {
-                    User user = (User) object;
-                    appSharedPreference.createUserLoginSession();
-                    appSharedPreference.addUserDetails(user);
-
-                    logintoapp();
-
-                } else {
-                    Utility.showTimedSnackBar(LoginActivity.this, inputPassword, getMessage(R.string.login_fail_try_again));
-                }
-                if (progressDialog != null)
-                    progressDialog.dismissDialog();
-            }
-
-            @Override
-            public void onError(Object object) {
-                if (progressDialog != null)
-                    progressDialog.dismissDialog();
-                Utility.showTimedSnackBar(LoginActivity.this, inputPassword, getMessage(R.string.login_fail_try_again));
-            }
-        });
-    }
+//    private void signInUserData(final String userId) {
+//        userRepository.readUserByUserId(userId, new CallBack() {
+//            @Override
+//            public void onSuccess(Object object) {
+//                if (object != null) {
+//                    User user = (User) object;
+//                    appSharedPreference.createUserLoginSession();
+//                    appSharedPreference.addUserDetails(user);
+//
+//                    logintoapp();
+//
+//                } else {
+//                    Utility.showTimedSnackBar(LoginActivity.this, inputPassword, getMessage(R.string.login_fail_try_again));
+//                }
+//                if (progressDialog != null)
+//                    progressDialog.dismissDialog();
+//            }
+//
+//            @Override
+//            public void onError(Object object) {
+//                if (progressDialog != null)
+//                    progressDialog.dismissDialog();
+//                Utility.showTimedSnackBar(LoginActivity.this, inputPassword, getMessage(R.string.login_fail_try_again));
+//            }
+//        });
+//    }
 
     private void logintoapp() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainActivity_User.class);
         startActivity(i);
         finish();
     }
+
 
     public void checkLoginState() {
         AsyncTask.execute(new Runnable() {
@@ -186,14 +201,21 @@ public class LoginActivity extends AppCompatActivity {
                         if (appSharedPreference.getGeneratedId() != null && appSharedPreference.getUserid() != null) {
 
                             String roll = appSharedPreference.getRole();
-//                            loginTotellecallerApp();
-                            if (roll.equals("User")) {
-                                logintoapp();
 
-                            } else if (roll.equals("Service Provider")) {
+                            if (roll.equalsIgnoreCase("USER")) {
                                 logintoapp();
-
+                            }else if (roll.equalsIgnoreCase("SERVICE PROVIDER")){
+                                logintoapp();
                             }
+//                            logintoapp();
+//                            loginTotellecallerApp();
+//                            if (roll.equals("User")) {
+//                                logintoapp();
+//
+//                            } else if (roll.equals("Service Provider")) {
+//                                logintoapp();
+//
+//                            }
                         }
                     }
                 } catch (Exception e) {

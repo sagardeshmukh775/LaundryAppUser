@@ -40,17 +40,17 @@ public class AppSharedPreference {
             if (user.getName() != null)
                 editor.putString(USERNAME, (user.getName()));
             if (user.getNumber() != null)
-                editor.putString(EMAIL_ID, (user.getNumber()));
+                editor.putString(MOBILE_NO, (user.getNumber()));
             if (user.getAddress() != null)
-                editor.putString(REG_ID, (user.getAddress()));
+                editor.putString(ADDRESS, (user.getAddress()));
             if (user.getPincode() != null)
-                editor.putString(MOBILE_NO, (user.getPincode()));
+                editor.putString(PINCODE, (user.getPincode()));
             if (user.getPassword() != null)
-                editor.putString(AADHAAR_NO, (user.getPassword()));
+                editor.putString(PASSWORD, (user.getPassword()));
             if (user.getUserid() != null)
-                editor.putString(PROFILE_SMALL_IMAGE, (user.getUserid()));
+                editor.putString(USER_ID, (user.getUserid()));
             if (user.getGeneratedId() != null)
-                editor.putString(PROFILE_LARGE_IMAGE, (user.getGeneratedId()));
+                editor.putString(REGISTRATION_TOKEN, (user.getGeneratedId()));
 //            if (user.getUserId() != null)
 //                editor.putString(USER_ID, (user.getUserId()));
 //            if (user.getRegistrationToken() != null)
@@ -83,7 +83,7 @@ public class AppSharedPreference {
     }
 
     public String getNumber() {
-        return (sharedPref.getString(USERNAME, ""));
+        return (sharedPref.getString(MOBILE_NO, ""));
     }
 
     public String getPincode() {

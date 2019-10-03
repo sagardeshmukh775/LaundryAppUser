@@ -299,14 +299,14 @@ public class Fragment_Relatives extends Fragment {
 
                     for (DataSnapshot usersnapshot : dataSnapshot.getChildren()) {
 //
-                        Language = usersnapshot.child("language").getValue(String.class);
+//                        Language = usersnapshot.child("language").getValue(String.class);
 //
-                        if (Language.equalsIgnoreCase("Marathi")) {
-                            setLanguage();
-                        }else if (Language.equalsIgnoreCase("English")){
-                            edtSearch.setHint("Search Text...");
-                            setLeeds();
-                        }
+//                        if (Language.equalsIgnoreCase("Marathi")) {
+//                            setLanguage();
+//                        }else if (Language.equalsIgnoreCase("English")){
+//                            edtSearch.setHint("Search Text...");
+//                            setLeeds();
+//                        }
                     }
                 }
 
