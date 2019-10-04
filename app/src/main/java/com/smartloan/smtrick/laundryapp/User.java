@@ -3,12 +3,14 @@ package com.smartloan.smtrick.laundryapp;
 import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class User implements Serializable {
 
     public String name, number, address, pincode, password,role, userid,generatedId;
+    private ArrayList<String> imageList;
 
     public User() {
 
@@ -24,6 +26,8 @@ public class User implements Serializable {
         this.userid = userid;
         this.generatedId = generatedId;
         this.role = role;
+        this.imageList = new ArrayList<String>();
+
 
     }
 
@@ -91,6 +95,14 @@ public class User implements Serializable {
         this.generatedId = generatedId;
     }
 
+    public ArrayList<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(ArrayList<String> imageList) {
+        this.imageList = imageList;
+    }
+
     @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
@@ -103,6 +115,7 @@ public class User implements Serializable {
         leedMap.put("role", getRole());
         leedMap.put("userid", getUserid());
         leedMap.put("generatedId", getGeneratedId());
+        leedMap.put("imageList",getImageList() );
 
         return leedMap;
 
