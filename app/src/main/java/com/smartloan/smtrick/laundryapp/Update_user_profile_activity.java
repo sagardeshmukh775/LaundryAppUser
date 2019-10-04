@@ -34,6 +34,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
     EditText inputUsername, inputMobile, inputAddress, inputPinCode, inputPassword, spinnerRole;
     Button btnUpdate;
     private AppSharedPreference appSharedPreference;
+    private ProgressDialogClass progressDialog;
     ImageView addImages;
 
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -60,6 +61,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         appSharedPreference = new AppSharedPreference(this);
+        progressDialog = new ProgressDialogClass(this);
         leedRepository = new LeedRepositoryImpl();
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -86,12 +88,31 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
     }
 
     private void getUserDetails() {
-        inputUsername.setText(appSharedPreference.getName());
-        inputMobile.setText(appSharedPreference.getNumber());
-        inputAddress.setText(appSharedPreference.getAddress());
-        inputPinCode.setText(appSharedPreference.getPincode());
-        inputPassword.setText(appSharedPreference.getPassword());
-        spinnerRole.setText(appSharedPreference.getRole());
+        String userId = appSharedPreference.getUserid();
+        leedRepository.readUserById(userId, new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                if (object != null) {
+                    User user = (User) object;
+                    inputUsername.setText(user.getName());
+                    inputMobile.setText(user.getNumber());
+                    inputAddress.setText(user.getAddress());
+                    inputPinCode.setText(user.getPincode());
+                    inputPassword.setText(user.getPassword());
+                    spinnerRole.setText(user.getRole());
+
+                } else {
+//                    Utility.showTimedSnackBar(Update_user_profile_activity.this, etpassword, getMessage(R.string.login_fail_try_again));
+                }
+                if (progressDialog != null)
+                    progressDialog.dismissDialog();
+            }
+            @Override
+            public void onError(Object object) {
+                if (progressDialog != null)
+                    progressDialog.dismissDialog();
+                Toast.makeText(Update_user_profile_activity.this, "Error Fetching user", Toast.LENGTH_SHORT).show();            }
+        });
     }
 
     @Override
@@ -174,17 +195,30 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                                 progressDialog.dismiss();
 
                                 //displaying success toast
-                                Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
                                 sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         String downloadurl = uri.toString();
                                         // String key = mDatabase.push().getKey();
                                         imageList.add(downloadurl);
+                                        if (imageList != null && imageList.size() != 0) {
+                                            User upload = new User();
+                                            upload.setName(inputUsername.getText().toString());
+                                            upload.setNumber(inputMobile.getText().toString());
+                                            upload.setAddress(inputAddress.getText().toString());
+                                            upload.setPincode(inputPinCode.getText().toString());
+                                            upload.setPassword(inputPassword.getText().toString());
+                                            upload.setRole(spinnerRole.getText().toString());
+                                            upload.setUserid(appSharedPreference.getUserid());
+                                            upload.setGeneratedId(appSharedPreference.getGeneratedId());
+                                            upload.setImageList(imageList);
+
+                                            updateLeed(upload.getGeneratedId(), upload.getLeedStatusMap());
+                                        }
 
                                     }
                                 });
-
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -203,20 +237,12 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                             }
                         });
 
-                User upload = new User();
-                upload.setName(inputUsername.getText().toString());
-                upload.setNumber(inputMobile.getText().toString());
-                upload.setAddress(inputAddress.getText().toString());
-                upload.setPincode(inputPinCode.getText().toString());
-                upload.setPassword(inputPassword.getText().toString());
-                upload.setRole(spinnerRole.getText().toString());
-                upload.setUserid(appSharedPreference.getUserid());
-                upload.setGeneratedId(appSharedPreference.getGeneratedId());
-                upload.setImageList(imageList);
 
-                updateLeed(upload.getGeneratedId(), upload.getLeedStatusMap());
 
             }
+
+
+
         } else {
             //display an error if no file is selected
             Toast.makeText(this, "Please Select a file", Toast.LENGTH_SHORT).show();

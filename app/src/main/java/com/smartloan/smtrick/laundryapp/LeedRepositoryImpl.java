@@ -307,4 +307,29 @@ public class LeedRepositoryImpl extends FirebaseTemplateRepository implements Le
         });
     }
 
+
+    @Override
+    public void readUserById(String leedId, final CallBack callBack) {
+        final Query query = Constant.LEEDS_TABLE_REF.child(leedId);
+        fireBaseReadData(query, new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                if (object != null) {
+                    DataSnapshot dataSnapshot = (DataSnapshot) object;
+                    if (dataSnapshot.getValue() != null & dataSnapshot.hasChildren()) {
+                        DataSnapshot child = dataSnapshot.getChildren().iterator().next();
+                        User user = child.getValue(User.class);
+                        callBack.onSuccess(user);
+                    } else
+                        callBack.onSuccess(null);
+                } else
+                    callBack.onSuccess(null);
+            }
+
+            @Override
+            public void onError(Object object) {
+                callBack.onError(object);
+            }
+        });
+    }
 }

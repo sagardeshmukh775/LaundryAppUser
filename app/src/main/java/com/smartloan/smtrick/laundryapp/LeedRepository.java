@@ -19,4 +19,6 @@ public interface LeedRepository {
     void updateRelative(final String leedId, final Map leedsMap, final CallBack callBack);
 
     void updateUserProfile(final String leedId, final Map leedsMap, final CallBack callBack);
+
+    void readUserById(final String userId, final CallBack callback);
 }
