@@ -298,8 +298,8 @@ public class MainActivity_User extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if (v == ProfileImage) {
-//            Intent intent = new Intent(MainActivity_User.this, Update_User_Profile_Activity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity_User.this, Update_user_profile_activity.class);
+            startActivity(intent);
         }
     }
 }
