@@ -236,14 +236,6 @@ public class MainActivity_User extends AppCompatActivity
                     new Fragment_Users()).commit();
 
         }
-//        else if (id == R.id.reports) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_Reports()).commit();
-//
-//        }else if (id == R.id.settings) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Request_Doctors_Fragment()).commit();
-//        }
         else if (id == R.id.logout) {
 
 //             clearDataWithSignOut();

@@ -1,6 +1,7 @@
 package com.smartloan.smtrick.laundryapp;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,13 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
         holder.textViewPinCode.setText(user.getPincode());
         holder.textViewId.setText(user.getUserid());
 
+        holder.userCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
     }
 
     @Override
@@ -56,6 +64,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
         public TextView textViewAddress;
         public TextView textViewPinCode;
         public TextView textViewId;
+        public CardView userCard;
 
 
         public ViewHolder(View itemView) {
@@ -66,6 +75,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
             textViewAddress = (TextView) itemView.findViewById(R.id.user_addressvalue);
             textViewPinCode = (TextView) itemView.findViewById(R.id.user_pincodevalue);
             textViewId = (TextView) itemView.findViewById(R.id.user_idvalue);
+            userCard = (CardView) itemView.findViewById(R.id.card_userid);
 
         }
     }
