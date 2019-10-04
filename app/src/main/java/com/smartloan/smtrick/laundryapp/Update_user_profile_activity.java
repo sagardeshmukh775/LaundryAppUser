@@ -45,6 +45,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
     private StorageReference storageReference;
     LeedRepository leedRepository;
     ArrayList<String> imageList;
+    ArrayList<User> userlist;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -68,6 +69,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
 
         fileDoneList = new ArrayList<>();
         imageList = new ArrayList<>();
+        userlist = new ArrayList<>();
 
         inputUsername = (EditText) findViewById(R.id.username);
         inputMobile = (EditText) findViewById(R.id.mobilenumber);
@@ -93,13 +95,15 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    User user = (User) object;
-                    inputUsername.setText(user.getName());
-                    inputMobile.setText(user.getNumber());
-                    inputAddress.setText(user.getAddress());
-                    inputPinCode.setText(user.getPincode());
-                    inputPassword.setText(user.getPassword());
-                    spinnerRole.setText(user.getRole());
+                    userlist = (ArrayList<User>) object;
+                    inputUsername.setText(userlist.get(0).getName());
+                    inputMobile.setText(userlist.get(0).getNumber());
+                    inputAddress.setText(userlist.get(0).getAddress());
+                    inputPinCode.setText(userlist.get(0).getPincode());
+                    inputPassword.setText(userlist.get(0).getPassword());
+                    spinnerRole.setText(userlist.get(0).getRole());
+                    imageList.addAll(userlist.get(0).getImageList());
+
 
                 } else {
 //                    Utility.showTimedSnackBar(Update_user_profile_activity.this, etpassword, getMessage(R.string.login_fail_try_again));
@@ -256,7 +260,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
             public void onSuccess(Object object) {
 
                 Toast.makeText(Update_user_profile_activity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Update_user_profile_activity.this, Update_user_profile_activity.class);
+                Intent intent = new Intent(Update_user_profile_activity.this, MainActivity_User.class);
                 startActivity(intent);
             }
 
