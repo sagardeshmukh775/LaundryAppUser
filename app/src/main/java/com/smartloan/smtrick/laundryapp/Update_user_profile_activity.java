@@ -196,7 +196,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 //dismissing the progress dialog
-                                progressDialog.dismiss();
+
 
                                 //displaying success toast
 //                                Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
@@ -219,6 +219,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                                             upload.setImageList(imageList);
 
                                             updateLeed(upload.getGeneratedId(), upload.getLeedStatusMap());
+                                            progressDialog.dismiss();
                                         }
 
                                     }
