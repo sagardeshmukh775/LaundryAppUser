@@ -103,5 +103,6 @@ We also supply an extensive range of quality prefinished engineered flooring, co
     <string name="PASSWORD_SHOULD_NOT_BE_EMPTY">Password should not be empty.</string>
     <string name="SIGNING_IN">Signing in</string>
     <string name="login_fail_try_again">Login fail, please try again with correct login details.</string>
+    <string name="server_error">Faild to fetch data, please try again.</string>
 
 </resources>

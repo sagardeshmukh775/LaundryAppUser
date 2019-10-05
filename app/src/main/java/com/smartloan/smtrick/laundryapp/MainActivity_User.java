@@ -233,7 +233,7 @@ public class MainActivity_User extends AppCompatActivity
         } else if (id == R.id.users) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-                    new Fragment_Users()).commit();
+                    new Admin_Users_Tab_Fragment()).commit();
 
         }
         else if (id == R.id.logout) {

@@ -46,7 +46,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
 
