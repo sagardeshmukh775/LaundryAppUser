@@ -44,7 +44,7 @@ public class Users_Fragment extends Fragment implements AdapterView.OnItemSelect
             mListener.onFragmentInteraction("Generated");
 
             leedRepository = new UserRepositoryImpl();
-//            userList = new ArrayList<>();
+            userList = new ArrayList<>();
 //            userList1 = new ArrayList<>();
             listView = (RecyclerView) view.findViewById(R.id.recycler_view_users);
 

@@ -26,9 +26,8 @@ public class Service_Providers_Fragment extends Fragment implements AdapterView.
     public Service_Providers_Fragment() {
     }
 
-//    ArrayList<UserModel> searchResults = GetSearchResults();
     RecyclerView listView;
-    Service_Providers_Adapter adapter;
+    Service_Providers_Adapter1 adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +43,7 @@ public class Service_Providers_Fragment extends Fragment implements AdapterView.
             mListener.onFragmentInteraction("Generated");
 
             leedRepository = new UserRepositoryImpl();
-//            userList = new ArrayList<>();
-//            userList1 = new ArrayList<>();
+            userList = new ArrayList<>();
             listView = (RecyclerView) view.findViewById(R.id.recycler_view_users);
 
             readUsers();
@@ -64,7 +62,7 @@ public class Service_Providers_Fragment extends Fragment implements AdapterView.
 
                 }
 
-                adapter = new Service_Providers_Adapter(getActivity(), userList);
+                adapter = new Service_Providers_Adapter1(getActivity(), userList);
                 //adding adapter to recyclerview
                 listView.setAdapter(adapter);
                 // CatalogAdapter catalogAdapter = new CatalogAdapter(catalogList);
