@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:id="@+id/toplayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/view_dropshadow"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="ADD MAIN PRODUCT NAME"
+                        android:textColor="@color/album_title"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <ImageView
+                            android:id="@+id/dropmainproduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_weight="90"
+                            android:clickable="true"
+                            android:src="@drawable/dropdown" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="10">
+
+                            <EditText
+                                android:id="@+id/Main_product"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/edittextanimation"
+                                android:hint="Enter Main Product"
+                                android:padding="10dp"
+                                android:textColor="@android:color/black"
+                                android:textColorHint="@android:color/white" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/Add_Main_product"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Add Main Product"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/view_dropshadow"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="ADD SUB PRODUCT NAME"
+                        android:textColor="@color/album_title"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/mainspinner"
+                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/edittextanimation"
+
+                        android:padding="10dp"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <ImageView
+                            android:id="@+id/dropsubproduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="90"
+                            android:clickable="true"
+                            android:src="@drawable/dropdown" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10">
+
+                        <EditText
+                            android:id="@+id/Sub_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edittextanimation"
+                            android:hint="Enter Sub Product"
+                            android:padding="10dp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/white" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/Add_sub_product"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Add Sub Product"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_below="@id/toplayout"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@drawable/view_dropshadow"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textaddcatlog"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:text="ADD CATALOG NAME"-->
+<!--                    android:textColor="@color/album_title"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/mainspinnercatalog"-->
+<!--                    style="@style/Widget.AppCompat.Spinner.Underlined"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/textaddcatlog"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:background="@drawable/edittextanimation"-->
+<!--                    android:padding="10dp" />-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/subspinnercatalog"-->
+<!--                    style="@style/Widget.AppCompat.Spinner.Underlined"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/mainspinnercatalog"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/edittextanimation"-->
+<!--                    android:padding="10dp" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/layoutcatalog"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_below="@+id/subspinnercatalog"-->
+<!--                    android:weightSum="100">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/dropcatalog"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_weight="90"-->
+<!--                        android:clickable="true"-->
+<!--                        android:src="@drawable/dropdown" />-->
+
+<!--                <android.support.design.widget.TextInputLayout-->
+<!--                    android:id="@+id/etaddcatlog"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="10"-->
+<!--                    android:layout_gravity="center">-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/edit_catelogname"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/subspinnercatalog"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@drawable/edittextanimation"-->
+<!--                        android:hint="Enter Catalog Name"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:textColorHint="@android:color/white" />-->
+<!--                </android.support.design.widget.TextInputLayout>-->
+
+<!--                </LinearLayout>-->
+
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_below="@+id/layoutcatalog"-->
+
+<!--                    android:gravity="center_horizontal">-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/Add_catalogname"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:background="@color/colorPrimary"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Add Catalogs Names"-->
+<!--                        android:textColor="@color/white" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </RelativeLayout>-->
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

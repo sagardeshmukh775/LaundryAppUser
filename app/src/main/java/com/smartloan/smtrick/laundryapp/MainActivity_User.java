@@ -165,36 +165,7 @@ public class MainActivity_User extends AppCompatActivity
     private void getCurrentuserdetails() {
 
         try {
-//            firebaseAuth = FirebaseAuth.getInstance();
-//
-//            Fuser = firebaseAuth.getCurrentUser();
-//            uid = Fuser.getUid();
-//            uid = Fuser.getDisplayName();
-//            uid  = appSharedPreference.getGeneratedId();
-//            databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-//            databaseReference.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                    for (DataSnapshot usersnapshot : dataSnapshot.getChildren()) {
-//                        acctname = usersnapshot.child("name").getValue(String.class);
-//                        acctemail = usersnapshot.child("number").getValue(String.class);
-//                        Language = usersnapshot.child("role").getValue(String.class);
-////                        Userid = usersnapshot.child("userid").getValue(String.class);
-//                        username.setText(acctname);
-//                        userEmail.setText(acctemail);
-//                        userRole.setText(Language);
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    Toast.makeText(MainActivity_User.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//            });
+
             username.setText(appSharedPreference.getName());
             userEmail.setText(appSharedPreference.getNumber());
             userRole.setText(appSharedPreference.getRole());
@@ -234,6 +205,11 @@ public class MainActivity_User extends AppCompatActivity
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Admin_Users_Tab_Fragment()).commit();
+
+        } else if (id == R.id.addcategory) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+                    new Fragment_Add_Categories()).commit();
 
         }
         else if (id == R.id.logout) {
