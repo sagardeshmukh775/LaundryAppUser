@@ -200,8 +200,8 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         String downloadurl = uri.toString();
-                                        // String key = mDatabase.push().getKey();
                                         imageList.add(downloadurl);
+
                                         if (imageList != null && imageList.size() != 0) {
                                             User upload = new User();
                                             upload.setName(inputUsername.getText().toString());

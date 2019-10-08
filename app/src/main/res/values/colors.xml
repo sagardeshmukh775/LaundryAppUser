@@ -21,7 +21,7 @@
     <color name="album_title">#4c4c4c</color>
     <color name="backgroundcolor">#e0f2ec</color>
 
-    <item type="color" name="hederbackground">#ec6f70</item>
+    <item type="color" name="hederbackground">#3498DB</item>
     <color name="mainTextColor">#343d43</color>
 
     <color name="toolbar">#3498DB</color>

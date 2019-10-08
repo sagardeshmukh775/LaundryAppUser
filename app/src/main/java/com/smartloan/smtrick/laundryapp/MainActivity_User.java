@@ -210,8 +210,8 @@ public class MainActivity_User extends AppCompatActivity
 
         }else if (id == R.id.services) {
 
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_Add_Categories()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+                    new Fragment_Add_Services()).commit();
 
         }
         else if (id == R.id.logout) {
