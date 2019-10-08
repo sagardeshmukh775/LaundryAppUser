@@ -23,4 +23,6 @@ public interface LeedRepository {
     void readUserById(final String userId, final CallBack callback);
 
     void readServicesByUserId(final String userId, final CallBack callback);
+
+    void readServicesByName(final String serviceName, final CallBack callback);
 }

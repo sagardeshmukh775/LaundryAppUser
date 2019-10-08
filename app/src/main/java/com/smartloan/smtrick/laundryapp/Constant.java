@@ -20,6 +20,7 @@ public class Constant {
     public static final DatabaseReference COMMISSION_TABLE_REF = DATABASE.getReference("commission");
     public static final DatabaseReference CHECKLIST_TABLE_REF = DATABASE.getReference("checklistrules");
     public static final DatabaseReference SERVICES_TABLE_REF = DATABASE.getReference("services");
+    public static final DatabaseReference SUBCATEGORY_TABLE_REF = DATABASE.getReference("SubCategory");
 
     /************************************** Firebase Authentication reference constants ***************************************************************************/
     public static final FirebaseAuth AUTH = FirebaseAuth.getInstance();

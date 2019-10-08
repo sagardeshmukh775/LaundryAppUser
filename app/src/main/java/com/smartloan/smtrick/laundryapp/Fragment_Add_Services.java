@@ -36,6 +36,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
     private List<String> mainproductlist;
     private List<String> subproductlist;
+    private List<SubCategory> subcategorylist;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
@@ -49,6 +50,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
     public Fragment_Add_Services() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
         mainproductlist = new ArrayList<>();
         subproductlist = new ArrayList<>();
+        subcategorylist = new ArrayList<>();
 
         progressDialogClass = new ProgressDialogClass(getActivity());
         leedRepository = new LeedRepositoryImpl();
@@ -90,6 +93,9 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
                 ExpandableListView list = (ExpandableListView) dialog1.findViewById(R.id.lvExp);
                 listDataHeader = new ArrayList<String>();
                 listDataChild = new HashMap<String, List<String>>();
+                List<String> Customer_Application = new ArrayList<String>();
+                Customer_Application.add("1");
+                Customer_Application.add("2");
 
                 mDatabaseRefMain.addValueEventListener(new ValueEventListener() {
 
@@ -103,21 +109,35 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
                             mainproductlist.add(mainProducts.getMaincategory());
 
                         }
-                        for (int i=0; i<mainproductlist.size(); i++){
+                        for (int i = 0; i < mainproductlist.size(); i++) {
                             listDataHeader.add(mainproductlist.get(i));
 
-                            List<String> Customer_Application = new ArrayList<String>();
-                            Customer_Application.add("1");
-                            Customer_Application.add("2");
-                            listDataChild.put(listDataHeader.get(0), Customer_Application);
+                        }
+                        for (int i = 0; i < listDataHeader.size(); i++) {
+                            String value = listDataHeader.get(i);
+                            leedRepository.readServicesByName(value, new CallBack() {
+                                @Override
+                                public void onSuccess(Object object) {
+                                    subcategorylist.clear();
+                                    if (object != null) {
+                                        subcategorylist = (ArrayList<SubCategory>) object;
 
-                            listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
-                            // setting list adapter
-                            list.setAdapter(listAdapter);
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Object object) {
+//                Utility.showMessage(getActivity(), getMessage(R.string.registration_fail));
+                                }
+                            });
+
+
                         }
 
 
+
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -126,16 +146,9 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
                 });
 
 
-
-
-
-
-
-
                 dialog1.show();
 
             }
-
 
 
         });
@@ -144,6 +157,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
         return view;
     }
+
 
 
 //    private void getCommission() {
