@@ -104,7 +104,6 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                     spinnerRole.setText(userlist.get(0).getRole());
                     imageList.addAll(userlist.get(0).getImageList());
 
-
                 } else {
 //                    Utility.showTimedSnackBar(Update_user_profile_activity.this, etpassword, getMessage(R.string.login_fail_try_again));
                 }
@@ -195,9 +194,6 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                //dismissing the progress dialog
-
-
                                 //displaying success toast
 //                                Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
                                 sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -242,11 +238,7 @@ public class Update_user_profile_activity extends AppCompatActivity implements V
                             }
                         });
 
-
-
             }
-
-
 
         } else {
             //display an error if no file is selected

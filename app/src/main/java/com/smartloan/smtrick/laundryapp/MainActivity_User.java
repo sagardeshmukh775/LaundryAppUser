@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity_User extends AppCompatActivity
@@ -94,8 +93,6 @@ public class MainActivity_User extends AppCompatActivity
         userRole = (TextView) headerview.findViewById(R.id.userrole);
 
         ProfileImage = (ImageView) headerview.findViewById(R.id.image_view_profile);
-
-        FirebaseMessaging.getInstance().subscribeToTopic("Products");
 
         getCurrentuserdetails();
 
@@ -210,6 +207,11 @@ public class MainActivity_User extends AppCompatActivity
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Fragment_Add_Categories()).commit();
+
+        }else if (id == R.id.services) {
+
+//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+//                    new Fragment_Add_Categories()).commit();
 
         }
         else if (id == R.id.logout) {

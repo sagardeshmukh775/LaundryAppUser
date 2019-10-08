@@ -36,7 +36,6 @@ public class Fragment_Add_Categories extends Fragment implements View.OnClickLis
 
     private DatabaseReference mDatabaseRefMain;
     private DatabaseReference mDatabaseRefSub;
-    private DatabaseReference mDatabaseRefcatalog;
 
     ImageView imgMainCategory, imgSubCategory;
     EditText edtMaincategory, edtSubCategory;
@@ -97,9 +96,7 @@ public class Fragment_Add_Categories extends Fragment implements View.OnClickLis
 
                         MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
 
-
                         mainproductlist.add(mainProducts.getMaincategory());
-
 
                     }
                     try {
