@@ -39,6 +39,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
     private List<SubCategory> subcategorylist;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    List<String> subcategorylist1 = new ArrayList<String>();
 
 
     LeedRepository leedRepository;
@@ -47,6 +48,8 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
     RecyclerView CommissionRecycle;
     ImageView AddCommission;
+
+    int j = 0;
 
     public Fragment_Add_Services() {
     }
@@ -81,11 +84,9 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-
         AddCommission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 final Dialog dialog1 = new Dialog(getContext());
                 dialog1.setContentView(R.layout.add_commission_fragement);
@@ -93,99 +94,74 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
                 ExpandableListView list = (ExpandableListView) dialog1.findViewById(R.id.lvExp);
                 listDataHeader = new ArrayList<String>();
                 listDataChild = new HashMap<String, List<String>>();
-                List<String> Customer_Application = new ArrayList<String>();
-                Customer_Application.add("1");
-                Customer_Application.add("2");
+                j = 0;
 
-                mDatabaseRefMain.addValueEventListener(new ValueEventListener() {
+                PrepareData();
 
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        mainproductlist.clear();
-                        for (DataSnapshot mainproductSnapshot : dataSnapshot.getChildren()) {
-
-                            MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
-
-                            mainproductlist.add(mainProducts.getMaincategory());
-
-                        }
-                        for (int i = 0; i < mainproductlist.size(); i++) {
-                            listDataHeader.add(mainproductlist.get(i));
-
-                        }
-                        for (int i = 0; i < listDataHeader.size(); i++) {
-                            String value = listDataHeader.get(i);
-                            leedRepository.readServicesByName(value, new CallBack() {
-                                @Override
-                                public void onSuccess(Object object) {
-                                    subcategorylist.clear();
-                                    if (object != null) {
-                                        subcategorylist = (ArrayList<SubCategory>) object;
-
-                                    }
-                                }
-
-                                @Override
-                                public void onError(Object object) {
-//                Utility.showMessage(getActivity(), getMessage(R.string.registration_fail));
-                                }
-                            });
-
-
-                        }
-
-
-
-                    }
-
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
+                // setting list adapter
+                list.setAdapter(listAdapter);
                 dialog1.show();
-
             }
 
-
         });
-
-//        getCommission();
 
         return view;
     }
 
+    private void PrepareData() {
+        mDatabaseRefMain.addValueEventListener(new ValueEventListener() {
 
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mainproductlist.clear();
+                for (DataSnapshot mainproductSnapshot : dataSnapshot.getChildren()) {
 
-//    private void getCommission() {
-//        leedRepository.readAllCommission(new CallBack() {
-//            @Override
-//            public void onSuccess(Object object) {
-//                if (object != null) {
-//                    commissionArraylist = (ArrayList<Commission>) object;
-//
-//                }
-//               if (commissionArraylist != null) {
-//                   adapter = new CommissionAdapter(getContext(), commissionArraylist);
-//                   //adding adapter to recyclerview
-//                   CommissionRecycle.setAdapter(adapter);
-//                   // CatalogAdapter catalogAdapter = new CatalogAdapter(catalogList);
-//                   CommissionRecycle.setHasFixedSize(true);
-////                   CommissionRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-//                   CommissionRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-//               }
-//
-//            }
-//
-//            @Override
-//            public void onError(Object object) {
-//                Utility.showLongMessage(getActivity(), getString(R.string.server_error));
-//            }
-//        });
-//    }
+                    MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
+
+                    mainproductlist.add(mainProducts.getMaincategory());
+
+                }
+                for (int i = 0; i < mainproductlist.size(); i++) {
+                    listDataHeader.add(mainproductlist.get(i));
+
+                }
+                for (int i = 0; i < listDataHeader.size(); i++) {
+                    String value = listDataHeader.get(i);
+                    leedRepository.readServicesByName(value, new CallBack() {
+                        @Override
+                        public void onSuccess(Object object) {
+                            subcategorylist.clear();
+
+                            if (object != null) {
+                                subcategorylist1.clear();
+                                subcategorylist = (ArrayList<SubCategory>) object;
+
+                                for (int i = 0; i < subcategorylist.size(); i++) {
+
+                                    subcategorylist1.add(subcategorylist.get(i).getSubcatitem());
+
+                                }
+                                listDataChild.put(listDataHeader.get(j), subcategorylist1);
+
+                            }
+                            j++;
+                        }
+
+                        @Override
+                        public void onError(Object object) {
+//                Utility.showMessage(getActivity(), getMessage(R.string.registration_fail));
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+    }
 
 
     @Override
