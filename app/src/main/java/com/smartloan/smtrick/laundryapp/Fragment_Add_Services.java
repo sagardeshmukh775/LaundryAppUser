@@ -1,24 +1,18 @@
 package com.smartloan.smtrick.laundryapp;
 
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -84,84 +78,84 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        AddCommission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                final Dialog dialog1 = new Dialog(getContext());
-                dialog1.setContentView(R.layout.add_commission_fragement);
-
-                ExpandableListView list = (ExpandableListView) dialog1.findViewById(R.id.lvExp);
-                listDataHeader = new ArrayList<String>();
-                listDataChild = new HashMap<String, List<String>>();
-                j = 0;
-
-                PrepareData();
-
-                listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
-                // setting list adapter
-                list.setAdapter(listAdapter);
-                dialog1.show();
-            }
-
-        });
+//        AddCommission.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                final Dialog dialog1 = new Dialog(getContext());
+//                dialog1.setContentView(R.layout.add_commission_fragement);
+//
+//                ExpandableListView list = (ExpandableListView) dialog1.findViewById(R.id.lvExp);
+//                listDataHeader = new ArrayList<String>();
+//                listDataChild = new HashMap<String, List<String>>();
+//                j = 0;
+//
+//                PrepareData();
+//
+//                listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
+//                // setting list adapter
+//                list.setAdapter(listAdapter);
+//                dialog1.show();
+//            }
+//
+//        });
 
         return view;
     }
 
-    private void PrepareData() {
-        mDatabaseRefMain.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mainproductlist.clear();
-                for (DataSnapshot mainproductSnapshot : dataSnapshot.getChildren()) {
-
-                    MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
-
-                    mainproductlist.add(mainProducts.getMaincategory());
-
-                }
-                for (int i = 0; i < mainproductlist.size(); i++) {
-                    listDataHeader.add(mainproductlist.get(i));
-
-                }
-                for (int i = 0; i < listDataHeader.size(); i++) {
-                    String value = listDataHeader.get(i);
-                    leedRepository.readServicesByName(value, new CallBack() {
-                        @Override
-                        public void onSuccess(Object object) {
-                            subcategorylist.clear();
-
-                            if (object != null) {
-                                subcategorylist1.clear();
-                                subcategorylist = (ArrayList<SubCategory>) object;
-
-                                for (int i = 0; i < subcategorylist.size(); i++) {
-
-                                    subcategorylist1.add(subcategorylist.get(i).getSubcatitem());
-
-                                }
-                                listDataChild.put(listDataHeader.get(j), subcategorylist1);
-
-                            }
-                            j++;
-                        }
-
-                        @Override
-                        public void onError(Object object) {
-//                Utility.showMessage(getActivity(), getMessage(R.string.registration_fail));
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-    }
+//    private void PrepareData() {
+//        mDatabaseRefMain.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                mainproductlist.clear();
+//                for (DataSnapshot mainproductSnapshot : dataSnapshot.getChildren()) {
+//
+//                    MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
+//
+//                    mainproductlist.add(mainProducts.getMaincategory());
+//
+//                }
+//                for (int i = 0; i < mainproductlist.size(); i++) {
+//                    listDataHeader.add(mainproductlist.get(i));
+//
+//                }
+//                for (int i = 0; i < listDataHeader.size(); i++) {
+//                    String value = listDataHeader.get(i);
+//                    leedRepository.readServicesByName(value, new CallBack() {
+//                        @Override
+//                        public void onSuccess(Object object) {
+//                            subcategorylist.clear();
+//
+//                            if (object != null) {
+//                                subcategorylist1.clear();
+//                                subcategorylist = (ArrayList<SubCategory>) object;
+//
+//                                for (int i = 0; i < subcategorylist.size(); i++) {
+//
+//                                    subcategorylist1.add(subcategorylist.get(i).getSubcatitem());
+//
+//                                }
+//                                listDataChild.put(listDataHeader.get(j), subcategorylist1);
+//
+//                            }
+//                            j++;
+//                        }
+//
+//                        @Override
+//                        public void onError(Object object) {
+////                Utility.showMessage(getActivity(), getMessage(R.string.registration_fail));
+//                        }
+//                    });
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
 
 
     @Override
