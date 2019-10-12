@@ -31,114 +31,114 @@ import java.util.ArrayList;
 
 public class Fragment_View_Service_Providers extends Fragment {
 
-    private RecyclerView ServiceRecycler;
-    private DatabaseReference mdataRefpatient;
-    private ArrayList<MemberVO> catalogList;
-    private ProgressDialog progressDialog;
-    private Service_Providers_Adapter adapter;
-    private EditText edtSearch;
-    DatabaseReference databaseReference;
-    String Language;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser Fuser;
-    private String uid;
-    private AppSharedPreference appSharedPreference;
-    private ArrayList<User> service_providers;
+  private RecyclerView ServiceRecycler;
+  private DatabaseReference mdataRefpatient;
+  private ArrayList<MemberVO> catalogList;
+  private ProgressDialog progressDialog;
+  private Service_Providers_Adapter adapter;
+  private EditText edtSearch;
+  DatabaseReference databaseReference;
+  String Language;
+  private FirebaseAuth firebaseAuth;
+  private FirebaseUser Fuser;
+  private String uid;
+  private AppSharedPreference appSharedPreference;
+  private ArrayList<User> service_providers;
 
-    // int[] animationList = {R.anim.layout_animation_up_to_down};
-    int i = 0;
+  // int[] animationList = {R.anim.layout_animation_up_to_down};
+  int i = 0;
 
-    String number;
+  String number;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_service_providers, container, false);
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_view_service_providers, container, false);
 
-        // getActivity().getActionBar().setTitle("Products");
-        appSharedPreference = new AppSharedPreference(getContext());
-        progressDialog = new ProgressDialog(getContext());
+    // getActivity().getActionBar().setTitle("Products");
+    appSharedPreference = new AppSharedPreference(getContext());
+    progressDialog = new ProgressDialog(getContext());
 
-        ServiceRecycler = (RecyclerView) view.findViewById(R.id.catalog_recycle);
-        edtSearch = (EditText) view.findViewById(R.id.search_edit_text);
+    ServiceRecycler = (RecyclerView) view.findViewById(R.id.catalog_recycle);
+    edtSearch = (EditText) view.findViewById(R.id.search_edit_text);
 
-        catalogList = new ArrayList<>();
-        service_providers = new ArrayList<>();
+    catalogList = new ArrayList<>();
+    service_providers = new ArrayList<>();
 
 //        getCurrentuserdetails();
-        getServiceProviders();
+    getServiceProviders();
 
-        if (isNetworkAvailable()) {
+    if (isNetworkAvailable()) {
 //            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-        }
+    } else {
+      Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+    }
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        edtSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    databaseReference = FirebaseDatabase.getInstance().getReference();
+    edtSearch.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+      }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+      @Override
+      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+      }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+      @Override
+      public void afterTextChanged(Editable s) {
 
-                if (!s.toString().isEmpty()) {
+        if (!s.toString().isEmpty()) {
 //                    setAdapter(s.toString());
-                } else {
-                    /*
-                     * Clear the list when editText is empty
-                     * */
-                    catalogList.clear();
-                    ServiceRecycler.removeAllViews();
-                }
-
-            }
-        });
-
-
-        return view;
-    }
-
-    private void getServiceProviders() {
-        progressDialog.setMessage("Please wait...");
-        progressDialog.show();
-        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("role").equalTo("SERVICE PROVIDER");
-
-        query.addValueEventListener(valueEventListener);
-    }
-
-    ValueEventListener valueEventListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            service_providers.clear();
-            progressDialog.dismiss();
-            //iterating through all the values in database
-            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                User service_provider = postSnapshot.getValue(User.class);
-
-              service_providers.add(service_provider);
-            }
-
-          serAdapter(service_providers);
+        } else {
+          /*
+           * Clear the list when editText is empty
+           * */
+          catalogList.clear();
+          ServiceRecycler.removeAllViews();
         }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-            progressDialog.dismiss();
+      }
+    });
 
-        }
-    };
+
+    return view;
+  }
+
+  private void getServiceProviders() {
+    progressDialog.setMessage("Please wait...");
+    progressDialog.show();
+    Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("role").equalTo("SERVICE PROVIDER");
+
+    query.addValueEventListener(valueEventListener);
+  }
+
+  ValueEventListener valueEventListener = new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+      service_providers.clear();
+      progressDialog.dismiss();
+      //iterating through all the values in database
+      for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+        User service_provider = postSnapshot.getValue(User.class);
+
+        service_providers.add(service_provider);
+      }
+
+      serAdapter(service_providers);
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+      progressDialog.dismiss();
+
+    }
+  };
 
 
 //    private void setAdapter(final String toString) {
@@ -186,21 +186,21 @@ public class Fragment_View_Service_Providers extends Fragment {
 //    }
 
 
-    private void serAdapter(ArrayList<User> leedsModels) {
-        if (leedsModels != null) {
-            if (adapter == null) {
-                adapter = new Service_Providers_Adapter(getActivity(), leedsModels);
-                ServiceRecycler.setAdapter(adapter);
-                ServiceRecycler.setHasFixedSize(true);
-                ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                //   onClickListner();
-            } else {
-                ArrayList<User> leedsModelArrayList = new ArrayList<>();
-                leedsModelArrayList.addAll(leedsModels);
-                adapter.reload(leedsModelArrayList);
-            }
-        }
+  private void serAdapter(ArrayList<User> leedsModels) {
+    if (leedsModels != null) {
+      if (adapter == null) {
+        adapter = new Service_Providers_Adapter(getActivity(), leedsModels);
+        ServiceRecycler.setAdapter(adapter);
+        ServiceRecycler.setHasFixedSize(true);
+        ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        //   onClickListner();
+      } else {
+        ArrayList<User> leedsModelArrayList = new ArrayList<>();
+        leedsModelArrayList.addAll(leedsModels);
+        adapter.reload(leedsModelArrayList);
+      }
     }
+  }
 
 
 //    private void getCurrentuserdetails() {
@@ -283,10 +283,10 @@ public class Fragment_View_Service_Providers extends Fragment {
 //        }
 //    }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+  private boolean isNetworkAvailable() {
+    ConnectivityManager connectivityManager
+            = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+  }
 }
