@@ -10,13 +10,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
-        <TextView
+        android:layout_height="wrap_content">
+
+        <CheckBox
             android:id="@+id/subcatalog_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="20dp"
             android:textColor="@color/mainTextColor"
             android:layout_margin="2.5dp"/>
 

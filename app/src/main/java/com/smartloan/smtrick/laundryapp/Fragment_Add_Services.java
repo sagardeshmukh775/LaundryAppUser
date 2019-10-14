@@ -33,7 +33,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
     private DatabaseReference mDatabaseRefMain;
     private DatabaseReference mDatabaseRefSub;
 
-    private List<MainCategory> mainproductlist;
+    private ArrayList<MainCategory> mainproductlist;
     private List<String> subproductlist;
     private List<SubCategory> subcategorylist;
     List<String> listDataHeader;
@@ -82,6 +82,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        PrepareData();
 
 //        AddCommission.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -125,7 +126,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
                 CommissionRecycle.setHasFixedSize(true);
                 CommissionRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 CommissionRecycle.setAdapter(serviceAdapter);
-                CommissionRecycle.setVisibility(View.GONE);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
