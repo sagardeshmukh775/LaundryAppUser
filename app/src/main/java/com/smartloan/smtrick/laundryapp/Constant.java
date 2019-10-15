@@ -22,6 +22,7 @@ public class Constant {
     public static final DatabaseReference SERVICES_TABLE_REF = DATABASE.getReference("services");
     public static final DatabaseReference SUBCATEGORY_TABLE_REF = DATABASE.getReference("SubCategory");
     public static final DatabaseReference USER_SERVICES_TABLE_REF = DATABASE.getReference("UserServices");
+    public static final DatabaseReference REQUESTS_TABLE_REF = DATABASE.getReference("Requests");
 
     /************************************** Firebase Authentication reference constants ***************************************************************************/
     public static final FirebaseAuth AUTH = FirebaseAuth.getInstance();
