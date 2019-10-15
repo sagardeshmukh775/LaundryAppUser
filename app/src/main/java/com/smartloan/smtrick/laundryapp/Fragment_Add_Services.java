@@ -84,28 +84,6 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
         storageReference = storage.getReference();
         PrepareData();
 
-//        AddCommission.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                final Dialog dialog1 = new Dialog(getContext());
-//                dialog1.setContentView(R.layout.add_commission_fragement);
-//
-//                ExpandableListView list = (ExpandableListView) dialog1.findViewById(R.id.lvExp);
-//                listDataHeader = new ArrayList<String>();
-//                listDataChild = new HashMap<String, List<String>>();
-//                j = 0;
-//
-//                PrepareData();
-//
-//                listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
-//                // setting list adapter
-//                list.setAdapter(listAdapter);
-//                dialog1.show();
-//            }
-//
-//        });
-
         return view;
     }
 
@@ -119,6 +97,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
                     MainCategory mainProducts = mainproductSnapshot.getValue(MainCategory.class);
 
+//                    getSubCategory(mainProducts.getMaincategory());
                     mainproductlist.add(mainProducts);
 
                 }
@@ -135,6 +114,7 @@ public class Fragment_Add_Services extends Fragment implements AdapterView.OnIte
 
         });
     }
+
 
 
     @Override
