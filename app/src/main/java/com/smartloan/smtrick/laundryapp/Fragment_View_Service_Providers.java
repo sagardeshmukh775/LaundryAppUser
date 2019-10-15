@@ -69,7 +69,6 @@ public class Fragment_View_Service_Providers extends Fragment {
     catalogList = new ArrayList<>();
     service_providers = new ArrayList<>();
 
-//        getCurrentuserdetails();
     getServiceProviders();
 
     if (isNetworkAvailable()) {
