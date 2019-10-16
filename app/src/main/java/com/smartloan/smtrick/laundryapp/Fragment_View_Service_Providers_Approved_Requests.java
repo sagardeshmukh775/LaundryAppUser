@@ -29,13 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class Fragment_View_Service_Providers_Requests extends Fragment {
+public class Fragment_View_Service_Providers_Approved_Requests extends Fragment {
 
   private RecyclerView ServiceRecycler;
   private DatabaseReference mdataRefpatient;
   private ArrayList<MemberVO> catalogList;
   private ProgressDialog progressDialog;
-  private Service_Providers_Requests_Adapter adapter;
+  private Service_Providers_Requests_Approved_Adapter adapter;
   private EditText edtSearch;
   DatabaseReference databaseReference;
   String Language;
@@ -127,7 +127,7 @@ public class Fragment_View_Service_Providers_Requests extends Fragment {
         Requests requests = postSnapshot.getValue(Requests.class);
 
         if (requests.getStatus() != null) {
-          if (requests.getStatus().equalsIgnoreCase(Constant.STATUS_GENERATED)) {
+          if (requests.getStatus().equalsIgnoreCase(Constant.STATUS_APPROVED)) {
             service_providers.add(requests);
           }
         }
@@ -150,7 +150,7 @@ public class Fragment_View_Service_Providers_Requests extends Fragment {
   private void serAdapter(ArrayList<Requests> leedsModels) {
     if (leedsModels != null) {
       if (adapter == null) {
-        adapter = new Service_Providers_Requests_Adapter(getActivity(), leedsModels);
+        adapter = new Service_Providers_Requests_Approved_Adapter(getActivity(), leedsModels);
         ServiceRecycler.setAdapter(adapter);
         ServiceRecycler.setHasFixedSize(true);
         ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

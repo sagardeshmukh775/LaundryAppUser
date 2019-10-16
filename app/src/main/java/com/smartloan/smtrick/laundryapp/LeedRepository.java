@@ -29,4 +29,6 @@ public interface LeedRepository {
     void createUserServices(final UserServices serviceId, final CallBack callback);
 
     void sendRequest(final Requests request, final CallBack callback);
+
+    void updateRequest(final String leedId, final Map leedsMap, final CallBack callBack);
 }

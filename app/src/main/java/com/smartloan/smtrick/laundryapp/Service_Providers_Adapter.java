@@ -95,6 +95,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
                         Requests requests = new Requests();
                         requests.setServiceProviderId(user.getUserid());
                         requests.setUserId(appSharedPreference.getUserid());
+                        requests.setUserName(appSharedPreference.getName());
                         requests.setUserAddress(appSharedPreference.getAddress());
                         requests.setUserMobile(appSharedPreference.getNumber());
                         requests.setUserPinCode(appSharedPreference.getPincode());
