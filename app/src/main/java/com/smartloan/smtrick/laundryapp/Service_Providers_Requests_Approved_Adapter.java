@@ -54,108 +54,9 @@ public class Service_Providers_Requests_Approved_Adapter extends RecyclerView.Ad
         holder.textViewAddress.setText(user.getUserAddress());
         holder.textViewPinCode.setText(user.getUserMobile());
         holder.textViewId.setText(user.getUserPinCode());
+        holder.txtstatus.setText(user.getStatus());
 
-//        holder.userCard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//        holder.Request.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final Dialog dialog1 = new Dialog(holder.userCard.getContext());
-//                dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
-//                dialog1.setContentView(R.layout.dialog_select_date);
-//
-//                edtDateTime = (EditText) dialog1.findViewById(R.id.txtdatetime);
-//                Button Add = (Button) dialog1.findViewById(R.id.btnsendrequest);
-//                Button cancle = (Button) dialog1.findViewById(R.id.btncancle);
-//
-//                setDateTimeField();
-//                edtDateTime.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        mDatePickerDialog.show();
-//
-//                    }
-//                });
-//
-//                Add.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Requests requests = new Requests();
-//                        requests.setServiceProviderId(user.getUserid());
-//                        requests.setUserId(appSharedPreference.getUserid());
-//                        requests.setUserAddress(appSharedPreference.getAddress());
-//                        requests.setUserMobile(appSharedPreference.getNumber());
-//                        requests.setUserPinCode(appSharedPreference.getPincode());
-//                        requests.setDate(edtDateTime.getText().toString());
-//                        requests.setStatus(Constant.STATUS_GENERATED);
-//                        requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());
-//                        leedRepository.sendRequest(requests, new CallBack() {
-//                            @Override
-//                            public void onSuccess(Object object) {
-//                                Toast.makeText(holder.userCard.getContext(), "Submitted", Toast.LENGTH_SHORT).show();
-//                                dialog1.dismiss();
-//                            }
-//
-//                            @Override
-//                            public void onError(Object object) {
-//
-//                            }
-//                        });
-//                    }
-//                });
-//                cancle.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog1.dismiss();
-//                    }
-//                });
-//
-//                dialog1.show();
-//            }
-//
-//            private void setDateTimeField() {
-//                Calendar newCalendar = Calendar.getInstance();
-//                mDatePickerDialog = new DatePickerDialog(holder.userCard.getContext(), new DatePickerDialog.OnDateSetListener() {
-//
-//                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                        Calendar newDate = Calendar.getInstance();
-//                        newDate.set(year, monthOfYear, dayOfMonth);
-//                        SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
-//                        final Date startDate = newDate.getTime();
-//                        fdate = sd.format(startDate);
-//
-//                        timePicker();
-//                    }
-//
-//                    private void timePicker() {
-//                        // Get Current Time
-//                        final Calendar c = Calendar.getInstance();
-//                        mHour = c.get(Calendar.HOUR_OF_DAY);
-//                        mMinute = c.get(Calendar.MINUTE);
-//
-//                        // Launch Time Picker Dialog
-//                        TimePickerDialog timePickerDialog = new TimePickerDialog(holder.userCard.getContext(),
-//                                new TimePickerDialog.OnTimeSetListener() {
-//
-//                                    @Override
-//                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//
-//                                        mHour = hourOfDay;
-//                                        mMinute = minute;
-//
-//                                        edtDateTime.setText(fdate + " " + hourOfDay + ":" + minute);
-//                                    }
-//                                }, mHour, mMinute, false);
-//                        timePickerDialog.show();
-//                    }
-//                }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-//
-//            }
-//        });
+
 
     }
 
@@ -171,6 +72,7 @@ public class Service_Providers_Requests_Approved_Adapter extends RecyclerView.Ad
         public TextView textViewAddress;
         public TextView textViewPinCode;
         public TextView textViewId;
+        public TextView txtstatus;
         public CardView userCard;
         public Button Request;
 
@@ -183,6 +85,7 @@ public class Service_Providers_Requests_Approved_Adapter extends RecyclerView.Ad
             textViewAddress = (TextView) itemView.findViewById(R.id.user_addressvalue);
             textViewPinCode = (TextView) itemView.findViewById(R.id.user_pincodevalue);
             textViewId = (TextView) itemView.findViewById(R.id.user_idvalue);
+            txtstatus = (TextView) itemView.findViewById(R.id.request_status1);
             userCard = (CardView) itemView.findViewById(R.id.card_userid);
             Request = (Button) itemView.findViewById(R.id.request);
 
