@@ -28,7 +28,7 @@ public class Service_Providers_Adapter1 extends RecyclerView.Adapter<Service_Pro
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.serviceproviders_layout, parent, false);
+                .inflate(R.layout.serviceproviders_layout1, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }

@@ -29,13 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class Fragment_View_Service_Providers extends Fragment {
+public class Fragment_View_Service_Providers_Requests extends Fragment {
 
   private RecyclerView ServiceRecycler;
   private DatabaseReference mdataRefpatient;
   private ArrayList<MemberVO> catalogList;
   private ProgressDialog progressDialog;
-  private Service_Providers_Adapter adapter;
+  private Service_Providers_Requests_Adapter adapter;
   private EditText edtSearch;
   DatabaseReference databaseReference;
   String Language;
@@ -43,7 +43,7 @@ public class Fragment_View_Service_Providers extends Fragment {
   private FirebaseUser Fuser;
   private String uid;
   private AppSharedPreference appSharedPreference;
-  private ArrayList<User> service_providers;
+  private ArrayList<Requests> service_providers;
 
   // int[] animationList = {R.anim.layout_animation_up_to_down};
   int i = 0;
@@ -112,7 +112,7 @@ public class Fragment_View_Service_Providers extends Fragment {
   private void getServiceProviders() {
     progressDialog.setMessage("Please wait...");
     progressDialog.show();
-    Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("role").equalTo("SERVICE PROVIDER");
+    Query query = FirebaseDatabase.getInstance().getReference("Requests").orderByChild("serviceProviderId").equalTo(appSharedPreference.getUserid());
 
     query.addValueEventListener(valueEventListener);
   }
@@ -124,9 +124,11 @@ public class Fragment_View_Service_Providers extends Fragment {
       progressDialog.dismiss();
       //iterating through all the values in database
       for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-        User service_provider = postSnapshot.getValue(User.class);
+        Requests requests = postSnapshot.getValue(Requests.class);
 
-        service_providers.add(service_provider);
+        if (requests.getStatus().equalsIgnoreCase(Constant.STATUS_GENERATED)) {
+          service_providers.add(requests);
+        }
       }
 
       serAdapter(service_providers);
@@ -185,16 +187,16 @@ public class Fragment_View_Service_Providers extends Fragment {
 //    }
 
 
-  private void serAdapter(ArrayList<User> leedsModels) {
+  private void serAdapter(ArrayList<Requests> leedsModels) {
     if (leedsModels != null) {
       if (adapter == null) {
-        adapter = new Service_Providers_Adapter(getActivity(), leedsModels);
+        adapter = new Service_Providers_Requests_Adapter(getActivity(), leedsModels);
         ServiceRecycler.setAdapter(adapter);
         ServiceRecycler.setHasFixedSize(true);
         ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         //   onClickListner();
       } else {
-        ArrayList<User> leedsModelArrayList = new ArrayList<>();
+        ArrayList<Requests> leedsModelArrayList = new ArrayList<>();
         leedsModelArrayList.addAll(leedsModels);
         adapter.reload(leedsModelArrayList);
       }

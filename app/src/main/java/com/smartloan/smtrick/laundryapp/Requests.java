@@ -13,20 +13,25 @@ public class Requests {
     public String userMobile;
     public String userAddress;
     public String requestId;
+    public String status;
+    public String date;
+    public String userName;
 
 
     public Requests() {
     }
 
     public Requests(String serviceProviderId, String userId, String userPinCode, String userMobile
-            , String userAddress, String requestId) {
+            , String userAddress, String requestId,String date,String status,String userName) {
         this.serviceProviderId = serviceProviderId;
         this.userId = userId;
         this.userPinCode = userPinCode;
         this.userMobile = userMobile;
         this.userAddress = userAddress;
         this.requestId = requestId;
-
+        this.date = date;
+        this.status = status;
+        this.userName = userName;
     }
 
     public String getServiceProviderId() {
@@ -77,6 +82,30 @@ public class Requests {
         this.requestId = requestId;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
@@ -87,6 +116,9 @@ public class Requests {
         leedMap.put("userMobile",getUserMobile() );
         leedMap.put("userAddress",getUserAddress() );
         leedMap.put("requestId",getRequestId() );
+        leedMap.put("date",getDate() );
+        leedMap.put("status",getStatus() );
+        leedMap.put("userName",getUserName() );
 
         return leedMap;
 

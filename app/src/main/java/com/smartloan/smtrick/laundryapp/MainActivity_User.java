@@ -196,6 +196,11 @@ public class MainActivity_User extends AppCompatActivity
         } else if (id == R.id.requests) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+                    new Fragment_View_Service_Providers_Requests()).commit();
+
+        } else if (id == R.id.user_requests) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Fragment_Relation_Form()).commit();
 
         } else if (id == R.id.users) {

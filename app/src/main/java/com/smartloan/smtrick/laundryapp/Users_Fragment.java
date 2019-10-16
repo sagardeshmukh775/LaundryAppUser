@@ -28,7 +28,7 @@ public class Users_Fragment extends Fragment implements AdapterView.OnItemSelect
 
 //    ArrayList<UserModel> searchResults = GetSearchResults();
     RecyclerView listView;
-    Service_Providers_Adapter adapter;
+    Service_Providers_Adapter1 adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class Users_Fragment extends Fragment implements AdapterView.OnItemSelect
 
                 }
 
-                adapter = new Service_Providers_Adapter(getActivity(), userList);
+                adapter = new Service_Providers_Adapter1(getActivity(), userList);
                 //adding adapter to recyclerview
                 listView.setAdapter(adapter);
                 // CatalogAdapter catalogAdapter = new CatalogAdapter(catalogList);
