@@ -63,6 +63,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
         holder.textViewPinCode.setText(user.getPincode());
         holder.textViewId.setText(user.getUserid());
 
+
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
