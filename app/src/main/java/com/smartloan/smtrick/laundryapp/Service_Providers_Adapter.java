@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,10 +65,12 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
         holder.textViewId.setText(user.getUserid());
 
 
+
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(holder.userCard.getContext(),Send_Request_Activity.class);
+                holder.userCard.getContext().startActivity(intent);
             }
         });
         holder.Request.setOnClickListener(new View.OnClickListener() {

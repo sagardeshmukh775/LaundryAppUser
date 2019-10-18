@@ -58,6 +58,7 @@
         <activity android:name=".Add_Updatelead__bankresult_Activity" />
         <activity android:name=".Update_user_profile_activity" />
         <activity android:name=".View_Member_Report_Activity" />
+        <activity android:name=".Send_Request_Activity" />
         <activity
             android:name=".sharedtransitionActivity"
             android:theme="@style/AppTheme.NoActionBar" />

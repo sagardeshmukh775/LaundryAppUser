@@ -29,7 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class Fragment_View_Service_Providers extends Fragment {
+public class
+Fragment_View_Service_Providers extends Fragment {
 
   private RecyclerView ServiceRecycler;
   private DatabaseReference mdataRefpatient;
