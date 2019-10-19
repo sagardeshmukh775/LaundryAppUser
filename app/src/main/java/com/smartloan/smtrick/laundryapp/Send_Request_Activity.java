@@ -1,12 +1,25 @@
 package com.smartloan.smtrick.laundryapp;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,19 +28,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class Send_Request_Activity extends AppCompatActivity {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
+    Button SendRequest;
+    EditText edtDateTime;
 
     //adapter object
     private RecyclerView.Adapter adapter;
-
     //database reference
     private DatabaseReference mDatabase;
-
     //progress dialog
     private ProgressDialog progressDialog;
 
@@ -38,6 +54,14 @@ public class Send_Request_Activity extends AppCompatActivity {
     AppSharedPreference appSharedPreference;
     String userId;
     User user;
+
+    LeedRepository leedRepository;
+    private DatePickerDialog mDatePickerDialog;
+    String fdate;
+    int mHour;
+    int mMinute;
+
+    ArrayList<String> test;
 
 
     @Override
@@ -60,9 +84,13 @@ public class Send_Request_Activity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
         userId = user.getUserid();
 
+        SendRequest = (Button) findViewById(R.id.request);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-message"));
 
         Intent intent = getIntent();
 
@@ -81,6 +109,8 @@ public class Send_Request_Activity extends AppCompatActivity {
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(userId);
 
         query.addValueEventListener(valueEventListener);
+
+        SendRequest.setOnClickListener(this);
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -108,4 +138,111 @@ public class Send_Request_Activity extends AppCompatActivity {
 
         }
     };
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+         test = getIntent().getStringArrayListExtra("test");
+//            Toast.makeText(Send_Request_Activity.this,"got" , Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+        if (v == SendRequest){
+            final Dialog dialog1 = new Dialog(Send_Request_Activity.this);
+            dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+            dialog1.setContentView(R.layout.dialog_select_date);
+
+            edtDateTime = (EditText) dialog1.findViewById(R.id.txtdatetime);
+            Button Add = (Button) dialog1.findViewById(R.id.btnsendrequest);
+            Button cancle = (Button) dialog1.findViewById(R.id.btncancle);
+
+            setDateTimeField();
+            edtDateTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDatePickerDialog.show();
+
+                }
+            });
+
+            Add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Requests requests = new Requests();
+                    requests.setServiceProviderId(user.getUserid());
+                    requests.setUserId(appSharedPreference.getUserid());
+                    requests.setUserName(appSharedPreference.getName());
+                    requests.setUserAddress(appSharedPreference.getAddress());
+                    requests.setUserMobile(appSharedPreference.getNumber());
+                    requests.setUserPinCode(appSharedPreference.getPincode());
+                    requests.setDate(edtDateTime.getText().toString());
+                    requests.setServiceList(test);
+                    requests.setStatus(Constant.STATUS_GENERATED);
+                    requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());
+                    leedRepository.sendRequest(requests, new CallBack() {
+                        @Override
+                        public void onSuccess(Object object) {
+                            Toast.makeText(Send_Request_Activity.this, "Submitted", Toast.LENGTH_SHORT).show();
+                            dialog1.dismiss();
+                        }
+
+                        @Override
+                        public void onError(Object object) {
+
+                        }
+                    });
+                }
+            });
+            cancle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog1.dismiss();
+                }
+            });
+
+            dialog1.show();
+        }
+    }
+
+    private void setDateTimeField() {
+        Calendar newCalendar = Calendar.getInstance();
+        mDatePickerDialog = new DatePickerDialog(Send_Request_Activity.this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
+                final Date startDate = newDate.getTime();
+                fdate = sd.format(startDate);
+
+                timePicker();
+            }
+
+            private void timePicker() {
+                // Get Current Time
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Send_Request_Activity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                                mHour = hourOfDay;
+                                mMinute = minute;
+
+                                edtDateTime.setText(fdate + " " + hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+    }
 }

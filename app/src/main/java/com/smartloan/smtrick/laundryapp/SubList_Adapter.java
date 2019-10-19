@@ -1,6 +1,8 @@
 package com.smartloan.smtrick.laundryapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,16 +69,19 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
                 if (isChecked) {
                     String item = holder.textViewName.getText() + holder.count.getText().toString();
                     servicesList.add(item);
-                    Toast.makeText(holder.count.getContext(), servicesList.get(0), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 } else if (!isChecked) {
                     String item1 = holder.textViewName.getText() + holder.count.getText().toString();
                     int i = servicesList.indexOf(item1);
                     servicesList.remove(i);
-                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        Intent intent = new Intent("custom-message");
+        //
+        intent.putStringArrayListExtra("test", (ArrayList<String>) servicesList);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     @Override

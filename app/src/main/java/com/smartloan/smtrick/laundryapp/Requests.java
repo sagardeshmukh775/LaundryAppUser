@@ -2,6 +2,7 @@ package com.smartloan.smtrick.laundryapp;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class Requests {
     public String status;
     public String date;
     public String userName;
+    ArrayList<String> serviceList;
 
 
     public Requests() {
@@ -32,6 +34,7 @@ public class Requests {
         this.date = date;
         this.status = status;
         this.userName = userName;
+        this.serviceList = new ArrayList<String>();
     }
 
     public String getServiceProviderId() {
@@ -106,6 +109,14 @@ public class Requests {
         this.userName = userName;
     }
 
+    public ArrayList<String> getServiceList() {
+        return serviceList;
+    }
+
+    public void setServiceList(ArrayList<String> serviceList) {
+        this.serviceList = serviceList;
+    }
+
     @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
@@ -119,6 +130,7 @@ public class Requests {
         leedMap.put("date",getDate() );
         leedMap.put("status",getStatus() );
         leedMap.put("userName",getUserName() );
+        leedMap.put("serviceList",getServiceList() );
 
         return leedMap;
 
