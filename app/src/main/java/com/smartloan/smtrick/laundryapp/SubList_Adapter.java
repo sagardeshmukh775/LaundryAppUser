@@ -5,9 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
     private Context context;
     private List<String> uploads;
     private List<String> servicesList;
-    int i=0;
 
 
     public SubList_Adapter(Context context, List<String> uploads) {
@@ -36,26 +36,42 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final String upload = uploads.get(position);
-
+        final int[] i = {0};
         holder.textViewName.setText(upload);
-        holder.count.setText(String.valueOf(i));
+        holder.count.setText(String.valueOf(i[0]));
 
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (i == 0){
+                if (i[0] == 0) {
                     Toast.makeText(context, "Please increase", Toast.LENGTH_SHORT).show();
-                }else {
-                    i = i-1;
-                    holder.count.setText(String.valueOf(i));
+                } else {
+                    i[0]--;
+                    holder.count.setText(String.valueOf(i[0]));
                 }
             }
         });
         holder.pluse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i = i+1;
-                holder.count.setText(String.valueOf(i));
+                i[0] = i[0] + 1;
+                holder.count.setText(String.valueOf(i[0]));
+            }
+        });
+
+        holder.textViewName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    String item = holder.textViewName.getText() + holder.count.getText().toString();
+                    servicesList.add(item);
+                    Toast.makeText(context, servicesList.size(), Toast.LENGTH_SHORT).show();
+                } else if (!isChecked) {
+                    String item1 = holder.textViewName.getText() + holder.count.getText().toString();
+                    int i = servicesList.indexOf(item1);
+                    servicesList.remove(i);
+                    Toast.makeText(context, String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -68,16 +84,15 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textViewName;
-        public ImageView pluse,minus;
+        public CheckBox textViewName;
+        public ImageView pluse, minus;
         public EditText count;
-
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = (TextView) itemView.findViewById(R.id.textViewName);
+            textViewName = (CheckBox) itemView.findViewById(R.id.textViewName);
             pluse = (ImageView) itemView.findViewById(R.id.plus);
             minus = (ImageView) itemView.findViewById(R.id.minus);
             count = (EditText) itemView.findViewById(R.id.count);

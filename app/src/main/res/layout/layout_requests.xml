@@ -17,10 +17,11 @@
 
 
             <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D6DBDF">
+               android:background="#D6EAF8">
 
                 <TextView
                     android:id="@+id/textViewName"
@@ -31,6 +32,7 @@
                     android:textAlignment="center"
                     android:transitionName="text1transition"
                     android:textSize="20dp"
+                    android:textColor="@color/mainTextColor"
                     android:textStyle="bold" />
 
                 <android.support.v7.widget.RecyclerView

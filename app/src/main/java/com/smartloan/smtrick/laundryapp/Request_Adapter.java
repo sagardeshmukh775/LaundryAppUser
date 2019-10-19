@@ -39,6 +39,7 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
 
         servicesList = upload.getSublist();
         holder.textViewName.setText(upload.getMaincat());
+//        holder.textViewName.setTextColor(Color.parseColor("#3498DB"));
         adapter = new SubList_Adapter(holder.imagecard.getContext(), servicesList);
 
         //adding adapter to recyclerview
