@@ -70,6 +70,7 @@ public class Service_Providers_Adapter extends RecyclerView.Adapter<Service_Prov
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.userCard.getContext(),Send_Request_Activity.class);
+                intent.putExtra(Constant.LEED_MODEL, user);
                 holder.userCard.getContext().startActivity(intent);
             }
         });

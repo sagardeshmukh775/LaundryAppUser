@@ -11,13 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHolder> {
 
     private Context context;
     private List<String> uploads;
-    private List<String> servicesList;
+   static private List<String> servicesList;
 
 
     public SubList_Adapter(Context context, List<String> uploads) {
@@ -37,6 +38,7 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final String upload = uploads.get(position);
         final int[] i = {0};
+        servicesList = new ArrayList<>();
         holder.textViewName.setText(upload);
         holder.count.setText(String.valueOf(i[0]));
 
@@ -65,16 +67,16 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
                 if (isChecked) {
                     String item = holder.textViewName.getText() + holder.count.getText().toString();
                     servicesList.add(item);
-                    Toast.makeText(context, servicesList.size(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.count.getContext(), servicesList.get(0), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 } else if (!isChecked) {
                     String item1 = holder.textViewName.getText() + holder.count.getText().toString();
                     int i = servicesList.indexOf(item1);
                     servicesList.remove(i);
-                    Toast.makeText(context, String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     @Override

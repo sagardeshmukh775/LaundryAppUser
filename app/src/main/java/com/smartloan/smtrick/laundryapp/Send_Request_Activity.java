@@ -37,6 +37,7 @@ public class Send_Request_Activity extends AppCompatActivity {
     private String subitem,mainitem;
     AppSharedPreference appSharedPreference;
     String userId;
+    User user;
 
 
     @Override
@@ -56,16 +57,14 @@ public class Send_Request_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
-        userId = appSharedPreference.getUserid();
+        user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
+        userId = user.getUserid();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent = getIntent();
-
-        mainitem = intent.getStringExtra("mianproduct");
-        subitem = intent.getStringExtra("subproduct");
 
         progressDialog = new ProgressDialog(this);
 

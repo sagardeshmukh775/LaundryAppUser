@@ -29,6 +29,7 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_requests, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
+
         return viewHolder;
     }
 
@@ -46,7 +47,11 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
         holder.Recycle_Request.setAdapter(adapter);
         holder.Recycle_Request.setHasFixedSize(true);
         holder.Recycle_Request.setLayoutManager(new LinearLayoutManager(holder.imagecard.getContext()));
+
+
     }
+
+
 
     @Override
     public int getItemCount() {
