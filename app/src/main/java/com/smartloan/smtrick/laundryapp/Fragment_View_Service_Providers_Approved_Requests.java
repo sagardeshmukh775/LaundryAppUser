@@ -143,10 +143,6 @@ public class Fragment_View_Service_Providers_Approved_Requests extends Fragment 
     }
   };
 
-
-
-
-
   private void serAdapter(ArrayList<Requests> leedsModels) {
     if (leedsModels != null) {
       if (adapter == null) {
