@@ -1,8 +1,10 @@
 package com.smartloan.smtrick.laundryapp;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,7 @@ public class Service_Providers_Requests_Adapter extends RecyclerView.Adapter<Ser
     int mHour;
     int mMinute;
     EditText edtDateTime;
+    Services_Adapter services_adapter;
 
     public Service_Providers_Requests_Adapter(Context context, List<Requests> uploads) {
         this.uploads = uploads;
@@ -50,30 +53,27 @@ public class Service_Providers_Requests_Adapter extends RecyclerView.Adapter<Ser
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Requests user = uploads.get(position);
+        final Requests request = uploads.get(position);
         appSharedPreference = new AppSharedPreference(holder.userCard.getContext());
         leedRepository = new LeedRepositoryImpl();
 
-        holder.textViewName.setText(user.getDate());
-        holder.textViewMobile.setText(user.getUserName());
-        holder.textViewAddress.setText(user.getUserAddress());
-        holder.textViewPinCode.setText(user.getUserMobile());
-        holder.textViewId.setText(user.getUserPinCode());
+        holder.textViewName.setText(request.getDate());
+        holder.textViewMobile.setText(request.getUserName());
+        holder.textViewAddress.setText(request.getUserAddress());
+        holder.textViewPinCode.setText(request.getUserMobile());
+        holder.textViewId.setText(request.getUserPinCode());
 
         holder.CardApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
        
-                setLeedStatus(user);
+                setLeedStatus(request);
             }
-
             private void setLeedStatus(Requests user) {
-
                 user.setStatus(STATUS_APPROVED);
                 Toast.makeText(holder.CardApprove.getContext(), "Approved Successfully", Toast.LENGTH_SHORT).show();
                 updateLeed(user.getRequestId(), user.getLeedStatusMap());
             }
-
             private void updateLeed(String requestId, Map leedStatusMap) {
                 leedRepository.updateRequest(requestId, leedStatusMap, new CallBack() {
                     @Override
@@ -87,6 +87,24 @@ public class Service_Providers_Requests_Adapter extends RecyclerView.Adapter<Ser
                         Utility.showLongMessage(holder.CardApprove.getContext(), getString(R.string.server_error));
                     }
                 });
+            }
+        });
+
+        holder.userCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog1 = new Dialog(holder.userCard.getContext());
+                dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+                dialog1.setContentView(R.layout.customdialogbox_services);
+
+                RecyclerView serviecRecycle = (RecyclerView) dialog1.findViewById(R.id.services_recycle);
+                if (request.getServiceList() != null) {
+                    services_adapter = new Services_Adapter(holder.userCard.getContext(), request.getServiceList());
+                    serviecRecycle.setAdapter(services_adapter);
+                    serviecRecycle.setHasFixedSize(true);
+                    serviecRecycle.setLayoutManager(new LinearLayoutManager(holder.userCard.getContext()));
+                }
+                dialog1.show();
             }
         });
 
