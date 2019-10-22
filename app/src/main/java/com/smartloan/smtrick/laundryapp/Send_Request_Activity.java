@@ -4,13 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
     Button SendRequest;
@@ -49,8 +45,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //list to hold all the uploaded images
     private List<UserServices> uploads;
+    private List<String> serList;
 
-    private String subitem,mainitem;
+    private String subitem, mainitem;
     AppSharedPreference appSharedPreference;
     String userId;
     User user;
@@ -60,9 +57,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     String fdate;
     int mHour;
     int mMinute;
-
-    ArrayList<String> test;
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -75,12 +69,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_request);
 
-
-
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
+        leedRepository = new LeedRepositoryImpl();
         user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
         userId = user.getUserid();
 
@@ -89,17 +82,14 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-message"));
-
         Intent intent = getIntent();
 
         progressDialog = new ProgressDialog(this);
 
         getSupportActionBar().setTitle(subitem);  // provide compatibility to all the versions
 
-
         uploads = new ArrayList<>();
+        serList = new ArrayList<>();
 
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
@@ -122,12 +112,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                 UserServices upload = postSnapshot.getValue(UserServices.class);
 
-                    uploads.add(upload);
+                uploads.add(upload);
             }
-
             //creating adapter
-            adapter = new Request_Adapter(getApplicationContext(), uploads);
-
+            adapter = new Request_Adapter(Send_Request_Activity.this, uploads);
             //adding adapter to recyclerview
             recyclerView.setAdapter(adapter);
         }
@@ -139,18 +127,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
     };
 
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Get extra data included in the Intent
-         test = getIntent().getStringArrayListExtra("test");
-//            Toast.makeText(Send_Request_Activity.this,"got" , Toast.LENGTH_SHORT).show();
-        }
-    };
-
     @Override
     public void onClick(View v) {
-        if (v == SendRequest){
+        if (v == SendRequest) {
             final Dialog dialog1 = new Dialog(Send_Request_Activity.this);
             dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
             dialog1.setContentView(R.layout.dialog_select_date);
@@ -179,13 +158,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                     requests.setUserMobile(appSharedPreference.getNumber());
                     requests.setUserPinCode(appSharedPreference.getPincode());
                     requests.setDate(edtDateTime.getText().toString());
-                    requests.setServiceList(test);
+                    requests.setServiceList(serList);
                     requests.setStatus(Constant.STATUS_GENERATED);
                     requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());
                     leedRepository.sendRequest(requests, new CallBack() {
                         @Override
                         public void onSuccess(Object object) {
-                            Toast.makeText(Send_Request_Activity.this, "Submitted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                             dialog1.dismiss();
                         }
 
@@ -244,5 +223,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             }
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
+    }
+
+    @Override
+    public void onImageClick(List<String> imageData) {
+        serList = imageData;
     }
 }

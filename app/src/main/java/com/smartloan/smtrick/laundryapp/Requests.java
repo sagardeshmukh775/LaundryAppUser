@@ -4,6 +4,7 @@ import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Requests {
@@ -17,7 +18,7 @@ public class Requests {
     public String status;
     public String date;
     public String userName;
-    ArrayList<String> serviceList;
+    List<String> serviceList;
 
 
     public Requests() {
@@ -109,11 +110,11 @@ public class Requests {
         this.userName = userName;
     }
 
-    public ArrayList<String> getServiceList() {
+    public List<String> getServiceList() {
         return serviceList;
     }
 
-    public void setServiceList(ArrayList<String> serviceList) {
+    public void setServiceList(List<String> serviceList) {
         this.serviceList = serviceList;
     }
 

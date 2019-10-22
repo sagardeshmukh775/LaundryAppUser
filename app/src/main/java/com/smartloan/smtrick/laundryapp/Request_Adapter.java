@@ -1,11 +1,6 @@
 package com.smartloan.smtrick.laundryapp;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +32,6 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
                 .inflate(R.layout.layout_requests, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
-        LocalBroadcastManager.getInstance(context).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-message"));
 
         return viewHolder;
     }
@@ -52,7 +44,7 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
         servicesList = upload.getSublist();
         holder.textViewName.setText(upload.getMaincat());
 //        holder.textViewName.setTextColor(Color.parseColor("#3498DB"));
-        adapter = new SubList_Adapter(holder.imagecard.getContext(), servicesList);
+        adapter = new SubList_Adapter(holder.imagecard.getContext(), servicesList, (OnImageClickListener) holder.imagecard.getContext());
 
         //adding adapter to recyclerview
         holder.Recycle_Request.setAdapter(adapter);
@@ -62,14 +54,6 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
 
     }
 
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context1, Intent intent) {
-            // Get extra data included in the Intent
-            test = ((Activity)context).getIntent().getStringArrayListExtra("test");
-            Toast.makeText(context,"got" , Toast.LENGTH_SHORT).show();
-        }
-    };
 
     @Override
     public int getItemCount() {
