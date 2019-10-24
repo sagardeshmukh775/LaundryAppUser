@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context="com.smartloan.smtrick.laundryapp.CropImageActivity">
+    tools:context="com.smartloan.smtrick.user_laundryapp.CropImageActivity">
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/CropImageView"
