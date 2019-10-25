@@ -72,13 +72,13 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
                 if (isChecked) {
                         String item = holder.textViewName.getText() + " - " + holder.count.getText().toString();
                         servicesList.add(item);
-                        onImageClickListener.onImageClick(item);
+                        onImageClickListener.onImageClick(item,true);
 
                 } else if (!isChecked) {
                     String item1 = holder.textViewName.getText() + " - " + holder.count.getText().toString();
                     int i = servicesList.indexOf(item1);
                     servicesList.remove(i);
-                    onImageClickListener.onImageClick(item1);
+                    onImageClickListener.onImageClick(item1,false);
 //                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
             }

@@ -226,7 +226,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onImageClick(String imageData) {
-        serList.add(imageData);
+    public void onImageClick(String imageData,boolean isChecked) {
+        if (isChecked) {
+            serList.add(imageData);
+        }else if (!isChecked){
+            int i = serList.indexOf(imageData);
+            serList.remove(i);
+        }
     }
 }
