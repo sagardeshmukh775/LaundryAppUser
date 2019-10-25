@@ -111,7 +111,7 @@ Fragment_View_Service_Providers extends Fragment {
     }
 
     private void setAdapter(String toString) {
-        FirebaseDatabase.getInstance().getReference("ServiceProviders").orderByChild("role").equalTo("SERVICE PROVIDER").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("ServiceProviders").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 service_providers.clear();
@@ -138,7 +138,7 @@ Fragment_View_Service_Providers extends Fragment {
     private void getServiceProviders() {
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
-        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("role").equalTo("SERVICE PROVIDER");
+        Query query = FirebaseDatabase.getInstance().getReference("ServiceProviders").orderByChild("role").equalTo("SERVICE PROVIDER");
 
         query.addValueEventListener(valueEventListener);
     }
