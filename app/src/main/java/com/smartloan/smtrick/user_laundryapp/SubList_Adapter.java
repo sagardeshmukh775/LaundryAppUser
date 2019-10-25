@@ -18,11 +18,11 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
 
     private Context context;
     private List<String> uploads;
-   static private List<String> servicesList;
+    static private List<String> servicesList;
     private OnImageClickListener onImageClickListener;
 
 
-    public SubList_Adapter(Context context, List<String> uploads,OnImageClickListener onImageClickListener) {
+    public SubList_Adapter(Context context, List<String> uploads, OnImageClickListener onImageClickListener) {
         this.uploads = uploads;
         this.context = context;
         this.onImageClickListener = onImageClickListener;
@@ -33,6 +33,8 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_sublist, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
+
+        servicesList = new ArrayList<>();
         return viewHolder;
     }
 
@@ -40,9 +42,10 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final String upload = uploads.get(position);
         final int[] i = {0};
-        servicesList = new ArrayList<>();
+
         holder.textViewName.setText(upload);
         holder.count.setText(String.valueOf(i[0]));
+
 
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +70,15 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    String item = holder.textViewName.getText() +" - "+ holder.count.getText().toString();
-                    servicesList.add(item);
-                    onImageClickListener.onImageClick(servicesList);
-//                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
+                        String item = holder.textViewName.getText() + " - " + holder.count.getText().toString();
+                        servicesList.add(item);
+                        onImageClickListener.onImageClick(item);
+
                 } else if (!isChecked) {
-                    String item1 = holder.textViewName.getText() +" - "+ holder.count.getText().toString();
+                    String item1 = holder.textViewName.getText() + " - " + holder.count.getText().toString();
                     int i = servicesList.indexOf(item1);
                     servicesList.remove(i);
-                    onImageClickListener.onImageClick(servicesList);
+                    onImageClickListener.onImageClick(item1);
 //                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
             }

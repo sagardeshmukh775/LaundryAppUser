@@ -45,7 +45,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //list to hold all the uploaded images
     private List<UserServices> uploads;
-    private List<String> serList;
+   static private List<String> serList;
 
     private String subitem, mainitem;
     AppSharedPreference appSharedPreference;
@@ -226,7 +226,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onImageClick(List<String> imageData) {
-        serList = imageData;
+    public void onImageClick(String imageData) {
+        serList.add(imageData);
     }
 }
