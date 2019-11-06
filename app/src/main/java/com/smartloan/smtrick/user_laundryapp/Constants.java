@@ -53,4 +53,7 @@ public class Constants {
     public static final DatabaseReference RELATIVES_TABLE_REF = DATABASE.getReference("Relations");
     public static final DatabaseReference USERS_TABLE_REF = DATABASE.getReference("users");
 
+    public static final String FCM_PUSH_URL = "AAAAvoS3Yps:APA91bELToPuOlDufBXyS6v4GZYbHdV-yYbTLbg9sS2v_0PwSh2e8AOsqA2ETEngDqaOpVF-SMrgg1mbNwJ3kk8Ztde9LtnkKluIy9PaFduLD8eSmn9eTrVZfxwAFM6xfWWb_bYZp9ZD";
+
+
 }

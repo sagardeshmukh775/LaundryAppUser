@@ -47,7 +47,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private List<UserServices> uploads;
    static private List<String> serList;
 
-    private String subitem, mainitem;
+    private String subitem;
     AppSharedPreference appSharedPreference;
     String userId;
     User user;
@@ -165,8 +165,76 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         @Override
                         public void onSuccess(Object object) {
                             Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+//                            sendFCMPush();
                             dialog1.dismiss();
                         }
+
+//                        private void sendFCMPush() {
+//                            String Legacy_SERVER_KEY = "AIzaSyCM5Eb6ZrYBWhzGRSsm5WKYlzlT7BlhuKs";
+//                            String msg = "this is test message,.,,.,.";
+//                            String title = "my title";
+//                            String token = user.getTokan();
+//
+//                            JSONObject obj = null;
+//                            JSONObject objData = null;
+//                            JSONObject dataobjData = null;
+//
+//                            try {
+//                                obj = new JSONObject();
+//                                objData = new JSONObject();
+//
+//                                try {
+//                                    objData.put("body", msg);
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                objData.put("title", title);
+//                                objData.put("sound", "default");
+//                                objData.put("icon", "icon_name"); //   icon_name image must be there in drawable
+//                                objData.put("tag", token);
+//                                objData.put("priority", "high");
+//
+//                                dataobjData = new JSONObject();
+//                                dataobjData.put("text", msg);
+//                                dataobjData.put("title", title);
+//
+//                                obj.put("to", token);
+//                                //obj.put("priority", "high");
+//
+//                                obj.put("notification", objData);
+//                                obj.put("data", dataobjData);
+//                                Log.e("!_@rj@_@@_PASS:>", obj.toString());
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, Constants.FCM_PUSH_URL, obj,
+//                                    new Response.Listener<JSONObject>() {
+//                                        @Override
+//                                        public void onResponse(JSONObject response) {
+//                                            Log.e("!_@@_SUCESS", response + "");
+//                                        }
+//                                    },
+//                                    new Response.ErrorListener() {
+//                                        @Override
+//                                        public void onErrorResponse(VolleyError error) {
+//                                            Log.e("!_@@_Errors--", error + "");
+//                                        }
+//                                    }) {
+//                                @Override
+//                                public Map<String, String> getHeaders() throws AuthFailureError {
+//                                    Map<String, String> params = new HashMap<String, String>();
+//                                    params.put("Authorization", "key=" + Legacy_SERVER_KEY);
+//                                    params.put("Content-Type", "application/json");
+//                                    return params;
+//                                }
+//                            };
+//                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//                            int socketTimeout = 1000 * 60;// 60 seconds
+//                            RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//                            jsObjRequest.setRetryPolicy(policy);
+//                            requestQueue.add(jsObjRequest);
+//                        }
 
                         @Override
                         public void onError(Object object) {

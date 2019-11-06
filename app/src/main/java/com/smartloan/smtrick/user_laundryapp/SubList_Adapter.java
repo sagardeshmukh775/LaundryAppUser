@@ -11,14 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHolder> {
 
     private Context context;
     private List<String> uploads;
-    static private List<String> servicesList;
     private OnImageClickListener onImageClickListener;
 
 
@@ -34,7 +32,6 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
                 .inflate(R.layout.layout_sublist, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
-        servicesList = new ArrayList<>();
         return viewHolder;
     }
 
@@ -71,13 +68,10 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                         String item = holder.textViewName.getText() + " - " + holder.count.getText().toString();
-                        servicesList.add(item);
                         onImageClickListener.onImageClick(item,true);
 
                 } else if (!isChecked) {
                     String item1 = holder.textViewName.getText() + " - " + holder.count.getText().toString();
-                    int i = servicesList.indexOf(item1);
-                    servicesList.remove(i);
                     onImageClickListener.onImageClick(item1,false);
 //                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
