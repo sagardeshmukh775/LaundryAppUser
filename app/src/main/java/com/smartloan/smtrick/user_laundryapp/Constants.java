@@ -13,6 +13,7 @@ public class Constants {
 
     public static final String STORAGE_PATH_UPLOADS = "NewImage/";
     public static final String DATABASE_PATH_UPLOADS = "NewImage";
+    public static final String ADVERTISE_PATH_UPLOADS = "Advertise";
     public static final String USERS_PATH_UPLOADS = "NewImage";
     public static final String DATABASE_PATH_PATIENTS = "Patients";
     public static final String CHANNEL_ID = "samar app";

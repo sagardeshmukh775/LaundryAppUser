@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 
 public class sharedtransitionActivity extends AppCompatActivity {
@@ -26,7 +27,8 @@ public class sharedtransitionActivity extends AppCompatActivity {
             String resid = bundle.getString("url");
             Glide.with(this)
                     .load(resid)
-                    .placeholder(R.drawable.loading)
+                    .apply(new RequestOptions()
+                    .placeholder(R.drawable.loading))
                     .into(photoView);
 
 

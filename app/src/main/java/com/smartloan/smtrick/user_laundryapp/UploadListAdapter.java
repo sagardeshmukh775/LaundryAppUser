@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class UploadListAdapter extends RecyclerView.Adapter<UploadListAdapter.Vi
 
         final Uri fileDone = fileDoneList.get(position);
 
-        Glide.with(mContext).load(fileDone).placeholder(R.drawable.loading).into(holder.fileDoneView);
+        Glide.with(mContext).load(fileDone).apply(new RequestOptions().placeholder(R.drawable.loading)).into(holder.fileDoneView);
 
         holder.fileDoneView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +29,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 public class Update_Relative_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -134,7 +131,7 @@ public class Update_Relative_Activity extends AppCompatActivity implements View.
 
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
-                                    Log.e(TAG, "onCancelled", databaseError.toException());
+//                                    Log.e(TAG, "onCancelled", databaseError.toException());
                                 }
                             });
 

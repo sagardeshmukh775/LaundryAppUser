@@ -19,7 +19,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -36,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,7 +59,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 import static com.smartloan.smtrick.user_laundryapp.Constants.CALANDER_DATE_FORMATE;
 
 
@@ -374,7 +373,7 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
 
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
-                                    Log.e(TAG, "onCancelled", databaseError.toException());
+//                                    Log.e(TAG, "onCancelled", databaseError.toException());
                                 }
                             });
 
@@ -461,7 +460,7 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
             String memberimage = invoice.getMemberimage();
             String memberage = invoice.getMemberage();
 
-            Glide.with(getApplicationContext()).load(invoice.getMemberimage()).placeholder(R.drawable.loading).into(MemberImage);
+            Glide.with(getApplicationContext()).load(invoice.getMemberimage()).apply(new RequestOptions().placeholder(R.drawable.loading)).into(MemberImage);
 
             if (wardnumber != null) {
                 etmemberward.setText(wardnumber);

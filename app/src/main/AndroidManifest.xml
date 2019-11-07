@@ -59,6 +59,7 @@
         <activity android:name="com.smartloan.smtrick.user_laundryapp.Update_user_profile_activity" />
         <activity android:name="com.smartloan.smtrick.user_laundryapp.View_Member_Report_Activity" />
         <activity android:name="com.smartloan.smtrick.user_laundryapp.Send_Request_Activity" />
+        <activity android:name="com.smartloan.smtrick.user_laundryapp.Advertise_Activity" />
         <activity
             android:name="com.smartloan.smtrick.user_laundryapp.sharedtransitionActivity"
             android:theme="@style/AppTheme.NoActionBar" />

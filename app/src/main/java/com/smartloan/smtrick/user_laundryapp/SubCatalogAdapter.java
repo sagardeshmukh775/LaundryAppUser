@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 public class SubCatalogAdapter extends RecyclerView.Adapter<SubCatalogAdapter.ViewHolder> {
 
@@ -119,7 +116,7 @@ public class SubCatalogAdapter extends RecyclerView.Adapter<SubCatalogAdapter.Vi
 
                                                                                             @Override
                                                                                             public void onCancelled(DatabaseError databaseError) {
-                                                                                                Log.e(TAG, "onCancelled", databaseError.toException());
+//                                                                                                Log.e(TAG, "onCancelled", databaseError.toException());
                                                                                             }
                                                                                         });
 
@@ -134,7 +131,7 @@ public class SubCatalogAdapter extends RecyclerView.Adapter<SubCatalogAdapter.Vi
 
                                                                             @Override
                                                                             public void onCancelled(DatabaseError databaseError) {
-                                                                                Log.e(TAG, "onCancelled", databaseError.toException());
+//                                                                                Log.e(TAG, "onCancelled", databaseError.toException());
                                                                             }
                                                                         });
 
