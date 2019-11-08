@@ -205,6 +205,10 @@ public class MainActivity_User extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Users_Requests_Tab_Fragment()).commit();
 
+        } else if (id == R.id.home) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+                    new Fragment_Advertise()).commit();
         }
 //        else if (id == R.id.users) {
 //

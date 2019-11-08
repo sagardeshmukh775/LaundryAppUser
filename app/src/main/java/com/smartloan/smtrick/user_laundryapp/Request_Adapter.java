@@ -51,7 +51,6 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
         holder.Recycle_Request.setHasFixedSize(true);
         holder.Recycle_Request.setLayoutManager(new LinearLayoutManager(holder.imagecard.getContext()));
 
-
     }
 
 
@@ -74,5 +73,9 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
             Recycle_Request = (RecyclerView) itemView.findViewById(R.id.recyclerView_Requests);
             imagecard = (CardView) itemView.findViewById(R.id.cardimage);
         }
+
+
     }
+
+
 }

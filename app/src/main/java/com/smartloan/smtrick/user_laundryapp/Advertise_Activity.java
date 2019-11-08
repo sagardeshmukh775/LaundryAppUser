@@ -35,7 +35,7 @@ public class Advertise_Activity extends AppCompatActivity {
     private FirebaseStorage mStorage;
 
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
@@ -83,7 +83,7 @@ public class Advertise_Activity extends AppCompatActivity {
 
                                         for (DataSnapshot applesnapshot : dataSnapshot.getChildren()) {
                                             applesnapshot.getRef().removeValue();
-                                            Intent intent = new Intent(Advertise_Activity.this,MainActivity_User.class);
+                                            Intent intent = new Intent(Advertise_Activity.this, MainActivity_User.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -123,7 +123,6 @@ public class Advertise_Activity extends AppCompatActivity {
                 alert.show();
             }
         });//End of Onclick
-
 
     }//End of OnCreate
 

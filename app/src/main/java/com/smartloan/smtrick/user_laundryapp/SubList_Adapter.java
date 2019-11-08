@@ -2,6 +2,7 @@ package com.smartloan.smtrick.user_laundryapp;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
     private Context context;
     private List<String> uploads;
     private OnImageClickListener onImageClickListener;
+    SparseBooleanArray checkedItems = new SparseBooleanArray();
 
 
     public SubList_Adapter(Context context, List<String> uploads, OnImageClickListener onImageClickListener) {
@@ -44,6 +46,20 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
         holder.count.setText(String.valueOf(i[0]));
 
 
+        // Remember to change access modifier of checkBox in your ViewHolder
+        // Get the state from checkedItems. If no previous value, it will return false.
+        holder.textViewName.setChecked(checkedItems.get(position));
+
+        // This is a sample. Do not use create listener here.
+        holder.textViewName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // save the check state
+                checkedItems.put(position, true);
+            }
+        });
+
+
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,22 +83,24 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                        String item = holder.textViewName.getText() + " - " + holder.count.getText().toString();
-                        onImageClickListener.onImageClick(item,true);
+                    String item = holder.textViewName.getText() + " - " + holder.count.getText().toString();
+                    onImageClickListener.onImageClick(item, true);
 
                 } else if (!isChecked) {
                     String item1 = holder.textViewName.getText() + " - " + holder.count.getText().toString();
-                    onImageClickListener.onImageClick(item1,false);
+                    onImageClickListener.onImageClick(item1, false);
 //                    Toast.makeText(holder.count.getContext(), String.valueOf(servicesList.size()), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
     }
 
     @Override
     public int getItemCount() {
-        return uploads.size();
+            return uploads.size();
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -102,4 +120,6 @@ public class SubList_Adapter extends RecyclerView.Adapter<SubList_Adapter.ViewHo
 
         }
     }
+
+
 }
