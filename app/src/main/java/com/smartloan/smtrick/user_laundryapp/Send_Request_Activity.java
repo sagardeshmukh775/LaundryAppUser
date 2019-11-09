@@ -149,8 +149,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         getSupportActionBar().setTitle(subitem);  // provide compatibility to all the versions
 
-
-
         Query queryadds = FirebaseDatabase.getInstance().getReference("Advertise");
 
         queryadds.addValueEventListener(valueEventListener1);
@@ -348,11 +346,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             }
             NUM_PAGES = adds1.size();
 //            showDots();
-            ImageAdapter adapter = new ImageAdapter(getApplicationContext(), adds1);
+            AddsAdapter adapter = new AddsAdapter(getApplicationContext(), adds1);
             viewPager.setAdapter(adapter);
 
             Timer timer = new Timer();
-            timer.scheduleAtFixedRate(new SliderTimer(), 500, 3000);
+            timer.scheduleAtFixedRate(new SliderTimer(), 500, 4000);
 
         }
 

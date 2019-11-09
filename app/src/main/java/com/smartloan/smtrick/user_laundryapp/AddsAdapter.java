@@ -1,7 +1,6 @@
 package com.smartloan.smtrick.user_laundryapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -15,14 +14,14 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 
-public class ImageAdapter extends PagerAdapter {
+public class AddsAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
     private Integer [] images = {R.drawable.one,R.drawable.two,R.drawable.four};
     private List<Upload> image1;
 
-    public ImageAdapter(Context context, List<Upload> image) {
+    public AddsAdapter(Context context, List<Upload> image) {
         this.context = context;
         this.image1 = image;
     }
@@ -56,12 +55,12 @@ public class ImageAdapter extends PagerAdapter {
 //                Log.i("TAG", "This page was clicked: " + position);
 //                Toast.makeText(context, "This page was clicked:" +image1.get(position).getName(), Toast.LENGTH_SHORT).show();
 //
-                Intent intent = new Intent(context, Advertise_Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("imagename",image1.get(position).getName());
-                intent.putExtra("imagedescription",image1.get(position).getDesc());
-                intent.putExtra("imageurl",image1.get(position).getUrl());
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, Advertise_Activity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("imagename",image1.get(position).getName());
+//                intent.putExtra("imagedescription",image1.get(position).getDesc());
+//                intent.putExtra("imageurl",image1.get(position).getUrl());
+//                context.startActivity(intent);
             }
         });
 

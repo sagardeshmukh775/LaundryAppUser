@@ -42,7 +42,6 @@ public class Fragment_Advertise extends Fragment {
 
     private boolean flag = false;
 
-
     public Fragment_Advertise() {
     }
 
@@ -177,7 +176,6 @@ public class Fragment_Advertise extends Fragment {
         }
 
     }
-
 
     @Override
     public void onAttach(Context context) {
