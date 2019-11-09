@@ -70,8 +70,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 "SERVICE PROVIDER"};
         spinnerRole = (Spinner) findViewById(R.id.spinnerselectusertype);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this, R.layout.sppinner_layout_listitem, Userstypeall
-        );
+                this, R.layout.sppinner_layout_listitem, Userstypeall);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerRole.setAdapter(spinnerArrayAdapter);
 

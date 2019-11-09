@@ -4,16 +4,23 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -29,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener {
     //recyclerview object
@@ -45,7 +54,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //list to hold all the uploaded images
     private List<UserServices> uploads;
-   static private List<String> serList;
+    static private List<String> serList;
+    private List<Upload> adds;
+    private List<Upload> adds1;
 
     private String subitem;
     AppSharedPreference appSharedPreference;
@@ -57,6 +68,18 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     String fdate;
     int mHour;
     int mMinute;
+
+    Spinner spinnerwash, spinnerTime,  spinnerWeights;
+    EditText edtVenders;
+    RelativeLayout layoutRandomTime;
+    LinearLayout sliderDotspanel;
+    ViewPager viewPager;
+    int currentPage = 0;
+    Timer timer;
+    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 3000;
+    private ImageView[] dots;
+    private static int NUM_PAGES = 0;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -72,24 +95,88 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        uploads = new ArrayList<>();
+        serList = new ArrayList<>();
+        adds = new ArrayList<>();
+        adds1 = new ArrayList<>();
+
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
         leedRepository = new LeedRepositoryImpl();
         user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
         userId = user.getUserid();
+
+        String[] washType = new String[]{
+                "Wash and Fold",
+                "Wash and Iron", "Iron", "Dry Clean"};
+
+        String[] TimeSlot = new String[]{
+                "24 Hours",
+                "12 Hours", "48 Hours", "Random"};
+
+        String[] Weights = new String[]{
+                "Kg Wise",
+                "piece Wise"};
+
 
         SendRequest = (Button) findViewById(R.id.request);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Intent intent = getIntent();
+        spinnerwash = (Spinner) findViewById(R.id.spinnerwashtype);
+        spinnerTime = (Spinner) findViewById(R.id.spinnertimeslot);
+        edtVenders = (EditText) findViewById(R.id.edtvenders);
+        spinnerWeights = (Spinner) findViewById(R.id.spinnerweights);
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this, R.layout.sppinner_layout_listitem, washType);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerwash.setAdapter(spinnerArrayAdapter);
+
+        ArrayAdapter<String> spinnerArrayAdapter3 = new ArrayAdapter<String>(
+                this, R.layout.sppinner_layout_listitem, TimeSlot);
+        spinnerArrayAdapter3.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerTime.setAdapter(spinnerArrayAdapter3);
+
+        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(
+                this, R.layout.sppinner_layout_listitem, Weights);
+        spinnerArrayAdapter2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerWeights.setAdapter(spinnerArrayAdapter2);
+
+        layoutRandomTime = (RelativeLayout) findViewById(R.id.layoutrandomtime);
+        sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
 
         progressDialog = new ProgressDialog(this);
 
         getSupportActionBar().setTitle(subitem);  // provide compatibility to all the versions
 
-        uploads = new ArrayList<>();
-        serList = new ArrayList<>();
+
+
+        Query queryadds = FirebaseDatabase.getInstance().getReference("Advertise");
+
+        queryadds.addValueEventListener(valueEventListener1);
+
+        viewPager = findViewById(R.id.viewPager);
+        dots = new ImageView[0];
+
+        /*After setting the adapter use the timer */
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES - 1) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, DELAY_MS, PERIOD_MS);
 
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
@@ -101,6 +188,22 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         query.addValueEventListener(valueEventListener);
 
         SendRequest.setOnClickListener(this);
+
+        spinnerTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinnerTime.getSelectedItem().toString().equalsIgnoreCase("Random")) {
+                    showotherRelation();
+                } else {
+                    hideotherRelation();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -125,6 +228,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             progressDialog.dismiss();
 
         }
+
     };
 
     @Override
@@ -165,77 +269,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         @Override
                         public void onSuccess(Object object) {
                             Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
-//                            sendFCMPush();
                             dialog1.dismiss();
                         }
-
-//                        private void sendFCMPush() {
-//                            String Legacy_SERVER_KEY = "AIzaSyCM5Eb6ZrYBWhzGRSsm5WKYlzlT7BlhuKs";
-//                            String msg = "this is test message,.,,.,.";
-//                            String title = "my title";
-//                            String token = user.getTokan();
-//
-//                            JSONObject obj = null;
-//                            JSONObject objData = null;
-//                            JSONObject dataobjData = null;
-//
-//                            try {
-//                                obj = new JSONObject();
-//                                objData = new JSONObject();
-//
-//                                try {
-//                                    objData.put("body", msg);
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                objData.put("title", title);
-//                                objData.put("sound", "default");
-//                                objData.put("icon", "icon_name"); //   icon_name image must be there in drawable
-//                                objData.put("tag", token);
-//                                objData.put("priority", "high");
-//
-//                                dataobjData = new JSONObject();
-//                                dataobjData.put("text", msg);
-//                                dataobjData.put("title", title);
-//
-//                                obj.put("to", token);
-//                                //obj.put("priority", "high");
-//
-//                                obj.put("notification", objData);
-//                                obj.put("data", dataobjData);
-//                                Log.e("!_@rj@_@@_PASS:>", obj.toString());
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, Constants.FCM_PUSH_URL, obj,
-//                                    new Response.Listener<JSONObject>() {
-//                                        @Override
-//                                        public void onResponse(JSONObject response) {
-//                                            Log.e("!_@@_SUCESS", response + "");
-//                                        }
-//                                    },
-//                                    new Response.ErrorListener() {
-//                                        @Override
-//                                        public void onErrorResponse(VolleyError error) {
-//                                            Log.e("!_@@_Errors--", error + "");
-//                                        }
-//                                    }) {
-//                                @Override
-//                                public Map<String, String> getHeaders() throws AuthFailureError {
-//                                    Map<String, String> params = new HashMap<String, String>();
-//                                    params.put("Authorization", "key=" + Legacy_SERVER_KEY);
-//                                    params.put("Content-Type", "application/json");
-//                                    return params;
-//                                }
-//                            };
-//                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//                            int socketTimeout = 1000 * 60;// 60 seconds
-//                            RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-//                            jsObjRequest.setRetryPolicy(policy);
-//                            requestQueue.add(jsObjRequest);
-//                        }
-
                         @Override
                         public void onError(Object object) {
 
@@ -294,12 +329,104 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onImageClick(String imageData,boolean isChecked) {
+    public void onImageClick(String imageData, boolean isChecked) {
         if (isChecked) {
             serList.add(imageData);
-        }else if (!isChecked){
+        } else if (!isChecked) {
             int i = serList.indexOf(imageData);
             serList.remove(i);
         }
     }
+
+    public void showotherRelation() {
+        RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams) layoutRandomTime.getLayoutParams();
+        params1.height = -1;
+        layoutRandomTime.setLayoutParams(params1);
+    }
+
+    public void hideotherRelation() {
+        RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams) layoutRandomTime.getLayoutParams();
+        params1.height = 0;
+        layoutRandomTime.setLayoutParams(params1);
+    }
+
+    ValueEventListener valueEventListener1 = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            adds.clear();
+            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                Upload upload = postSnapshot.getValue(Upload.class);
+
+                adds.add(upload);
+                int size = adds.size() - 1;
+                adds1.clear();
+                for (int i = size; i >= 0; i--) {
+                    adds1.add(adds.get(i));
+                }
+
+            }
+            NUM_PAGES = adds1.size();
+//            showDots();
+            ImageAdapter adapter = new ImageAdapter(getApplicationContext(), adds1);
+            viewPager.setAdapter(adapter);
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
+//    public void showDots() {
+//
+//        dots = new ImageView[uploads.size()];
+//
+//        // dots = new ImageView[dotscount];
+//
+//        for (int i = 0; i < uploads.size(); i++) {
+//
+//            dots[i] = new ImageView(getApplicationContext());
+//            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
+//
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//            params.setMargins(8, 0, 8, 0);
+//
+//            sliderDotspanel.addView(dots[i], params);
+//
+//        }
+//
+//        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+//
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                try {
+//
+//                    for (int i = 0; i < uploads.size(); i++) {
+//                        dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
+//                    }
+//
+//                    dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+//
+//                } catch (Exception e) {
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+//    }
+
 }
