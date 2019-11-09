@@ -40,11 +40,7 @@ public class Fragment_Advertise extends Fragment {
     private List<Upload> uploads1;
     ViewPager viewPager;
 
-    int currentPage = 0;
-    Timer timer;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000;
-
+    private boolean flag = false;
 
 
     public Fragment_Advertise() {
@@ -204,17 +200,25 @@ public class Fragment_Advertise extends Fragment {
 
         @Override
         public void run() {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (viewPager.getCurrentItem() < NUM_PAGES - 1) {
-                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                    } else {
-                        viewPager.setCurrentItem(0);
+            if (isVisible()) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (viewPager.getCurrentItem() < NUM_PAGES - 1) {
+                            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                        } else {
+                            viewPager.setCurrentItem(0);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        flag = false;
+        super.onDestroy();
     }
 }
 
