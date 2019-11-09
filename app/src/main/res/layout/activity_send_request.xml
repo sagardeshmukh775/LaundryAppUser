@@ -94,6 +94,18 @@
 
         </RelativeLayout>
 
+        <Spinner
+            android:id="@+id/spinnerweights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:padding="10sp"
+            android:layout_below="@+id/layoutrandomtime"
+            android:textColor="@color/input_register_bg"
+            android:background="@drawable/edittextanimation"
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/edtvenders"
             android:layout_width="fill_parent"
@@ -105,28 +117,16 @@
             android:text=""
             android:focusable="false"
             android:editable="false"
-            android:hint="Enter Random timeslot"
+            android:hint="Select Vender"
             android:textColor="@color/mainTextColor"
-            android:layout_below="@+id/layoutrandomtime"
+            android:layout_below="@+id/spinnerweights"
             android:textSize="14.0dip" />
-
-        <Spinner
-            android:id="@+id/spinnerweights"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:padding="10sp"
-            android:layout_below="@+id/edtvenders"
-            android:textColor="@color/input_register_bg"
-            android:background="@drawable/edittextanimation"
-            android:textSize="15sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinnerweights"
+            android:layout_below="@+id/edtvenders"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="50dp">
 

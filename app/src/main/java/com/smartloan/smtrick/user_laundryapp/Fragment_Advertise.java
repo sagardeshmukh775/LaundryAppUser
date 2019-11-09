@@ -2,7 +2,6 @@ package com.smartloan.smtrick.user_laundryapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -46,6 +45,8 @@ public class Fragment_Advertise extends Fragment {
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000;
 
+
+
     public Fragment_Advertise() {
     }
 
@@ -79,103 +80,13 @@ public class Fragment_Advertise extends Fragment {
         dots = new ImageView[0];
 
         /*After setting the adapter use the timer */
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES - 1) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
 
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, PERIOD_MS);
 
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
             mListener.onFragmentInteraction("Select Loan Type");
         }
-
-//        btnpl = (Button) view.findViewById(R.id.btn_pl);
-//        btnhl = (Button) view.findViewById(R.id.btn_hl);
-//        btnml = (Button) view.findViewById(R.id.btn_ml);
-//        btntp = (Button) view.findViewById(R.id.btn_tp);
-//        btnbt = (Button) view.findViewById(R.id.btn_bt);
-//        btndl = (Button) view.findViewById(R.id.btn_dl);
-
-
-//        btnpl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                mListener.changeFragement(new Fragment_GenerateLeads());
-//
-//
-//            }
-//        });
-
-//        btnhl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                // Utility.showLongMessage(getActivity(), getString(R.string.lead_generated_success_message));
-//                mListener.changeFragement(new Fragment_Generate_homeloan());
-//
-//            }
-//        });
-//        btnml.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                // Utility.showLongMessage(getActivity(), getString(R.string.lead_generated_success_message));
-//                mListener.changeFragement(new Fragment_Generate_morgageloan());
-//
-//            }
-//        });
-
-//        btntp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                // Utility.showLongMessage(getActivity(), getString(R.string.lead_generated_success_message));
-//                mListener.changeFragement(new Fragment_Generate_topup());
-//
-//            }
-//        });
-
-//        btnbt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                // Utility.showLongMessage(getActivity(), getString(R.string.lead_generated_success_message));
-//                mListener.changeFragement(new Fragment_Generate_balancetransfer());
-//
-//            }
-//        });
-//        btndl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                // Utility.showLongMessage(getActivity(), getString(R.string.lead_generated_success_message));
-//                mListener.changeFragement(new Fragment_Generate_doctorloan());
-//
-//            }
-//        });
-
-
-//        Drawable drawable = getResources().getDrawable(R.drawable.personal_loan_icon);
-//        drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*0.10),
-//                (int)(drawable.getIntrinsicHeight()*0.10));
-//        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 96,96);
-//        Button btn = view.findViewById(R.id.btn_pl);
-//        btn.setCompoundDrawables(sd.getDrawable(), null, null, null);
 
         return view;
     }
@@ -201,6 +112,8 @@ public class Fragment_Advertise extends Fragment {
             showDots();
             ImageAdapter adapter = new ImageAdapter(getContext(), uploads1);
             viewPager.setAdapter(adapter);
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new SliderTimer(), 500, 3000);
 
         }
 
@@ -286,4 +199,22 @@ public class Fragment_Advertise extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    private class SliderTimer extends TimerTask {
+
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPager.getCurrentItem() < NUM_PAGES - 1) {
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
+    }
 }
+

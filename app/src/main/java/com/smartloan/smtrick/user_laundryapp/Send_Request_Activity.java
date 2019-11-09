@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -158,25 +157,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         viewPager = findViewById(R.id.viewPager);
         dots = new ImageView[0];
-
-        /*After setting the adapter use the timer */
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES - 1) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, PERIOD_MS);
 
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
@@ -371,6 +351,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             ImageAdapter adapter = new ImageAdapter(getApplicationContext(), adds1);
             viewPager.setAdapter(adapter);
 
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new SliderTimer(), 500, 3000);
+
         }
 
         @Override
@@ -378,6 +361,24 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         }
     };
+
+    private class SliderTimer extends TimerTask {
+
+        @Override
+        public void run() {
+            Send_Request_Activity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPager.getCurrentItem() < NUM_PAGES - 1) {
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
+    }
+
 
 //    public void showDots() {
 //
