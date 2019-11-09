@@ -44,12 +44,14 @@ public class Request_Adapter extends RecyclerView.Adapter<Request_Adapter.ViewHo
         servicesList = upload.getSublist();
         holder.textViewName.setText(upload.getMaincat());
 //        holder.textViewName.setTextColor(Color.parseColor("#3498DB"));
-        adapter = new SubList_Adapter(holder.imagecard.getContext(), servicesList, (OnImageClickListener) holder.imagecard.getContext());
+        if (servicesList != null) {
+            adapter = new SubList_Adapter(holder.imagecard.getContext(), servicesList, (OnImageClickListener) holder.imagecard.getContext());
 
-        //adding adapter to recyclerview
-        holder.Recycle_Request.setAdapter(adapter);
-        holder.Recycle_Request.setHasFixedSize(true);
-        holder.Recycle_Request.setLayoutManager(new LinearLayoutManager(holder.imagecard.getContext()));
+            //adding adapter to recyclerview
+            holder.Recycle_Request.setAdapter(adapter);
+            holder.Recycle_Request.setHasFixedSize(true);
+            holder.Recycle_Request.setLayoutManager(new LinearLayoutManager(holder.imagecard.getContext()));
+        }
 
     }
 
