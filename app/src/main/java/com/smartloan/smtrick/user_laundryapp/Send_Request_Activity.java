@@ -68,17 +68,15 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     int mHour;
     int mMinute;
 
-    Spinner spinnerwash, spinnerTime,  spinnerWeights;
+    Spinner spinnerwash, spinnerTime, spinnerWeights;
     EditText edtVenders;
     RelativeLayout layoutRandomTime;
     LinearLayout sliderDotspanel;
     ViewPager viewPager;
-    int currentPage = 0;
-    Timer timer;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000;
     private ImageView[] dots;
     private static int NUM_PAGES = 0;
+    UserRepository userRepository;
+    ArrayList<User> UserArraylist;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -94,25 +92,28 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        userRepository = new UserRepositoryImpl();
+
         uploads = new ArrayList<>();
         serList = new ArrayList<>();
         adds = new ArrayList<>();
         adds1 = new ArrayList<>();
+        UserArraylist = new ArrayList<>();
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
         leedRepository = new LeedRepositoryImpl();
         user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
         userId = user.getUserid();
 
-        String[] washType = new String[]{
+        String[] washType = new String[]{"Non",
                 "Wash and Fold",
                 "Wash and Iron", "Iron", "Dry Clean"};
 
-        String[] TimeSlot = new String[]{
+        String[] TimeSlot = new String[]{"Non",
                 "24 Hours",
                 "12 Hours", "48 Hours", "Random"};
 
-        String[] Weights = new String[]{
+        String[] Weights = new String[]{"Non",
                 "Kg Wise",
                 "piece Wise"};
 
@@ -179,6 +180,43 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerWeights.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String washItem = spinnerwash.getSelectedItem().toString();
+                String time = spinnerTime.getSelectedItem().toString();
+                String weight = spinnerWeights.getSelectedItem().toString();
+
+                readServiceProviders(washItem,time,weight);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void readServiceProviders(String washItem, String time, String weight) {
+        userRepository.readServiceProviders(new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                if (object != null);
+//                UserArraylist = (ArrayList<User>) object;
+                UserArraylist = (ArrayList<User>) object;
+
+                for (User user: UserArraylist) {
+
+                }
+            }
+
+            @Override
+            public void onError(Object object) {
 
             }
         });
@@ -249,6 +287,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                             dialog1.dismiss();
                         }
+
                         @Override
                         public void onError(Object object) {
 

@@ -39,4 +39,6 @@ public interface UserRepository {
     void readUserByRole(final String role, final CallBack callBack);
 
     void readUserByAgentId(final String agentid, final CallBack callBack);
+
+    void readServiceProviders(final CallBack callback);
 }
