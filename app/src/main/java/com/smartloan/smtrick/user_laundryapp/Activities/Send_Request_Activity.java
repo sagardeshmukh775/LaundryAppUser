@@ -31,6 +31,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.user_laundryapp.Adapters.AddsAdapter;
 import com.smartloan.smtrick.user_laundryapp.Adapters.Request_Adapter;
+import com.smartloan.smtrick.user_laundryapp.Adapters.Service_Providers_Adapter_new;
 import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
@@ -66,6 +67,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //adapter object
     private RecyclerView.Adapter adapter;
+    private Service_Providers_Adapter_new adapter_new;
     //database reference
     private DatabaseReference mDatabase;
     //progress dialog
@@ -387,6 +389,24 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
             }
         });
+
+        edtVenders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog1 = new Dialog(Send_Request_Activity.this);
+                dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+                dialog1.setContentView(R.layout.dialog_service_providers);
+
+                RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
+                adapter_new = new Service_Providers_Adapter_new(getApplicationContext(), userList);
+                //adding adapter to recyclerview
+                Providers_recyckle.setAdapter(adapter_new);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this));
+
+                dialog1.show();
+            }
+        });
     }
 
     private void ReadServiseProviders(ArrayList<String> commonList) {
@@ -399,6 +419,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         user1 = (User) object;
                         userList.add(user1);
                     }
+
+
                 }
 
                 @Override
