@@ -386,7 +386,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     for (int j = 0; j < type.size(); j++) {
                                         if (Time.get(i).equalsIgnoreCase(type.get(j))) {
                                             commonList3.add(Time.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
@@ -396,7 +396,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     for (int j = 0; j < type.size(); j++) {
                                         if (wash.get(i).equalsIgnoreCase(type.get(j))) {
                                             commonList3.add(wash.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
@@ -415,7 +415,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     for (int j = 0; j < type.size(); j++) {
                                         if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
                                             commonList3.add(commonList.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
@@ -423,6 +423,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
 
                         } catch (Exception e) {
+                            Toast.makeText(Send_Request_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
