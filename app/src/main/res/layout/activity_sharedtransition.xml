@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="3dp"
-    tools:context=".sharedtransitionActivity">
+    tools:context=".Activities.sharedtransitionActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/imageView"

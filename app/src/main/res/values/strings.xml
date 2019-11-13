@@ -105,4 +105,9 @@ We also supply an extensive range of quality prefinished engineered flooring, co
     <string name="login_fail_try_again">Login fail, please try again with correct login details.</string>
     <string name="server_error">Faild to fetch data, please try again.</string>
 
+    <string name="file_uploading_progress">Uploading in progress</string>
+    <string name="file_uploading_complited">Uploading to server done </string>
+    <string name="file_uploading_complited_message">Total uploaded files :&#160; </string>
+    <string name="notification_message">Don\'t close the app.</string>
+
 </resources>

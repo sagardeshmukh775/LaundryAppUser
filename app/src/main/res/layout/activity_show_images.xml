@@ -8,7 +8,7 @@
     android:paddingLeft="2.5dp"
     android:paddingRight="2.5dp"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ShowImagesActivity">
+    tools:context=".Activities.ShowImagesActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -7,7 +7,7 @@
     android:layout_margin="3dp"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".Update_user_profile_activity">
+    tools:context=".Activities.Update_user_profile_activity">
 
     <ScrollView
         android:layout_width="match_parent"

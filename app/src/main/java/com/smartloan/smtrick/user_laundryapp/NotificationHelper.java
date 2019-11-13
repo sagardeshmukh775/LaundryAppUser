@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
+
 public class NotificationHelper {
 
     public static void displayNotification(Context context, String title, String body) {

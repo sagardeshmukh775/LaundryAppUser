@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="2.5dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ShowImagesActivity">
+    tools:context=".Activities.ShowImagesActivity">
 
         <ScrollView
             android:layout_width="match_parent"
