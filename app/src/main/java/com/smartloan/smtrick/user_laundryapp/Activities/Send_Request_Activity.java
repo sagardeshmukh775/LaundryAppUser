@@ -328,8 +328,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     }
                                 }
                             }
-
-                            ReadServiseProviders(commonList);
+                            String washitem = spinnerwash.getSelectedItem().toString();
+                            if (!washitem.equalsIgnoreCase("Select Wash Types")) {
+                                ReadServiseProviders(commonList);
+                            }else {
+                                ReadServiseProviders(Time);
+                            }
 
                         } catch (Exception e) {
 
@@ -390,7 +394,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     }
                                 }
                             }
-                            ReadServiseProviders(commonList3);
+                            String washitem = spinnerwash.getSelectedItem().toString();
+                            String timeitem = spinnerTime.getSelectedItem().toString();
+                            if (washitem.equalsIgnoreCase("Select Wash Types") && timeitem.equalsIgnoreCase("Select Time Slot")) {
+                                ReadServiseProviders(commonList3);
+                            }
 
                         } catch (Exception e) {
 
