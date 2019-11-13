@@ -377,26 +377,48 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             }
 
-                            commonList.clear();
-                            for (int i = 0; i < wash.size(); i++) {
-                                for (int j = 0; j < Time.size(); j++) {
-                                    if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
-                                        commonList.add(wash.get(i));
-                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                            for (int i = 0; i < commonList.size(); i++) {
-                                for (int j = 0; j < type.size(); j++) {
-                                    if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
-                                        commonList3.add(commonList.get(i));
-                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
+
+
                             String washitem = spinnerwash.getSelectedItem().toString();
                             String timeitem = spinnerTime.getSelectedItem().toString();
-                            if (washitem.equalsIgnoreCase("Select Wash Types") && timeitem.equalsIgnoreCase("Select Time Slot")) {
+                            if (washitem.equalsIgnoreCase("Select Wash Types") && !timeitem.equalsIgnoreCase("Select Time Slot")) {
+                                for (int i = 0; i < Time.size(); i++) {
+                                    for (int j = 0; j < type.size(); j++) {
+                                        if (Time.get(i).equalsIgnoreCase(type.get(j))) {
+                                            commonList3.add(Time.get(i));
+                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                                ReadServiseProviders(commonList3);
+                            }else  if (!washitem.equalsIgnoreCase("Select Wash Types")&& timeitem.equalsIgnoreCase("Select Time Slot")) {
+                                for (int i = 0; i < wash.size(); i++) {
+                                    for (int j = 0; j < type.size(); j++) {
+                                        if (wash.get(i).equalsIgnoreCase(type.get(j))) {
+                                            commonList3.add(wash.get(i));
+                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                                ReadServiseProviders(commonList3);
+                            }else  if (!timeitem.equalsIgnoreCase("Select Time Slot")&& !timeitem.equalsIgnoreCase("Select Time Slot")) {
+                                commonList.clear();
+                                for (int i = 0; i < wash.size(); i++) {
+                                    for (int j = 0; j < Time.size(); j++) {
+                                        if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
+                                            commonList.add(wash.get(i));
+                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                                for (int i = 0; i < commonList.size(); i++) {
+                                    for (int j = 0; j < type.size(); j++) {
+                                        if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
+                                            commonList3.add(commonList.get(i));
+                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
                                 ReadServiseProviders(commonList3);
                             }
 
