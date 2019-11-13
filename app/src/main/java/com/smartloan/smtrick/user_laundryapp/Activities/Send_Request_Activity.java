@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,8 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.user_laundryapp.Adapters.AddsAdapter;
+import com.smartloan.smtrick.user_laundryapp.Adapters.Providers_Adapter;
 import com.smartloan.smtrick.user_laundryapp.Adapters.Request_Adapter;
-import com.smartloan.smtrick.user_laundryapp.Adapters.Service_Providers_Adapter_new;
 import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
@@ -67,7 +69,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //adapter object
     private RecyclerView.Adapter adapter;
-    private Service_Providers_Adapter_new adapter_new;
+    Providers_Adapter adapter_new;
     //database reference
     private DatabaseReference mDatabase;
     //progress dialog
@@ -78,7 +80,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     static private List<String> serList;
     private List<Upload> adds;
     private List<Upload> adds1;
-    static private List<User> userList;
+    private ArrayList<User> userList;
 
     private String subitem;
     AppSharedPreference appSharedPreference;
@@ -115,6 +117,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     Types types;
 
     ArrayList<String> commonList;
+    ArrayList<String> commonList3;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -148,7 +151,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         wash = new ArrayList<>();
         Time = new ArrayList<>();
         type = new ArrayList<>();
-        commonList = new ArrayList<>(wash);
+        commonList = new ArrayList<>();
+        commonList3 = new ArrayList<>();
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
         leedRepository = new LeedRepositoryImpl();
@@ -262,7 +266,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             }
 
-
+                            ReadServiseProviders(wash);
                         } catch (Exception e) {
 
                         }
@@ -315,6 +319,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                 hideotherRelation();
                             }
 
+                            commonList.clear();
                             for (int i = 0; i < wash.size(); i++) {
                                 for (int j = 0; j < Time.size(); j++) {
                                     if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
@@ -368,9 +373,25 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             }
 
-                            wash.retainAll(Time);
-                            Toast.makeText(Send_Request_Activity.this, wash.get(0) + " " +
-                                    wash.get(1) + " " + wash.get(2), Toast.LENGTH_SHORT).show();
+                            commonList.clear();
+                            for (int i = 0; i < wash.size(); i++) {
+                                for (int j = 0; j < Time.size(); j++) {
+                                    if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
+                                        commonList.add(wash.get(i));
+                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            for (int i = 0; i < commonList.size(); i++) {
+                                for (int j = 0; j < type.size(); j++) {
+                                    if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
+                                        commonList3.add(commonList.get(i));
+                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            ReadServiseProviders(commonList3);
+
                         } catch (Exception e) {
 
                         }
@@ -398,18 +419,22 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 dialog1.setContentView(R.layout.dialog_service_providers);
 
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
-                adapter_new = new Service_Providers_Adapter_new(getApplicationContext(), userList);
+                Providers_recyckle.setHasFixedSize(true);
+                Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                adapter_new = new Providers_Adapter(getApplicationContext(), userList);
                 //adding adapter to recyclerview
                 Providers_recyckle.setAdapter(adapter_new);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this));
+
 
                 dialog1.show();
+                Window window = dialog1.getWindow();
+                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         });
     }
 
     private void ReadServiseProviders(ArrayList<String> commonList) {
+        userList.clear();
         for (int i = 0; i < commonList.size(); i++) {
             String id = commonList.get(i);
             userRepository.readServiceProviderById(id, new CallBack() {

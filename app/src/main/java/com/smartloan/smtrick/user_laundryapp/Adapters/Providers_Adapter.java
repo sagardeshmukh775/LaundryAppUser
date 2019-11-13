@@ -9,29 +9,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.smartloan.smtrick.user_laundryapp.Models.User;
-import com.smartloan.smtrick.user_laundryapp.Preferences.AppSharedPreference;
 import com.smartloan.smtrick.user_laundryapp.R;
-import com.smartloan.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
-import com.smartloan.smtrick.user_laundryapp.Repository.LeedRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Service_Providers_Adapter_new extends RecyclerView.Adapter<Service_Providers_Adapter_new.ViewHolder> {
+public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.ViewHolder> {
 
     private Context context;
-    private List<User> uploads;
-    AppSharedPreference appSharedPreference;
-    LeedRepository leedRepository;
+    private ArrayList<User> uploads;
 
 
-    public Service_Providers_Adapter_new(Context context, List<User> uploads) {
+    public Providers_Adapter(Context context, ArrayList<User> uploads) {
         this.uploads = uploads;
         this.context = context;
-    }
-
-    public Service_Providers_Adapter_new(List<User> mUsers) {
-        this.uploads = mUsers;
     }
 
     @Override
@@ -45,12 +35,11 @@ public class Service_Providers_Adapter_new extends RecyclerView.Adapter<Service_
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final User user = uploads.get(position);
-        appSharedPreference = new AppSharedPreference(holder.userCard.getContext());
-        leedRepository = new LeedRepositoryImpl();
 
         holder.textViewName.setText(user.getName());
         holder.textViewMobile.setText(user.getNumber());
         holder.textViewAddress.setText(user.getAddress());
+
 
     }
 
@@ -74,6 +63,7 @@ public class Service_Providers_Adapter_new extends RecyclerView.Adapter<Service_
             textViewName = (TextView) itemView.findViewById(R.id.namevalue);
             textViewMobile = (TextView) itemView.findViewById(R.id.user_mobilevalue);
             textViewAddress = (TextView) itemView.findViewById(R.id.user_addressvalue);
+
             userCard = (CardView) itemView.findViewById(R.id.card_userid);
 
         }
