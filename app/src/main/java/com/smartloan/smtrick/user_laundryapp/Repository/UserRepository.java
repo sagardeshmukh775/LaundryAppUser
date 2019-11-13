@@ -50,4 +50,6 @@ public interface UserRepository {
     void readTimeSlot(final CallBack callBack);
 
     void readTypes(final CallBack callBack);
+
+    void readServiceProviderById(final String name, final CallBack callBack);
 }

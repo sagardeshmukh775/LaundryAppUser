@@ -76,11 +76,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     static private List<String> serList;
     private List<Upload> adds;
     private List<Upload> adds1;
+    static private List<User> userList;
 
     private String subitem;
     AppSharedPreference appSharedPreference;
     String userId;
     User user;
+    User user1;
 
     LeedRepository leedRepository;
     private DatePickerDialog mDatePickerDialog;
@@ -135,6 +137,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         UserArraylist = new ArrayList<>();
         ServiceProviders = new ArrayList<>();
         ServicesList = new ArrayList<>();
+        userList = new ArrayList<>();
 
         washList = new ArrayList<>();
         TimeList = new ArrayList<>();
@@ -242,6 +245,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                         }
                         try {
+                            wash.clear();
                             if (washItem.equalsIgnoreCase("Wash and Fold")) {
                                 wash.addAll(wash2.getWashandfold());
 
@@ -289,21 +293,37 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                         }
                         try {
+                            Time.clear();
                             if (time.equalsIgnoreCase("24 Hours")) {
                                 Time.addAll(timeSlot.getTwodays());
+                                hideotherRelation();
 
                             } else if (time.equalsIgnoreCase("12 Hours")) {
                                 Time.addAll(timeSlot.getOneday());
+                                hideotherRelation();
 
                             } else if (time.equalsIgnoreCase("48 Hours")) {
                                 Time.addAll(timeSlot.getHalfday());
+                                hideotherRelation();
 
                             } else if (time.equalsIgnoreCase("Random")) {
                                 Time.addAll(timeSlot.getRandom());
                                 showotherRelation();
-                            }else {
+                            } else {
                                 hideotherRelation();
                             }
+
+                            for (int i = 0; i < wash.size(); i++) {
+                                for (int j = 0; j < Time.size(); j++) {
+                                    if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
+                                        commonList.add(wash.get(i));
+                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            ReadServiseProviders(commonList);
+
                         } catch (Exception e) {
 
                         }
@@ -337,6 +357,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                         }
                         try {
+                            type.clear();
                             if (weight.equalsIgnoreCase("Kg Wise")) {
                                 type.addAll(types.getKg());
 
@@ -346,8 +367,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
 
                             wash.retainAll(Time);
-                            Toast.makeText(Send_Request_Activity.this, wash.get(0)+" "+
-                                    wash.get(1)+ " "+wash.get(2), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Send_Request_Activity.this, wash.get(0) + " " +
+                                    wash.get(1) + " " + wash.get(2), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
 
                         }
@@ -366,6 +387,26 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
             }
         });
+    }
+
+    private void ReadServiseProviders(ArrayList<String> commonList) {
+        for (int i = 0; i < commonList.size(); i++) {
+            String id = commonList.get(i);
+            userRepository.readServiceProviderById(id, new CallBack() {
+                @Override
+                public void onSuccess(Object object) {
+                    if (object != null) {
+                        user1 = (User) object;
+                        userList.add(user1);
+                    }
+                }
+
+                @Override
+                public void onError(Object object) {
+
+                }
+            });
+        }
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
