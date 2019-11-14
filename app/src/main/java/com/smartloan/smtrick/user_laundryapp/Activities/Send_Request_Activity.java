@@ -62,7 +62,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener,OnRecycleClickListener {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener, OnRecycleClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
     Button SendRequest;
@@ -213,13 +213,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         dots = new ImageView[0];
 
         //displaying progress dialog while fetching images
-        progressDialog.setMessage("Please wait...");
-        progressDialog.show();
+//        progressDialog.setMessage("Please wait...");
+//        progressDialog.show();
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
-        Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(userId);
-
-        query.addValueEventListener(valueEventListener);
 
         SendRequest.setOnClickListener(this);
 
@@ -454,7 +451,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
                 Providers_recyckle.setHasFixedSize(true);
                 Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener)Send_Request_Activity.this,dialog1);
+                adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener) Send_Request_Activity.this, dialog1);
                 //adding adapter to recyclerview
                 Providers_recyckle.setAdapter(adapter_new);
 
@@ -487,31 +484,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             });
         }
     }
-
-    ValueEventListener valueEventListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            progressDialog.dismiss();
-            //iterating through all the values in database
-            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                UserServices upload = postSnapshot.getValue(UserServices.class);
-
-                uploads.add(upload);
-            }
-            //creating adapter
-            adapter = new Request_Adapter(Send_Request_Activity.this, uploads);
-            //adding adapter to recyclerview
-            recyclerView.setAdapter(adapter);
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-            progressDialog.dismiss();
-
-        }
-
-    };
 
 
     @Override
@@ -622,6 +594,38 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
     }
 
+    @Override
+    public void onRecycleClick(User user) {
+        edtVenders.setText(user.getName());
+        Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());
+
+        query.addValueEventListener(valueEventListener);
+    }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            uploads.clear();
+            progressDialog.dismiss();
+            //iterating through all the values in database
+            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                UserServices upload = postSnapshot.getValue(UserServices.class);
+
+                uploads.add(upload);
+            }
+            //creating adapter
+            adapter = new Request_Adapter(Send_Request_Activity.this, uploads);
+            //adding adapter to recyclerview
+            recyclerView.setAdapter(adapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            progressDialog.dismiss();
+
+        }
+
+    };
 
 
     public void showotherRelation() {
@@ -668,10 +672,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
     };
 
-    @Override
-    public void onRecycleClick(User user) {
-        edtVenders.setText(user.getName());
-    }
 
     private class SliderTimer extends TimerTask {
 
