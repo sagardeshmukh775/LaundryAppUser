@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.user_laundryapp.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.User;
 import com.smartloan.smtrick.user_laundryapp.R;
 
@@ -17,10 +19,14 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
 
     private Context context;
     private ArrayList<User> uploads;
+    OnRecycleClickListener recycleClickListener;
+    private Dialog dialog;
 
-    public Providers_Adapter(Context context, ArrayList<User> uploads) {
+    public Providers_Adapter(Context context, ArrayList<User> uploads, OnRecycleClickListener onRecycleClickListener, Dialog dialog) {
         this.uploads = uploads;
         this.context = context;
+        this.recycleClickListener = onRecycleClickListener;
+        this.dialog = dialog;
 
     }
 
@@ -43,7 +49,8 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                recycleClickListener.onRecycleClick(user);
+                dialog.dismiss();
             }
         });
 

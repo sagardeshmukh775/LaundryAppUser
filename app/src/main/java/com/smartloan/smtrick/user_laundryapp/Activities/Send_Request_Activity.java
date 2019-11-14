@@ -38,6 +38,7 @@ import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
 import com.smartloan.smtrick.user_laundryapp.Listeners.OnImageClickListener;
+import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.Requests;
 import com.smartloan.smtrick.user_laundryapp.Models.ServiceProviderServices;
 import com.smartloan.smtrick.user_laundryapp.Models.TimeSlot;
@@ -61,7 +62,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener,OnRecycleClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
     Button SendRequest;
@@ -453,15 +454,16 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
                 Providers_recyckle.setHasFixedSize(true);
                 Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter_new = new Providers_Adapter(getApplicationContext(), userList);
+                adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener)Send_Request_Activity.this,dialog1);
                 //adding adapter to recyclerview
                 Providers_recyckle.setAdapter(adapter_new);
-//                onClickListner(Providers_recyckle, dialog1);
+
 
                 dialog1.show();
                 Window window = dialog1.getWindow();
                 window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
+
         });
     }
 
@@ -476,8 +478,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         user1 = (User) object;
                         userList.add(user1);
                     }
-
-
                 }
 
                 @Override
@@ -667,7 +667,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         }
     };
-    
+
+    @Override
+    public void onRecycleClick(User user) {
+        edtVenders.setText(user.getName());
+    }
+
     private class SliderTimer extends TimerTask {
 
         @Override
