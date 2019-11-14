@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleviewClickClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.User;
 import com.smartloan.smtrick.user_laundryapp.R;
 
@@ -17,11 +18,13 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
 
     private Context context;
     private ArrayList<User> uploads;
+    private OnRecycleviewClickClickListener onImageClickListener;
 
 
-    public Providers_Adapter(Context context, ArrayList<User> uploads) {
+    public Providers_Adapter(Context context, ArrayList<User> uploads,OnRecycleviewClickClickListener onRecycleviewClickClickListener) {
         this.uploads = uploads;
         this.context = context;
+        this.onImageClickListener = onRecycleviewClickClickListener;
     }
 
     @Override
@@ -40,6 +43,12 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         holder.textViewMobile.setText(user.getNumber());
         holder.textViewAddress.setText(user.getAddress());
 
+        holder.userCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onImageClickListener.onRecycleClick(user);
+            }
+        });
 
     }
 
@@ -64,7 +73,7 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
             textViewMobile = (TextView) itemView.findViewById(R.id.user_mobilevalue);
             textViewAddress = (TextView) itemView.findViewById(R.id.user_addressvalue);
 
-            userCard = (CardView) itemView.findViewById(R.id.card_userid);
+            userCard = (CardView) itemView.findViewById(R.id.card_user);
 
         }
     }

@@ -38,6 +38,7 @@ import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
 import com.smartloan.smtrick.user_laundryapp.Listeners.OnImageClickListener;
+import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleviewClickClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.Requests;
 import com.smartloan.smtrick.user_laundryapp.Models.ServiceProviderServices;
 import com.smartloan.smtrick.user_laundryapp.Models.TimeSlot;
@@ -61,7 +62,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener,OnRecycleviewClickClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
     Button SendRequest;
@@ -268,6 +269,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             ReadServiseProviders(wash);
                         } catch (Exception e) {
+                            Toast.makeText(Send_Request_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -301,15 +303,15 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         try {
                             Time.clear();
                             if (time.equalsIgnoreCase("24 Hours")) {
-                                Time.addAll(timeSlot.getTwodays());
-                                hideotherRelation();
-
-                            } else if (time.equalsIgnoreCase("12 Hours")) {
                                 Time.addAll(timeSlot.getOneday());
                                 hideotherRelation();
 
-                            } else if (time.equalsIgnoreCase("48 Hours")) {
+                            } else if (time.equalsIgnoreCase("12 Hours")) {
                                 Time.addAll(timeSlot.getHalfday());
+                                hideotherRelation();
+
+                            } else if (time.equalsIgnoreCase("48 Hours")) {
+                                Time.addAll(timeSlot.getTwodays());
                                 hideotherRelation();
 
                             } else if (time.equalsIgnoreCase("Random")) {
@@ -331,7 +333,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             String washitem = spinnerwash.getSelectedItem().toString();
                             if (!washitem.equalsIgnoreCase("Select Wash Types")) {
                                 ReadServiseProviders(commonList);
-                            }else {
+                            } else {
                                 ReadServiseProviders(Time);
                             }
 
@@ -378,7 +380,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
 
 
-
                             String washitem = spinnerwash.getSelectedItem().toString();
                             String timeitem = spinnerTime.getSelectedItem().toString();
                             if (washitem.equalsIgnoreCase("Select Wash Types") && !timeitem.equalsIgnoreCase("Select Time Slot")) {
@@ -391,7 +392,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     }
                                 }
                                 ReadServiseProviders(commonList3);
-                            }else  if (!washitem.equalsIgnoreCase("Select Wash Types")&& timeitem.equalsIgnoreCase("Select Time Slot")) {
+                            } else if (!washitem.equalsIgnoreCase("Select Wash Types") && timeitem.equalsIgnoreCase("Select Time Slot")) {
                                 for (int i = 0; i < wash.size(); i++) {
                                     for (int j = 0; j < type.size(); j++) {
                                         if (wash.get(i).equalsIgnoreCase(type.get(j))) {
@@ -401,8 +402,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                     }
                                 }
                                 ReadServiseProviders(commonList3);
-                            }else  if (!timeitem.equalsIgnoreCase("Select Time Slot")&& !timeitem.equalsIgnoreCase("Select Time Slot")) {
+                            } else if (!timeitem.equalsIgnoreCase("Select Time Slot") && !timeitem.equalsIgnoreCase("Select Time Slot")) {
                                 commonList.clear();
+                                commonList3.clear();
                                 for (int i = 0; i < wash.size(); i++) {
                                     for (int j = 0; j < Time.size(); j++) {
                                         if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
@@ -452,10 +454,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
                 Providers_recyckle.setHasFixedSize(true);
                 Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter_new = new Providers_Adapter(getApplicationContext(), userList);
+                adapter_new = new Providers_Adapter(getApplicationContext(), userList,(OnRecycleviewClickClickListener) getApplicationContext());
                 //adding adapter to recyclerview
                 Providers_recyckle.setAdapter(adapter_new);
-
+//                onClickListner(Providers_recyckle, dialog1);
 
                 dialog1.show();
                 Window window = dialog1.getWindow();
@@ -511,6 +513,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
 
     };
+
 
     @Override
     public void onClick(View v) {
@@ -620,6 +623,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
     }
 
+
+
     public void showotherRelation() {
         RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams) layoutRandomTime.getLayoutParams();
         params1.height = -1;
@@ -663,6 +668,14 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         }
     };
+
+    @Override
+    public void onRecycleClick(User user) {
+        if (user != null){
+            edtVenders.setText(user.getName());
+        }
+    }
+
 
     private class SliderTimer extends TimerTask {
 
