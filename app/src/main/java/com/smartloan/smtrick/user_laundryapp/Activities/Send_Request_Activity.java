@@ -385,17 +385,21 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
                 dialog1.setContentView(R.layout.dialog_service_providers);
 
+                RecyclerView Providers_recycle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
+                Providers_recycle.setHasFixedSize(true);
+                Providers_recycle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
                 String wash5 = spinnerwash.getSelectedItem().toString();
                 String time5 = spinnerTime.getSelectedItem().toString();
                 String weight5 = spinnerWeights.getSelectedItem().toString();
                 if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(wash);
+                    ReadServiseProviders(wash,Providers_recycle,dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(Time);
+                    ReadServiseProviders(Time,Providers_recycle, dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(type);
+                    ReadServiseProviders(type,Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
 
@@ -408,7 +412,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
                         }
                     }
-                    ReadServiseProviders(commonList);
+                    ReadServiseProviders(commonList,Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
                     commonList3.clear();
@@ -420,7 +424,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3);
+                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
                     commonList3.clear();
@@ -432,7 +436,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3);
+                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
 
@@ -454,16 +458,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3);
+                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
                 }
-
-
-                RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
-                Providers_recyckle.setHasFixedSize(true);
-                Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener) Send_Request_Activity.this, dialog1);
-                //adding adapter to recyclerview
-                Providers_recyckle.setAdapter(adapter_new);
 
 
                 dialog1.show();
@@ -474,7 +470,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         });
     }
 
-    private void ReadServiseProviders(ArrayList<String> commonList) {
+    private void ReadServiseProviders(ArrayList<String> commonList, RecyclerView recyclerView, Dialog dialog1) {
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
         userList.clear();
@@ -487,6 +483,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         user1 = (User) object;
                         userList.add(user1);
                     }
+
+                    adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener) Send_Request_Activity.this, dialog1);
+                    //adding adapter to recyclerview
+                    recyclerView.setAdapter(adapter_new);
                     progressDialog.dismiss();
                 }
 
