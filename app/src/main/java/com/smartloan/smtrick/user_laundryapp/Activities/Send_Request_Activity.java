@@ -490,6 +490,19 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             Button Add = (Button) dialog1.findViewById(R.id.btnsendrequest);
             Button cancle = (Button) dialog1.findViewById(R.id.btncancle);
 
+            String name = edtVenders.getText().toString();
+            userRepository.readServiceProviderByName(name, new CallBack() {
+                @Override
+                public void onSuccess(Object object) {
+                    user0 = (User) object;
+                }
+
+                @Override
+                public void onError(Object object) {
+
+                }
+            });
+
             setDateTimeField();
             edtDateTime.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -589,7 +602,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onRecycleClick(User user) {
-        user0 = user;
+        //user0 = user;
         edtVenders.setText(user.getName());
         uploads.clear();
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());

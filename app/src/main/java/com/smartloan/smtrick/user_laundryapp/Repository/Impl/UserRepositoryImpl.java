@@ -586,4 +586,28 @@ public class UserRepositoryImpl extends FirebaseTemplateRepository implements Us
             }
         });
     }
+
+    public void readServiceProviderByName(final String username, final CallBack callback) {
+        final Query query = Constant.SERVICE_PROVIDERS_TABLE_REF.orderByChild("name").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null && dataSnapshot.getValue() != null && dataSnapshot.hasChildren()) {
+                    try {
+                        final DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
+                        callback.onSuccess(firstChild.getValue(User.class));
+                    } catch (Exception e) {
+                        callback.onError(e);
+                        ExceptionUtil.logException(e);
+                    }
+                } else
+                    callback.onError(null);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onError(databaseError);
+            }
+        });
+    }
 }

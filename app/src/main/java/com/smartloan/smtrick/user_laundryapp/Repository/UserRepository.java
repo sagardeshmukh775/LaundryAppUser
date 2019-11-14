@@ -52,4 +52,6 @@ public interface UserRepository {
     void readTypes(final CallBack callBack);
 
     void readServiceProviderById(final String name, final CallBack callBack);
+
+    void readServiceProviderByName(final String name, final CallBack callBack);
 }
