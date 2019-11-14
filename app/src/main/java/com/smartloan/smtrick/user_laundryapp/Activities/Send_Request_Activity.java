@@ -38,7 +38,6 @@ import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constants;
 import com.smartloan.smtrick.user_laundryapp.Listeners.OnImageClickListener;
-import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleviewClickClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.Requests;
 import com.smartloan.smtrick.user_laundryapp.Models.ServiceProviderServices;
 import com.smartloan.smtrick.user_laundryapp.Models.TimeSlot;
@@ -62,7 +61,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener,OnRecycleviewClickClickListener {
+public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener {
     //recyclerview object
     private RecyclerView recyclerView;
     Button SendRequest;
@@ -454,7 +453,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
                 Providers_recyckle.setHasFixedSize(true);
                 Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter_new = new Providers_Adapter(getApplicationContext(), userList,(OnRecycleviewClickClickListener) getApplicationContext());
+                adapter_new = new Providers_Adapter(getApplicationContext(), userList);
                 //adding adapter to recyclerview
                 Providers_recyckle.setAdapter(adapter_new);
 //                onClickListner(Providers_recyckle, dialog1);
@@ -668,15 +667,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         }
     };
-
-    @Override
-    public void onRecycleClick(User user) {
-        if (user != null){
-            edtVenders.setText(user.getName());
-        }
-    }
-
-
+    
     private class SliderTimer extends TimerTask {
 
         @Override

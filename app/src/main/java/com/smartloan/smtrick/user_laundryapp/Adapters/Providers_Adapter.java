@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleviewClickClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.User;
 import com.smartloan.smtrick.user_laundryapp.R;
 
@@ -18,13 +17,11 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
 
     private Context context;
     private ArrayList<User> uploads;
-    private OnRecycleviewClickClickListener onImageClickListener;
 
-
-    public Providers_Adapter(Context context, ArrayList<User> uploads,OnRecycleviewClickClickListener onRecycleviewClickClickListener) {
+    public Providers_Adapter(Context context, ArrayList<User> uploads) {
         this.uploads = uploads;
         this.context = context;
-        this.onImageClickListener = onRecycleviewClickClickListener;
+
     }
 
     @Override
@@ -46,7 +43,7 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onImageClickListener.onRecycleClick(user);
+
             }
         });
 
