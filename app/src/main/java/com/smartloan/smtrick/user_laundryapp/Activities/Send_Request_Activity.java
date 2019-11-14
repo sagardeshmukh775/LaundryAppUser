@@ -86,7 +86,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private String subitem;
     AppSharedPreference appSharedPreference;
     String userId;
-    User user;
+    User user0;
     User user1;
 
     LeedRepository leedRepository;
@@ -157,8 +157,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
         leedRepository = new LeedRepositoryImpl();
-        user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
-        userId = user.getUserid();
+//        user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
+//        userId = user.getUserid();
 
         String[] washType = new String[]{"Select Wash Types",
                 "Wash and Fold",
@@ -212,28 +212,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         viewPager = findViewById(R.id.viewPager);
         dots = new ImageView[0];
 
-        //displaying progress dialog while fetching images
-
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
-
         SendRequest.setOnClickListener(this);
-
-//        spinnerTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (spinnerTime.getSelectedItem().toString().equalsIgnoreCase("Random")) {
-//                    showotherRelation();
-//                } else {
-//                    hideotherRelation();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         spinnerwash.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -393,13 +374,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 String time5 = spinnerTime.getSelectedItem().toString();
                 String weight5 = spinnerWeights.getSelectedItem().toString();
                 if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(wash,Providers_recycle,dialog1);
+                    ReadServiseProviders(wash, Providers_recycle, dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(Time,Providers_recycle, dialog1);
+                    ReadServiseProviders(Time, Providers_recycle, dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
-                    ReadServiseProviders(type,Providers_recycle, dialog1);
+                    ReadServiseProviders(type, Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
 
@@ -408,11 +389,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < Time.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
                                 commonList.add(wash.get(i));
-                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
-                    ReadServiseProviders(commonList,Providers_recycle, dialog1);
+                    ReadServiseProviders(commonList, Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
                     commonList3.clear();
@@ -420,11 +401,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(wash.get(i));
-                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
+                    ReadServiseProviders(commonList3, Providers_recycle, dialog1);
 
                 } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
                     commonList3.clear();
@@ -432,11 +413,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (Time.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(Time.get(i));
-                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
+                    ReadServiseProviders(commonList3, Providers_recycle, dialog1);
 
                 } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
 
@@ -446,7 +427,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < Time.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
                                 commonList.add(wash.get(i));
-                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -454,13 +435,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(commonList.get(i));
-                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
-                    ReadServiseProviders(commonList3,Providers_recycle, dialog1);
+                    ReadServiseProviders(commonList3, Providers_recycle, dialog1);
                 }
-
 
                 dialog1.show();
                 Window window = dialog1.getWindow();
@@ -492,7 +472,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                 @Override
                 public void onError(Object object) {
-progressDialog.dismiss();
+                    progressDialog.dismiss();
                 }
             });
         }
@@ -523,7 +503,7 @@ progressDialog.dismiss();
                 @Override
                 public void onClick(View v) {
                     Requests requests = new Requests();
-                    requests.setServiceProviderId(user.getUserid());
+                    requests.setServiceProviderId(user0.getUserid());
                     requests.setUserId(appSharedPreference.getUserid());
                     requests.setUserName(appSharedPreference.getName());
                     requests.setUserAddress(appSharedPreference.getAddress());
@@ -609,6 +589,7 @@ progressDialog.dismiss();
 
     @Override
     public void onRecycleClick(User user) {
+        user0 = user;
         edtVenders.setText(user.getName());
         uploads.clear();
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());
