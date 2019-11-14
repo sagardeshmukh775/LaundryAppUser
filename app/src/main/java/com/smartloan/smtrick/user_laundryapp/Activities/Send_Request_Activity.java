@@ -213,8 +213,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         dots = new ImageView[0];
 
         //displaying progress dialog while fetching images
-//        progressDialog.setMessage("Please wait...");
-//        progressDialog.show();
+
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
 
@@ -264,7 +263,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             }
 
-                            ReadServiseProviders(wash);
                         } catch (Exception e) {
                             Toast.makeText(Send_Request_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -318,22 +316,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                 hideotherRelation();
                             }
 
-                            commonList.clear();
-                            for (int i = 0; i < wash.size(); i++) {
-                                for (int j = 0; j < Time.size(); j++) {
-                                    if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
-                                        commonList.add(wash.get(i));
-                                        Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                            String washitem = spinnerwash.getSelectedItem().toString();
-                            if (!washitem.equalsIgnoreCase("Select Wash Types")) {
-                                ReadServiseProviders(commonList);
-                            } else {
-                                ReadServiseProviders(Time);
-                            }
-
                         } catch (Exception e) {
 
                         }
@@ -376,51 +358,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
                             }
 
-
-                            String washitem = spinnerwash.getSelectedItem().toString();
-                            String timeitem = spinnerTime.getSelectedItem().toString();
-                            if (washitem.equalsIgnoreCase("Select Wash Types") && !timeitem.equalsIgnoreCase("Select Time Slot")) {
-                                for (int i = 0; i < Time.size(); i++) {
-                                    for (int j = 0; j < type.size(); j++) {
-                                        if (Time.get(i).equalsIgnoreCase(type.get(j))) {
-                                            commonList3.add(Time.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                ReadServiseProviders(commonList3);
-                            } else if (!washitem.equalsIgnoreCase("Select Wash Types") && timeitem.equalsIgnoreCase("Select Time Slot")) {
-                                for (int i = 0; i < wash.size(); i++) {
-                                    for (int j = 0; j < type.size(); j++) {
-                                        if (wash.get(i).equalsIgnoreCase(type.get(j))) {
-                                            commonList3.add(wash.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                ReadServiseProviders(commonList3);
-                            } else if (!timeitem.equalsIgnoreCase("Select Time Slot") && !timeitem.equalsIgnoreCase("Select Time Slot")) {
-                                commonList.clear();
-                                commonList3.clear();
-                                for (int i = 0; i < wash.size(); i++) {
-                                    for (int j = 0; j < Time.size(); j++) {
-                                        if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
-                                            commonList.add(wash.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                for (int i = 0; i < commonList.size(); i++) {
-                                    for (int j = 0; j < type.size(); j++) {
-                                        if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
-                                            commonList3.add(commonList.get(i));
-                                            Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                ReadServiseProviders(commonList3);
-                            }
-
                         } catch (Exception e) {
                             Toast.makeText(Send_Request_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -448,6 +385,79 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
                 dialog1.setContentView(R.layout.dialog_service_providers);
 
+                String wash5 = spinnerwash.getSelectedItem().toString();
+                String time5 = spinnerTime.getSelectedItem().toString();
+                String weight5 = spinnerWeights.getSelectedItem().toString();
+                if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
+                    ReadServiseProviders(wash);
+
+                } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
+                    ReadServiseProviders(Time);
+
+                } else if (wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
+                    ReadServiseProviders(type);
+
+                } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && weight5.equalsIgnoreCase("Select Types")) {
+
+                    commonList.clear();
+                    for (int i = 0; i < wash.size(); i++) {
+                        for (int j = 0; j < Time.size(); j++) {
+                            if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
+                                commonList.add(wash.get(i));
+                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    ReadServiseProviders(commonList);
+
+                } else if (!wash5.equalsIgnoreCase("Select Wash Types") && time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
+                    commonList3.clear();
+                    for (int i = 0; i < wash.size(); i++) {
+                        for (int j = 0; j < type.size(); j++) {
+                            if (wash.get(i).equalsIgnoreCase(type.get(j))) {
+                                commonList3.add(wash.get(i));
+                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    ReadServiseProviders(commonList3);
+
+                } else if (wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
+                    commonList3.clear();
+                    for (int i = 0; i < Time.size(); i++) {
+                        for (int j = 0; j < type.size(); j++) {
+                            if (Time.get(i).equalsIgnoreCase(type.get(j))) {
+                                commonList3.add(Time.get(i));
+                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    ReadServiseProviders(commonList3);
+
+                } else if (!wash5.equalsIgnoreCase("Select Wash Types") && !time5.equalsIgnoreCase("Select Time Slot") && !weight5.equalsIgnoreCase("Select Types")) {
+
+                    commonList.clear();
+                    commonList3.clear();
+                    for (int i = 0; i < wash.size(); i++) {
+                        for (int j = 0; j < Time.size(); j++) {
+                            if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
+                                commonList.add(wash.get(i));
+                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    for (int i = 0; i < commonList.size(); i++) {
+                        for (int j = 0; j < type.size(); j++) {
+                            if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
+                                commonList3.add(commonList.get(i));
+                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    ReadServiseProviders(commonList3);
+                }
+
+
                 RecyclerView Providers_recyckle = (RecyclerView) dialog1.findViewById(R.id.recycler_view_service_provicers);
                 Providers_recyckle.setHasFixedSize(true);
                 Providers_recyckle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -465,6 +475,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     }
 
     private void ReadServiseProviders(ArrayList<String> commonList) {
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
         userList.clear();
         for (int i = 0; i < commonList.size(); i++) {
             String id = commonList.get(i);
@@ -475,11 +487,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         user1 = (User) object;
                         userList.add(user1);
                     }
+                    progressDialog.dismiss();
                 }
 
                 @Override
                 public void onError(Object object) {
-
+progressDialog.dismiss();
                 }
             });
         }
@@ -597,6 +610,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     @Override
     public void onRecycleClick(User user) {
         edtVenders.setText(user.getName());
+        uploads.clear();
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());
 
         query.addValueEventListener(valueEventListener);
