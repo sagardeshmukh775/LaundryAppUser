@@ -28,15 +28,14 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.smartloan.smtrick.user_laundryapp.Preferences.AppSharedPreference;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_Advertise;
-import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_View_Service_Providers;
-import com.smartloan.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
-import com.smartloan.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
-import com.smartloan.smtrick.user_laundryapp.R;
-import com.smartloan.smtrick.user_laundryapp.Repository.LeedRepository;
-import com.smartloan.smtrick.user_laundryapp.Models.Users;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Users_Requests_Tab_Fragment;
+import com.smartloan.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
+import com.smartloan.smtrick.user_laundryapp.Models.Users;
+import com.smartloan.smtrick.user_laundryapp.Preferences.AppSharedPreference;
+import com.smartloan.smtrick.user_laundryapp.R;
+import com.smartloan.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
+import com.smartloan.smtrick.user_laundryapp.Repository.LeedRepository;
 
 
 public class MainActivity_User extends AppCompatActivity
@@ -197,10 +196,10 @@ public class MainActivity_User extends AppCompatActivity
         //NOTE: creating fragment object
         Fragment fragment = null;
         if (id == R.id.serviceproviders) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-                    new Fragment_View_Service_Providers()).commit();
-//            Intent intent = new Intent(MainActivity_User.this, dummyActivity.class);
-//            startActivity(intent);
+//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+//                    new Fragment_View_Service_Providers()).commit();
+            Intent intent = new Intent(MainActivity_User.this, Send_Request_Activity.class);
+            startActivity(intent);
 
         }
 //        else if (id == R.id.requests) {

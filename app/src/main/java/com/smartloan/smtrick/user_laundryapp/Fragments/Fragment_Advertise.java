@@ -85,7 +85,7 @@ public class Fragment_Advertise extends Fragment {
         // NOTE : We are calling the onFragmentInteraction() declared in the MainActivity
         // ie we are sending "Fragment 1" as title parameter when fragment1 is activated
         if (mListener != null) {
-            mListener.onFragmentInteraction("Select Loan Type");
+            mListener.onFragmentInteraction("Adds");
         }
 
         return view;

@@ -27,7 +27,7 @@ public class Users_Requests_Tab_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (mListener != null) {
-            mListener.onFragmentInteraction("Requests");
+            mListener.onFragmentInteraction("My Requests");
         }
         View view = inflater.inflate(R.layout.fragment_reports_tab, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
