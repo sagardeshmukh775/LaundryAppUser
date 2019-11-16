@@ -794,7 +794,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 e.printStackTrace();
             }
 
-
             dataobjData = new JSONObject();
             dataobjData.put("text", msg);
             dataobjData.put("title", title);
