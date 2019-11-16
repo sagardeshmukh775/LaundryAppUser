@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,6 +26,15 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,11 +64,16 @@ import com.smartloan.smtrick.user_laundryapp.Repository.Impl.UserRepositoryImpl;
 import com.smartloan.smtrick.user_laundryapp.Repository.LeedRepository;
 import com.smartloan.smtrick.user_laundryapp.Repository.UserRepository;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -120,6 +135,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     ArrayList<String> commonList;
     ArrayList<String> commonList3;
 
+    private DataSnapshot lastObtainedDataSnapshot;
+
     @Override
     public boolean onSupportNavigateUp() {
         finish();
@@ -158,8 +175,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
         leedRepository = new LeedRepositoryImpl();
-//        user = (User) getIntent().getSerializableExtra(Constant.LEED_MODEL);
-//        userId = user.getUserid();
 
         String[] washType = new String[]{"Select Wash Types",
                 "Wash and Fold",
@@ -530,6 +545,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                     leedRepository.sendRequest(requests, new CallBack() {
                         @Override
                         public void onSuccess(Object object) {
+
+                            sendFCMPush(user0.getTokan());
                             Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                             dialog1.dismiss();
                         }
@@ -750,4 +767,73 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 //        });
 //    }
 
+
+    private void sendFCMPush(String Token) {
+
+        String Legacy_SERVER_KEY = "AIzaSyCM5Eb6ZrYBWhzGRSsm5WKYlzlT7BlhuKs";
+        String msg = "New Order From"+ appSharedPreference.getName();
+        String title = "New Order Has Been Received";
+        String token = Token;
+
+        JSONObject obj = null;
+        JSONObject objData = null;
+        JSONObject dataobjData = null;
+
+        try {
+            obj = new JSONObject();
+            objData = new JSONObject();
+
+            try {
+                objData.put("body", msg);
+                objData.put("title", title);
+                objData.put("sound", "default");
+                objData.put("icon", "icon_name"); //   icon_name image must be there in drawable
+                objData.put("tag", token);
+                objData.put("priority", "high");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            dataobjData = new JSONObject();
+            dataobjData.put("text", msg);
+            dataobjData.put("title", title);
+
+            obj.put("to", token);
+            //obj.put("priority", "high");
+
+            obj.put("notification", objData);
+            obj.put("data", dataobjData);
+            Log.e("!_@rj@_@@_PASS:>", obj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, Constants.FCM_PUSH_URL, obj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("!_@@_SUCESS", response + "");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("!_@@_Errors--", error + "");
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "key=" + Legacy_SERVER_KEY);
+                params.put("Content-Type", "application/json");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        int socketTimeout = 1000 * 60;// 60 seconds
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsObjRequest.setRetryPolicy(policy);
+        requestQueue.add(jsObjRequest);
+    }
 }
