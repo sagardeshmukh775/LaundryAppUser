@@ -25,154 +25,193 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.smartloan.smtrick.user_laundryapp.Preferences.AppSharedPreference;
+import com.smartloan.smtrick.user_laundryapp.Adapters.Service_Providers_Requests_Approved_Adapter;
+import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
 import com.smartloan.smtrick.user_laundryapp.Models.MemberVO;
-import com.smartloan.smtrick.user_laundryapp.R;
 import com.smartloan.smtrick.user_laundryapp.Models.Requests;
-import com.smartloan.smtrick.user_laundryapp.Adapters.Service_Providers_Requests_Approved_Adapter;
+import com.smartloan.smtrick.user_laundryapp.Preferences.AppSharedPreference;
+import com.smartloan.smtrick.user_laundryapp.R;
+import com.smartloan.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
+import com.smartloan.smtrick.user_laundryapp.Repository.LeedRepository;
 
 import java.util.ArrayList;
 
 
 public class Fragment_View_Users_Requests extends Fragment {
 
-  private RecyclerView ServiceRecycler;
-  private DatabaseReference mdataRefpatient;
-  private ArrayList<MemberVO> catalogList;
-  private ProgressDialog progressDialog;
-  private Service_Providers_Requests_Approved_Adapter adapter;
-  private EditText edtSearch;
-  DatabaseReference databaseReference;
-  String Language;
-  private FirebaseAuth firebaseAuth;
-  private FirebaseUser Fuser;
-  private String uid;
-  private AppSharedPreference appSharedPreference;
-  private ArrayList<Requests> service_providers;
+    private RecyclerView ServiceRecycler;
+    private DatabaseReference mdataRefpatient;
+    private ArrayList<MemberVO> catalogList;
+    private ProgressDialog progressDialog;
+    private Service_Providers_Requests_Approved_Adapter adapter;
+    private EditText edtSearch;
+    DatabaseReference databaseReference;
+    String Language;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser Fuser;
+    private String uid;
+    private AppSharedPreference appSharedPreference;
+    private ArrayList<Requests> service_providers;
+    private LeedRepository leedRepository;
 
-  // int[] animationList = {R.anim.layout_animation_up_to_down};
-  int i = 0;
+    // int[] animationList = {R.anim.layout_animation_up_to_down};
+    int i = 0;
 
-  String number;
+    String number;
+    private ArrayList<Requests> leedsArraylist1;
+    private ArrayList<Requests> leedsArraylist;
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_view_service_providers, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_view_service_providers, container, false);
 
-    // getActivity().getActionBar().setTitle("Products");
-    appSharedPreference = new AppSharedPreference(getContext());
-    progressDialog = new ProgressDialog(getContext());
+        // getActivity().getActionBar().setTitle("Products");
+        appSharedPreference = new AppSharedPreference(getContext());
+        progressDialog = new ProgressDialog(getContext());
+        leedRepository = new LeedRepositoryImpl();
 
-    ServiceRecycler = (RecyclerView) view.findViewById(R.id.catalog_recycle);
-    edtSearch = (EditText) view.findViewById(R.id.search_edit_text);
+        ServiceRecycler = (RecyclerView) view.findViewById(R.id.catalog_recycle);
+        edtSearch = (EditText) view.findViewById(R.id.search_edit_text);
 
-    catalogList = new ArrayList<>();
-    service_providers = new ArrayList<>();
+        catalogList = new ArrayList<>();
+        service_providers = new ArrayList<>();
+        leedsArraylist = new ArrayList<>();
+        leedsArraylist1 = new ArrayList<>();
 
-    getServiceProviders();
+        getServiceProviders();
 
-    if (isNetworkAvailable()) {
+        if (isNetworkAvailable()) {
 //            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-    } else {
-      Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-    }
-
-    databaseReference = FirebaseDatabase.getInstance().getReference();
-    edtSearch.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-
-        if (!s.toString().isEmpty()) {
-//                    setAdapter(s.toString());
         } else {
-          /*
-           * Clear the list when editText is empty
-           * */
-          catalogList.clear();
-          ServiceRecycler.removeAllViews();
+            Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
 
-      }
-    });
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().isEmpty()) {
+                    setAdapter(s.toString());
+                } else {
+                    /*
+                     * Clear the list when editText is empty
+                     * */
+                    catalogList.clear();
+                    ServiceRecycler.removeAllViews();
+                }
+
+            }
+        });
 
 
-    return view;
-  }
+        return view;
+    }
 
-  private void getServiceProviders() {
-    progressDialog.setMessage("Please wait...");
-    progressDialog.show();
-    Query query = FirebaseDatabase.getInstance().getReference("Requests").orderByChild("userId").equalTo(appSharedPreference.getUserid());
+    private void setAdapter(final String toString) {
+        leedsArraylist1.clear();
+        leedsArraylist.clear();
+        leedRepository.readAllRequests(new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
 
-    query.addValueEventListener(valueEventListener);
-  }
+                if (object != null) {
+                    leedsArraylist = (ArrayList<Requests>) object;
 
-  ValueEventListener valueEventListener = new ValueEventListener() {
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-      service_providers.clear();
-      progressDialog.dismiss();
-      //iterating through all the values in database
-      for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-        Requests requests = postSnapshot.getValue(Requests.class);
+                    for (int i = 0; i < leedsArraylist.size(); i++) {
+                        Requests leed = leedsArraylist.get(i);
+                        try {
+                            if (leed.getDate().toLowerCase().contains(toString)) {
+                                leedsArraylist1.add(leed);
+                            }
+                        } catch (Exception e) {
+//                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                serAdapter(leedsArraylist1);
+            }
 
-        if (requests.getStatus() != null) {
-          if (requests.getStatus().equalsIgnoreCase(Constant.STATUS_GENERATED)) {
-            service_providers.add(requests);
-          }
+            @Override
+            public void onError(Object object) {
+
+            }
+        });
+
+    }
+
+
+    private void getServiceProviders() {
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+        Query query = FirebaseDatabase.getInstance().getReference("Requests").orderByChild("userId").equalTo(appSharedPreference.getUserid());
+
+        query.addValueEventListener(valueEventListener);
+    }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            service_providers.clear();
+            progressDialog.dismiss();
+            //iterating through all the values in database
+            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                Requests requests = postSnapshot.getValue(Requests.class);
+
+                if (requests.getStatus() != null) {
+                    if (requests.getStatus().equalsIgnoreCase(Constant.STATUS_GENERATED)) {
+                        service_providers.add(requests);
+                    }
+                }
+            }
+
+            serAdapter(service_providers);
         }
-      }
 
-      serAdapter(service_providers);
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            progressDialog.dismiss();
+
+        }
+    };
+
+
+    private void serAdapter(ArrayList<Requests> leedsModels) {
+        if (leedsModels != null) {
+            if (adapter == null) {
+                adapter = new Service_Providers_Requests_Approved_Adapter(getActivity(), leedsModels);
+                ServiceRecycler.setAdapter(adapter);
+                ServiceRecycler.setHasFixedSize(true);
+                ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                //   onClickListner();
+            } else {
+                ArrayList<Requests> leedsModelArrayList = new ArrayList<>();
+                leedsModelArrayList.addAll(leedsModels);
+                adapter.reload(leedsModelArrayList);
+            }
+        }
     }
 
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
-      progressDialog.dismiss();
-
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-  };
-
-
-
-
-
-  private void serAdapter(ArrayList<Requests> leedsModels) {
-    if (leedsModels != null) {
-      if (adapter == null) {
-        adapter = new Service_Providers_Requests_Approved_Adapter(getActivity(), leedsModels);
-        ServiceRecycler.setAdapter(adapter);
-        ServiceRecycler.setHasFixedSize(true);
-        ServiceRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        //   onClickListner();
-      } else {
-        ArrayList<Requests> leedsModelArrayList = new ArrayList<>();
-        leedsModelArrayList.addAll(leedsModels);
-        adapter.reload(leedsModelArrayList);
-      }
-    }
-  }
-
-  private boolean isNetworkAvailable() {
-    ConnectivityManager connectivityManager
-            = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-  }
 }
