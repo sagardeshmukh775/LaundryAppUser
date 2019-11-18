@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/edittextanimation"
-            android:hint="Search Text..."
+            android:hint="Search By Date(DD-MM-YYYY)"
             android:padding="10dp"
             android:text=""
             android:textColor="@color/mainTextColor"
