@@ -149,8 +149,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_send_request);
 
         assert getSupportActionBar() != null;   //null check
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Place Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         userRepository = new UserRepositoryImpl();
 
