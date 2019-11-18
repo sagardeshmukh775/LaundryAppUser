@@ -111,7 +111,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     int mMinute;
 
     Spinner spinnerwash, spinnerTime, spinnerWeights;
-    EditText edtVenders;
+    EditText edtVenders,edtRandomTime;
     RelativeLayout layoutRandomTime;
     LinearLayout sliderDotspanel;
     ViewPager viewPager;
@@ -197,6 +197,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         spinnerwash = (Spinner) findViewById(R.id.spinnerwashtype);
         spinnerTime = (Spinner) findViewById(R.id.spinnertimeslot);
         edtVenders = (EditText) findViewById(R.id.edtvenders);
+        edtRandomTime = (EditText) findViewById(R.id.txtotherrelationship1);
         spinnerWeights = (Spinner) findViewById(R.id.spinnerweights);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
