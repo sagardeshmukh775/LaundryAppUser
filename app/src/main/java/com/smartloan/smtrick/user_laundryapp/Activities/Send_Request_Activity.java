@@ -111,7 +111,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     int mMinute;
 
     Spinner spinnerwash, spinnerTime, spinnerWeights;
-    EditText edtVenders,edtRandomTime;
+    EditText edtVenders, edtRandomTime;
     RelativeLayout layoutRandomTime;
     LinearLayout sliderDotspanel;
     ViewPager viewPager;
@@ -149,11 +149,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_send_request);
 
         assert getSupportActionBar() != null;   //null check
-        getSupportActionBar().setTitle("Place Order");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        userRepository = new UserRepositoryImpl();
+        getSupportActionBar().setTitle("Place Order");
 
         uploads = new ArrayList<>();
         serList = new ArrayList<>();
@@ -175,7 +172,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         commonList3 = new ArrayList<>();
 
         appSharedPreference = new AppSharedPreference(Send_Request_Activity.this);
+        progressDialog = new ProgressDialog(this);
         leedRepository = new LeedRepositoryImpl();
+        userRepository = new UserRepositoryImpl();
 
         String[] washType = new String[]{"Select Wash Types",
                 "Wash and Fold",
@@ -194,6 +193,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        layoutRandomTime = (RelativeLayout) findViewById(R.id.layoutrandomtime);
+        sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
+        viewPager = findViewById(R.id.viewPager);
 
         spinnerwash = (Spinner) findViewById(R.id.spinnerwashtype);
         spinnerTime = (Spinner) findViewById(R.id.spinnertimeslot);
@@ -216,18 +219,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         spinnerArrayAdapter2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWeights.setAdapter(spinnerArrayAdapter2);
 
-        layoutRandomTime = (RelativeLayout) findViewById(R.id.layoutrandomtime);
-        sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
-
-        progressDialog = new ProgressDialog(this);
-
-        getSupportActionBar().setTitle(subitem);  // provide compatibility to all the versions
-
         Query queryadds = FirebaseDatabase.getInstance().getReference("Advertise");
-
         queryadds.addValueEventListener(valueEventListener1);
 
-        viewPager = findViewById(R.id.viewPager);
         dots = new ImageView[0];
 
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
@@ -773,7 +767,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private void sendFCMPush(String Token) {
 
         String Legacy_SERVER_KEY = "AIzaSyCM5Eb6ZrYBWhzGRSsm5WKYlzlT7BlhuKs";
-        String msg = "New Order From"+ appSharedPreference.getName();
+        String msg = "New Order From" + appSharedPreference.getName();
         String title = "New Order Has Been Received";
         String token = Token;
 
