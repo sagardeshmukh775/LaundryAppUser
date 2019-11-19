@@ -13,19 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/adds"
         android:layout_margin="2dp"
-        card_view:cardBackgroundColor="#f2fde4"
+        card_view:cardBackgroundColor="#f6f6f6"
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
-
-
 
             <LinearLayout
                 android:orientation="vertical"
                 android:id="@+id/layout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-              >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textViewName"
