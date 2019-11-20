@@ -27,4 +27,5 @@
     <color name="toolbar">#41C300</color>
     <color name="whatsapp">#25D366</color>
     <item type="color" name="whitetextcolor">#000000</item>
+    <color name="header_name_color">#2d2d2d</color>
 </resources>

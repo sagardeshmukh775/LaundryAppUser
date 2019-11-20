@@ -21,7 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +58,7 @@ public class MainActivity_User extends AppCompatActivity
     LeedRepository leedRepository;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     private AppSharedPreference appSharedPreference;
-    ImageView ProfileImage;
+//    ImageView ProfileImage;
 
 
     @Override
@@ -100,7 +99,7 @@ public class MainActivity_User extends AppCompatActivity
         userEmail = (TextView) headerview.findViewById(R.id.useremail);
         userRole = (TextView) headerview.findViewById(R.id.userrole);
 
-        ProfileImage = (ImageView) headerview.findViewById(R.id.image_view_profile);
+//        ProfileImage = (ImageView) headerview.findViewById(R.id.image_view_profile);
 
         getCurrentuserdetails();
 
@@ -124,7 +123,7 @@ public class MainActivity_User extends AppCompatActivity
             }
         }
 
-        ProfileImage.setOnClickListener(this);
+//        ProfileImage.setOnClickListener(this);
     }
 
     public boolean isStoragePermissionGranted() {
@@ -289,9 +288,9 @@ public class MainActivity_User extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if (v == ProfileImage) {
+//        if (v == ProfileImage) {
 //            Intent intent = new Intent(MainActivity_User.this, Update_user_profile_activity.class);
 //            startActivity(intent);
-        }
+//        }
     }
 }
