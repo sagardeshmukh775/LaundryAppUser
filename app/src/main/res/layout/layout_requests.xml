@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/adds"
         android:layout_margin="2dp"
-        card_view:cardBackgroundColor="#f6f6f6"
+        card_view:cardBackgroundColor="@color/card_color"
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
