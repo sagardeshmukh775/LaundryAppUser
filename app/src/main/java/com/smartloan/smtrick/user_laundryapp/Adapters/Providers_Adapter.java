@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.smartloan.smtrick.user_laundryapp.Listeners.OnRecycleClickListener;
 import com.smartloan.smtrick.user_laundryapp.Models.User;
 import com.smartloan.smtrick.user_laundryapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,11 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         holder.textViewName.setText(user.getName());
         holder.textViewMobile.setText(user.getNumber());
         holder.textViewAddress.setText(user.getAddress());
+        Picasso.with(holder.userCard.getContext())
+                .load(R.drawable.user)
+                .placeholder(R.drawable.user)
+                .into(holder.Provider_Image);
+
 
         holder.userCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +73,7 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         public TextView textViewName;
         public TextView textViewMobile;
         public TextView textViewAddress;
+        public ImageView Provider_Image;
 
         public CardView userCard;
 
@@ -76,6 +84,7 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
             textViewName = (TextView) itemView.findViewById(R.id.namevalue);
             textViewMobile = (TextView) itemView.findViewById(R.id.user_mobilevalue);
             textViewAddress = (TextView) itemView.findViewById(R.id.user_addressvalue);
+            Provider_Image = (ImageView) itemView.findViewById(R.id.memberImage);
 
             userCard = (CardView) itemView.findViewById(R.id.card_user);
 

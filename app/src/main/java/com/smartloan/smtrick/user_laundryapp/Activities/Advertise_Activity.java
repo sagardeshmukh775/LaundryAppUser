@@ -44,7 +44,7 @@ public class Advertise_Activity extends AppCompatActivity {
         AdName = (TextView) findViewById(R.id.Ad_name);
         AdDescription = (TextView) findViewById(R.id.Ad_Description);
 //        delete_add = (Button) findViewById(R.id.deleteadd);
-
+        AdImage.setScaleType(ImageView.ScaleType.FIT_XY);
         Intent intent = getIntent();
         String imagename = intent.getStringExtra("imagename");
         final String imagedesc = intent.getStringExtra("imagedescription");

@@ -54,7 +54,7 @@ dependencies {
     implementation files('libs/jxl.jar')
     implementation 'com.itextpdf:itextg:5.5.10'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
-
+    implementation 'com.theartofdev.edmodo:android-image-cropper:1.2.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
 apply plugin: 'com.google.gms.google-services'
