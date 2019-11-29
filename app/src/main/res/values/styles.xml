@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -47,5 +49,11 @@
         <item name="listPreferredItemPaddingRight">8dp</item>
     </style>
 
+    <style name="AppTheme.Transparent" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+    </style>
 
 </resources>

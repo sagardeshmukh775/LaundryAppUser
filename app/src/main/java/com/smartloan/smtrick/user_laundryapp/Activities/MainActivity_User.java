@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_Advertise;
+import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_Send_Request;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Users_Requests_Tab_Fragment;
 import com.smartloan.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
 import com.smartloan.smtrick.user_laundryapp.Models.Users;
@@ -195,10 +196,10 @@ public class MainActivity_User extends AppCompatActivity
         //NOTE: creating fragment object
         Fragment fragment = null;
         if (id == R.id.serviceproviders) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_View_Service_Providers()).commit();
-            Intent intent = new Intent(MainActivity_User.this, Send_Request_Activity.class);
-            startActivity(intent);
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+                    new Fragment_Send_Request()).commit();
+//            Intent intent = new Intent(MainActivity_User.this, Send_Request_Activity.class);
+//            startActivity(intent);
 
         }
 //        else if (id == R.id.requests) {

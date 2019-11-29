@@ -1,9 +1,13 @@
 package com.smartloan.smtrick.user_laundryapp.Activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -12,8 +16,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -135,7 +142,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     ArrayList<String> commonList;
     ArrayList<String> commonList3;
 
-    private DataSnapshot lastObtainedDataSnapshot;
+    public static final String EXTRA_CIRCULAR_REVEAL_X = "EXTRA_CIRCULAR_REVEAL_X";
+    public static final String EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y";
+
+    View rootLayout;
+
+    private int revealX;
+    private int revealY;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -147,6 +160,35 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_request);
+
+
+
+        final Intent intent = getIntent();
+
+        rootLayout = findViewById(R.id.activity_show_images);
+
+        if (savedInstanceState == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
+                intent.hasExtra(EXTRA_CIRCULAR_REVEAL_X) &&
+                intent.hasExtra(EXTRA_CIRCULAR_REVEAL_Y)) {
+            rootLayout.setVisibility(View.INVISIBLE);
+
+            revealX = intent.getIntExtra(EXTRA_CIRCULAR_REVEAL_X, 0);
+            revealY = intent.getIntExtra(EXTRA_CIRCULAR_REVEAL_Y, 0);
+
+
+            ViewTreeObserver viewTreeObserver = rootLayout.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        revealActivity(revealX, revealY);
+                        rootLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+            }
+        } else {
+            rootLayout.setVisibility(View.VISIBLE);
+        }
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -830,5 +872,45 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsObjRequest.setRetryPolicy(policy);
         requestQueue.add(jsObjRequest);
+    }
+
+
+    protected void revealActivity(int x, int y) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            float finalRadius = (float) (Math.max(rootLayout.getWidth(), rootLayout.getHeight()) * 1.1);
+
+            // create the animator for this view (the start radius is zero)
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(rootLayout, x, y, 0, finalRadius);
+            circularReveal.setDuration(400);
+            circularReveal.setInterpolator(new AccelerateInterpolator());
+
+            // make the view visible and start the animation
+            rootLayout.setVisibility(View.VISIBLE);
+            circularReveal.start();
+        } else {
+            finish();
+        }
+    }
+
+    protected void unRevealActivity() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            finish();
+        } else {
+            float finalRadius = (float) (Math.max(rootLayout.getWidth(), rootLayout.getHeight()) * 1.1);
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(
+                    rootLayout, revealX, revealY, finalRadius, 0);
+
+            circularReveal.setDuration(400);
+            circularReveal.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    rootLayout.setVisibility(View.INVISIBLE);
+                    finish();
+                }
+            });
+
+
+            circularReveal.start();
+        }
     }
 }
