@@ -7,12 +7,12 @@
     android:fitsSystemWindows="true"
     android:background="@android:color/background_dark">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First activity"
-        android:layout_centerHorizontal="true"
-        />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="First activity"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        />-->
 
     <Button
         android:id="@+id/btn"

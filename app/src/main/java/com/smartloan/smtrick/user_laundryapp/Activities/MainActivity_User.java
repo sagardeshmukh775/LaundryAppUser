@@ -107,7 +107,7 @@ public class MainActivity_User extends AppCompatActivity
         //setMenuTitles();
 
         //NOTE:  Open fragment1 initially.
-        selectedFragement = new Fragment_Advertise();
+        selectedFragement = new Fragment_Send_Request();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, selectedFragement);
         ft.commit();
