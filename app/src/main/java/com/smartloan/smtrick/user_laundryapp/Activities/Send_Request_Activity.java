@@ -877,9 +877,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         //user0 = user;
         edtVenders.setText(user.getName());
         try {
+
             RateCardImagesList1 = user.getImageList();
             if (RateCardImagesList1 != null) {
                 recyclerView.setVisibility(View.VISIBLE);
+                RateCardImagesList.clear();
                 for (String image : RateCardImagesList1) {
                     RateCardImagesList.add(Uri.parse(image));
                 }
