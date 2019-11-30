@@ -876,14 +876,23 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     public void onRecycleClick(User user) {
         //user0 = user;
         edtVenders.setText(user.getName());
-        RateCardImagesList1 = user.getImageList();
-        for (String image : RateCardImagesList1) {
-            RateCardImagesList.add(Uri.parse(image));
+        try {
+            RateCardImagesList1 = user.getImageList();
+            if (RateCardImagesList1 != null) {
+                recyclerView.setVisibility(View.VISIBLE);
+                for (String image : RateCardImagesList1) {
+                    RateCardImagesList.add(Uri.parse(image));
+                }
+                uploadListAdapter = new RateCardAdapter(Send_Request_Activity.this, RateCardImagesList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this, LinearLayoutManager.HORIZONTAL, true));
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setAdapter(uploadListAdapter);
+            }else {
+               recyclerView.setVisibility(View.GONE);
+            }
+        }catch (Exception e){
+
         }
-        uploadListAdapter = new RateCardAdapter(Send_Request_Activity.this, RateCardImagesList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this, LinearLayoutManager.HORIZONTAL, true));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(uploadListAdapter);
         uploads.clear();
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());
 
