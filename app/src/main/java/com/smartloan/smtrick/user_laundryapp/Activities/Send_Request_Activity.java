@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,6 +53,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.user_laundryapp.Adapters.AddsAdapter;
 import com.smartloan.smtrick.user_laundryapp.Adapters.Providers_Adapter;
+import com.smartloan.smtrick.user_laundryapp.Adapters.RateCardAdapter;
 import com.smartloan.smtrick.user_laundryapp.Adapters.Request_Adapter;
 import com.smartloan.smtrick.user_laundryapp.CallBack.CallBack;
 import com.smartloan.smtrick.user_laundryapp.Constants.Constant;
@@ -88,7 +90,7 @@ import java.util.TimerTask;
 
 public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener, OnRecycleClickListener {
     //recyclerview object
-//    private RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     Button SendRequest;
     EditText edtDateTime;
 
@@ -102,6 +104,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
     //list to hold all the uploaded images
     private List<UserServices> uploads;
+    private List<Uri> RateCardImagesList;
+    private List<String> RateCardImagesList1;
+    private RateCardAdapter uploadListAdapter;
     static private List<String> serList;
     private List<Upload> adds;
     private List<Upload> adds1;
@@ -207,6 +212,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         getSupportActionBar().setTitle("Place Order");
 
         uploads = new ArrayList<>();
+        RateCardImagesList = new ArrayList<>();
+        RateCardImagesList1 = new ArrayList<>();
         serList = new ArrayList<>();
         adds = new ArrayList<>();
         adds1 = new ArrayList<>();
@@ -243,9 +250,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 "piece Wise"};
 
         SendRequest = (Button) findViewById(R.id.request);
-//        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewratecard);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         layoutRandomTime = (RelativeLayout) findViewById(R.id.layoutrandomtime);
         sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
@@ -326,7 +333,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 if (i == 0) {
                     Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
                 } else {
-                    i=i-1;
+                    i = i - 1;
                     edlhcount.setText(String.valueOf(i));
                 }
             }
@@ -346,7 +353,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 if (i == 0) {
                     Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
                 } else {
-                    i = i-1;
+                    i = i - 1;
                     edblcount.setText(String.valueOf(i));
                 }
             }
@@ -421,7 +428,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         imbkminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 int i = Integer.parseInt(edbkcount.getText().toString());
+                int i = Integer.parseInt(edbkcount.getText().toString());
                 if (i == 0) {
                     Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
                 } else {
@@ -755,6 +762,29 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             Add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (chsp.isChecked()) {
+                        serList.add(chsp.getText().toString() + " - " + edspcount.getText().toString());
+                    }
+                    if (chlh.isChecked()) {
+                        serList.add(chlh.getText().toString() + " - " + edlhcount.getText().toString());
+                    }
+                    if (chbl.isChecked()) {
+                        serList.add(chbl.getText().toString() + " - " + edblcount.getText().toString());
+                    }
+                    if (chs.isChecked()) {
+                        serList.add(chs.getText().toString() + " - " + edscount.getText().toString());
+                    }
+                    if (chjh.isChecked()) {
+                        serList.add(chjh.getText().toString() + " - " + edjhcount.getText().toString());
+                    }
+                    if (chbed.isChecked()) {
+                        serList.add(chbed.getText().toString() + " - " + edbedcount.getText().toString());
+                    }
+                    if (chbk.isChecked()) {
+                        serList.add(chbk.getText().toString() + " - " + edbkcount.getText().toString());
+                    }
+
                     Requests requests = new Requests();
                     requests.setServiceProviderId(user0.getUserid());
                     requests.setUserId(appSharedPreference.getUserid());
@@ -846,6 +876,14 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     public void onRecycleClick(User user) {
         //user0 = user;
         edtVenders.setText(user.getName());
+        RateCardImagesList1 = user.getImageList();
+        for (String image : RateCardImagesList1) {
+            RateCardImagesList.add(Uri.parse(image));
+        }
+        uploadListAdapter = new RateCardAdapter(Send_Request_Activity.this, RateCardImagesList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this, LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(uploadListAdapter);
         uploads.clear();
         Query query = FirebaseDatabase.getInstance().getReference("UserServices").orderByChild("userId").equalTo(user.getUserid());
 
