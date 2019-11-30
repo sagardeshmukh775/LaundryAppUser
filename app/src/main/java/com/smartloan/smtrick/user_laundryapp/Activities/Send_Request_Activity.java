@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +25,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -86,7 +88,7 @@ import java.util.TimerTask;
 
 public class Send_Request_Activity extends AppCompatActivity implements View.OnClickListener, OnImageClickListener, OnRecycleClickListener {
     //recyclerview object
-    private RecyclerView recyclerView;
+//    private RecyclerView recyclerView;
     Button SendRequest;
     EditText edtDateTime;
 
@@ -142,6 +144,17 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     ArrayList<String> commonList;
     ArrayList<String> commonList3;
 
+    ImageView imspplus, imspminus, imlhpluse, imlhminus,
+            imblpluse, imblminus,
+            imspluse, imsminus,
+            imjhpluse, imjhminus,
+            imbedpluse, imbedminus,
+            imbkpluse, imbkminus;
+    EditText edspcount, edlhcount, edblcount, edscount, edjhcount, edbedcount, edbkcount;
+    CheckBox chsp, chlh, chbl, chs, chjh, chbed, chbk;
+    int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0;
+    CardView pieceCard;
+
     public static final String EXTRA_CIRCULAR_REVEAL_X = "EXTRA_CIRCULAR_REVEAL_X";
     public static final String EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y";
 
@@ -160,7 +173,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_request);
-
 
 
         final Intent intent = getIntent();
@@ -230,11 +242,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 "Kg Wise",
                 "piece Wise"};
 
-
         SendRequest = (Button) findViewById(R.id.request);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         layoutRandomTime = (RelativeLayout) findViewById(R.id.layoutrandomtime);
         sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
@@ -245,6 +256,180 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         edtVenders = (EditText) findViewById(R.id.edtvenders);
         edtRandomTime = (EditText) findViewById(R.id.txtotherrelationship1);
         spinnerWeights = (Spinner) findViewById(R.id.spinnerweights);
+
+
+        pieceCard = (CardView) findViewById(R.id.piecescard);
+        pieceCard.setVisibility(View.GONE);
+
+        chsp = (CheckBox) findViewById(R.id.checkshirtandpant);
+        chlh = (CheckBox) findViewById(R.id.checkLehanga);
+        chbl = (CheckBox) findViewById(R.id.checkBlazer);
+        chs = (CheckBox) findViewById(R.id.checkSaree);
+        chjh = (CheckBox) findViewById(R.id.checkJH);
+        chbed = (CheckBox) findViewById(R.id.checkBedsheet);
+        chbk = (CheckBox) findViewById(R.id.checkBlanket);
+
+        edspcount = (EditText) findViewById(R.id.spcount);
+        edlhcount = (EditText) findViewById(R.id.lhcount);
+        edblcount = (EditText) findViewById(R.id.blcount);
+        edscount = (EditText) findViewById(R.id.scount);
+        edjhcount = (EditText) findViewById(R.id.jhcount);
+        edbedcount = (EditText) findViewById(R.id.bedcount);
+        edbkcount = (EditText) findViewById(R.id.bkcount);
+
+        imspplus = (ImageView) findViewById(R.id.spplus);
+        imspminus = (ImageView) findViewById(R.id.spminus);
+        imlhpluse = (ImageView) findViewById(R.id.lhplus);
+        imlhminus = (ImageView) findViewById(R.id.lhminus);
+        imblpluse = (ImageView) findViewById(R.id.blplus);
+        imblminus = (ImageView) findViewById(R.id.blminus);
+        imspluse = (ImageView) findViewById(R.id.splus);
+        imsminus = (ImageView) findViewById(R.id.sminus);
+        imjhpluse = (ImageView) findViewById(R.id.jhplus);
+        imjhminus = (ImageView) findViewById(R.id.jhminus);
+        imbedpluse = (ImageView) findViewById(R.id.bedplus);
+        imbedminus = (ImageView) findViewById(R.id.bedminus);
+        imbkpluse = (ImageView) findViewById(R.id.bkplus);
+        imbkminus = (ImageView) findViewById(R.id.bkminus);
+
+        imspplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = i + 1;
+                edspcount.setText(String.valueOf(i));
+            }
+        });
+        imspminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edspcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i = i - 1;
+                    edspcount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imlhpluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                j = j + 1;
+                edlhcount.setText(String.valueOf(j));
+            }
+        });
+        imlhminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edlhcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i=i-1;
+                    edlhcount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imblpluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                k = k + 1;
+                edblcount.setText(String.valueOf(k));
+            }
+        });
+        imblminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edblcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i = i-1;
+                    edblcount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imspluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                l = l + 1;
+                edscount.setText(String.valueOf(l));
+            }
+        });
+        imsminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edscount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i--;
+                    edscount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imjhpluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                m = m + 1;
+                edjhcount.setText(String.valueOf(m));
+            }
+        });
+        imjhminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edjhcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i--;
+                    edjhcount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imbedpluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                n = n + 1;
+                edbedcount.setText(String.valueOf(n));
+            }
+        });
+        imbedminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(edbedcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i--;
+                    edbedcount.setText(String.valueOf(i));
+                }
+            }
+        });
+        imbkpluse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                o = o + 1;
+                edbkcount.setText(String.valueOf(o));
+            }
+        });
+        imbkminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 int i = Integer.parseInt(edbkcount.getText().toString());
+                if (i == 0) {
+                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
+                } else {
+                    i--;
+                    edbkcount.setText(String.valueOf(i));
+                }
+            }
+        });
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, R.layout.sppinner_layout_listitem, washType);
@@ -387,10 +572,11 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             type.clear();
                             if (weight.equalsIgnoreCase("Kg Wise")) {
                                 type.addAll(types.getKg());
+                                pieceCard.setVisibility(View.GONE);
 
                             } else if (weight.equalsIgnoreCase("piece Wise")) {
                                 type.addAll(types.getPiece());
-
+                                pieceCard.setVisibility(View.VISIBLE);
                             }
 
                         } catch (Exception e) {
@@ -680,7 +866,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             //creating adapter
             adapter = new Request_Adapter(Send_Request_Activity.this, uploads);
             //adding adapter to recyclerview
-            recyclerView.setAdapter(adapter);
+//            recyclerView.setAdapter(adapter);
         }
 
         @Override

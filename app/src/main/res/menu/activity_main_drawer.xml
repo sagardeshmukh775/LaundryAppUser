@@ -5,10 +5,10 @@
 
     <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/home"
-            android:icon="@drawable/home_button_for_interface"
-            android:title="Home"/>
+<!--        <item-->
+<!--            android:id="@+id/home"-->
+<!--            android:icon="@drawable/home_button_for_interface"-->
+<!--            android:title="Home"/>-->
         <item
             android:id="@+id/serviceproviders"
             android:icon="@drawable/provider"

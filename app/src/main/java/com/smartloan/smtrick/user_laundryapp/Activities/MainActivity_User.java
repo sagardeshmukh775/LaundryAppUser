@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_Advertise;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Fragment_Send_Request;
 import com.smartloan.smtrick.user_laundryapp.Fragments.Users_Requests_Tab_Fragment;
 import com.smartloan.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
@@ -213,11 +212,12 @@ public class MainActivity_User extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Users_Requests_Tab_Fragment()).commit();
 
-        } else if (id == R.id.home) {
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-                    new Fragment_Advertise()).commit();
         }
+//        else if (id == R.id.home) {
+//
+//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
+//                    new Fragment_Advertise()).commit();
+//        }
 //        else if (id == R.id.users) {
 //
 //            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_show_images"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     android:paddingLeft="2.5dp"
     android:paddingRight="2.5dp"
-    android:background="@android:color/background_light"
     tools:context=".Activities.ShowImagesActivity">
 
     <ScrollView
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,9 +25,9 @@
                 android:id="@+id/adds"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
                 android:layout_weight="15"
                 android:orientation="vertical"
                 android:weightSum="100">
@@ -75,19 +75,19 @@
                         android:id="@+id/spinnertimeslot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinnerwashtype"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittextanimation"
                         android:gravity="center_horizontal"
                         android:padding="10sp"
                         android:textColor="@color/input_register_bg"
-                        android:layout_below="@+id/spinnerwashtype"
                         android:textSize="15sp" />
 
                     <RelativeLayout
                         android:id="@+id/layoutrandomtime"
-                        android:layout_below="@+id/spinnertimeslot"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinnertimeslot"
                         android:layout_marginTop="5dp">
 
                         <EditText
@@ -109,18 +109,19 @@
                         android:id="@+id/spinnerweights"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/layoutrandomtime"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edittextanimation"
                         android:gravity="center_horizontal"
                         android:padding="10sp"
                         android:textColor="@color/input_register_bg"
-                        android:layout_below="@+id/layoutrandomtime"
                         android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/edtvenders"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinnerweights"
                         android:layout_marginTop="5.0dip"
                         android:layout_marginBottom="5.0dip"
                         android:background="@drawable/edittextanimation"
@@ -130,35 +131,440 @@
                         android:padding="10.0dip"
                         android:text=""
                         android:textColor="@color/mainTextColor"
-                        android:layout_below="@+id/spinnerweights"
                         android:textSize="14.0dip" />
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <!--            <android.support.v7.widget.RecyclerView-->
+            <!--                android:id="@+id/recyclerView"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@+id/cardView"-->
+            <!--                android:layout_marginTop="5dp"-->
+            <!--                android:layout_marginBottom="50dp">-->
+
+            <!--            </android.support.v7.widget.RecyclerView>-->
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/piecescard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cardView"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="50dp">
+                android:layout_margin="2dp"
+                card_view:cardBackgroundColor="@color/card_color"
+                card_view:cardCornerRadius="5dp"
+                card_view:cardElevation="4dp"
+                card_view:cardUseCompatPadding="true">
 
-            </android.support.v7.widget.RecyclerView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pieces Wise"
+                        android:layout_margin="6dp"
+                        android:textAlignment="center"
+                        android:transitionName="text1transition"
+                        android:textSize="20dp"
+                        android:textColor="@color/mainTextColor"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutsp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/spminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/spcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/spplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkshirtandpant"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Shirt And Pant Jodi"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lhlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/lhminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/lhcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/lhplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkLehanga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Lehenga"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bllayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/blminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/blcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/blplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkBlazer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Blazers"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sareelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/sminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/scount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/splus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkSaree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Saree"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/jhlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/jhminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/jhcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/jhplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkJH"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Jacket/Hoodie"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bedlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/bedminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/bedcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/bedplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkBedsheet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Single/Double Bedsheet"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bklayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50">
+
+                            <ImageView
+                                android:id="@+id/bkminus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/minus" />
+
+                            <EditText
+                                android:id="@+id/bkcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:textAlignment="center"
+                                android:textColor="@color/mainTextColor" />
+
+                            <ImageView
+                                android:id="@+id/bkplus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="30"
+                                android:src="@drawable/plus" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkBlanket"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:layout_weight="50"
+                            android:text="Single/Double Blanket"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="15dp"
+                            android:transitionName="text1transition" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
             <LinearLayout
                 android:id="@+id/buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@+id/piecescard"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="2dp">
 
                 <Button
                     android:id="@+id/request"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/view"
+                    android:layout_below="@+id/piecescard"
                     android:layout_gravity="right"
                     android:layout_marginTop="3dp"
                     android:background="@drawable/buttonshape"
