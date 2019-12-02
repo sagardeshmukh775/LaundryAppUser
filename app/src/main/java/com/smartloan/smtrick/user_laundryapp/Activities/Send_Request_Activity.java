@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -93,6 +95,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private RecyclerView recyclerView;
     Button SendRequest;
     EditText edtDateTime;
+    TextView txtDeliveryCharges;
 
     //adapter object
     private RecyclerView.Adapter adapter;
@@ -112,9 +115,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private List<Upload> adds1;
     private ArrayList<User> userList;
 
-    private String subitem;
     AppSharedPreference appSharedPreference;
-    String userId;
     User user0;
     User user1;
 
@@ -264,7 +265,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         edtRandomTime = (EditText) findViewById(R.id.txtotherrelationship1);
         spinnerWeights = (Spinner) findViewById(R.id.spinnerweights);
 
-
+        txtDeliveryCharges = (TextView) findViewById(R.id.txt_deliverycharges);
         pieceCard = (CardView) findViewById(R.id.piecescard);
         pieceCard.setVisibility(View.GONE);
 
@@ -435,6 +436,17 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                     i--;
                     edbkcount.setText(String.valueOf(i));
                 }
+            }
+        });
+        txtDeliveryCharges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialogCharges = new Dialog(Send_Request_Activity.this);
+//                dialogCharges.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+                dialogCharges.setContentView(R.layout.customdialogboximagedisplay);
+                dialogCharges.setContentView(R.layout.dialog_delivery_charges_layout);
+
+                dialogCharges.show();
             }
         });
 
@@ -801,7 +813,28 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         public void onSuccess(Object object) {
 
                             sendFCMPush(user0.getTokan());
-                            Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+                            final Dialog dialog3 = new Dialog(Send_Request_Activity.this);
+                            dialog3.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+                            dialog3.setContentView(R.layout.popup_layout);
+
+                            dialog3.show();
+                            new CountDownTimer(2000, 1000) {
+
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                    // TODO Auto-generated method stub
+
+                                }
+
+                                @Override
+                                public void onFinish() {
+                                    // TODO Auto-generated method stub
+
+                                    dialog3.dismiss();
+                                }
+                            }.start();
+
+//                            Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                             dialog1.dismiss();
                         }
 

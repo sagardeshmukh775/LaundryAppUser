@@ -22,6 +22,11 @@
             android:id="@+id/user_requests"
             android:icon="@drawable/information"
             android:title="User Requests"/>
+
+        <item
+            android:id="@+id/user_contactus"
+            android:icon="@drawable/information"
+            android:title="Support"/>
 <!--        <item-->
 <!--            android:id="@+id/users"-->
 <!--            android:icon="@drawable/ic_menu_gallery"-->
