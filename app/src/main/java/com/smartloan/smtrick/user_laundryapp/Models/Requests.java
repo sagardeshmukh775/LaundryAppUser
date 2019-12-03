@@ -1,6 +1,7 @@
 package com.smartloan.smtrick.user_laundryapp.Models;
 
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.ServerValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class Requests {
     public String date;
     public String userName;
     List<String> serviceList;
+    private Long createdDateTime;
 
 
     public Requests() {
@@ -119,6 +121,19 @@ public class Requests {
     }
 
     @Exclude
+    public Long getCreatedDateTimeLong() {
+        return createdDateTime;
+    }
+
+    public Map<String, String> getCreatedDateTime() {
+        return ServerValue.TIMESTAMP;
+    }
+
+    public void setCreatedDateTime(Long createdDateTime) {
+        this.createdDateTime = (Long) createdDateTime;
+    }
+
+    @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
 
@@ -132,6 +147,7 @@ public class Requests {
         leedMap.put("status",getStatus() );
         leedMap.put("userName",getUserName() );
         leedMap.put("serviceList",getServiceList() );
+        leedMap.put("createdDateTime", getCreatedDateTime());
 
         return leedMap;
 

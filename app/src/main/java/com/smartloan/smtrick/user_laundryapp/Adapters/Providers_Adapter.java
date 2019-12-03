@@ -47,10 +47,18 @@ public class Providers_Adapter extends RecyclerView.Adapter<Providers_Adapter.Vi
         holder.textViewName.setText(user.getName());
         holder.textViewMobile.setText(user.getNumber());
         holder.textViewAddress.setText(user.getAddress());
-        Picasso.with(holder.userCard.getContext())
-                .load(R.drawable.user)
-                .placeholder(R.drawable.user)
-                .into(holder.Provider_Image);
+        if (user.getProfileImage() != null) {
+            Picasso.with(holder.userCard.getContext())
+                    .load(user.getProfileImage())
+                    .placeholder(R.drawable.loading)
+                    .into(holder.Provider_Image);
+        }
+//        else {
+//            Picasso.with(holder.userCard.getContext())
+//                    .load(R.drawable.user)
+//                    .placeholder(R.drawable.user)
+//                    .into(holder.Provider_Image);
+//        }
 
 
         holder.userCard.setOnClickListener(new View.OnClickListener() {
