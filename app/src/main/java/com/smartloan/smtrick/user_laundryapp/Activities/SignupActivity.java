@@ -42,7 +42,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private EditText inputUsername, inputAddress, inputPincode, inputOTP;
     Spinner spinnerRole;
 
-    private Button btnSignIn, btnSignUp, btnResetPassword, btnOTP;
+    private Button  btnSignUp, btnOTP;
     private ProgressBar progressBar;
     private ProgressDialogClass progressDialogClass;
     private AppSharedPreference appSharedPreference;
@@ -59,7 +59,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         progressDialogClass = new ProgressDialogClass(this);
         appSharedPreference = new AppSharedPreference(this);
 
-        btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         btnOTP = (Button) findViewById(R.id.button_generate_otp);
 
@@ -81,7 +80,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         spinnerRole.setAdapter(spinnerArrayAdapter);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
 
 
         if (isNetworkAvailable()) {
@@ -90,8 +88,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
 
-        btnResetPassword.setOnClickListener(this);
-        btnSignIn.setOnClickListener(this);
+//        btnResetPassword.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
         btnOTP.setOnClickListener(this);
     }
@@ -117,11 +114,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 //            validateAndCreateUser();
             verifyCode(code);
 
-        } else if (v == btnSignIn) {
-
-        } else if (v == btnResetPassword) {
-
-        } else if (v == btnOTP) {
+        }
+         else if (v == btnOTP) {
             progressBar.setVisibility(View.VISIBLE);
             String phonenumber ="+91" + inputMobile.getText().toString()  ;
             sendVerificationCode(phonenumber);

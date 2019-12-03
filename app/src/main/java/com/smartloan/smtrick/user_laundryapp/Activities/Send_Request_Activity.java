@@ -598,6 +598,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                 pieceCard.setVisibility(View.VISIBLE);
                             }else if (weight.equalsIgnoreCase("Select Types")){
                                 edtVenders.setText("");
+                                pieceCard.setVisibility(View.GONE);
                             }
 
                         } catch (Exception e) {
