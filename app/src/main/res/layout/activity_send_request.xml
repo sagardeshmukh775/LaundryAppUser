@@ -206,6 +206,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -259,6 +260,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -312,6 +314,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -365,6 +368,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -418,6 +422,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -471,6 +476,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 
@@ -524,6 +530,7 @@
                                 android:layout_weight="25"
                                 android:editable="false"
                                 android:focusable="false"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/mainTextColor" />
 

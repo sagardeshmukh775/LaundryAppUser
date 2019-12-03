@@ -596,6 +596,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             } else if (weight.equalsIgnoreCase("piece Wise")) {
                                 type.addAll(types.getPiece());
                                 pieceCard.setVisibility(View.VISIBLE);
+                            }else if (weight.equalsIgnoreCase("Select Types")){
+                                edtVenders.setText("");
                             }
 
                         } catch (Exception e) {
@@ -741,6 +743,12 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v == SendRequest) {
+
+            if (edtVenders.getText().toString().equalsIgnoreCase("")){
+                edtVenders.setError("Required");
+                edtVenders.setFocusable(true);
+                return;
+            }
             final Dialog dialog1 = new Dialog(Send_Request_Activity.this);
             dialog1.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
             dialog1.setContentView(R.layout.dialog_select_date);
