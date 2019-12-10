@@ -84,20 +84,23 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
-                            user = Snapshot.getValue(User.class);
-                            if (user != null) {
-                                layout_Update.setVisibility(View.VISIBLE);
-                                key = user.getGeneratedId();
-                                progressBar.setVisibility(View.GONE);
-                            } else {
-                                Toast.makeText(ResetPasswordActivity.this, "Sorry No User Found", Toast.LENGTH_SHORT).show();
-                                layout_Update.setVisibility(View.GONE);
-                                progressBar.setVisibility(View.GONE);
+                        if (dataSnapshot.hasChildren()) {
+                            for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
+                                user = Snapshot.getValue(User.class);
+                                if (user != null) {
+                                    layout_Update.setVisibility(View.VISIBLE);
+                                    key = user.getGeneratedId();
+                                    progressBar.setVisibility(View.GONE);
+                                } else {
+                                    Toast.makeText(ResetPasswordActivity.this, "Sorry No User Found", Toast.LENGTH_SHORT).show();
+                                    layout_Update.setVisibility(View.GONE);
+                                    progressBar.setVisibility(View.GONE);
+                                }
                             }
-
-//
-
+                        }else {
+                            Toast.makeText(ResetPasswordActivity.this, "Sorry No User Found", Toast.LENGTH_SHORT).show();
+                            layout_Update.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
 
@@ -121,7 +124,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 }
 
                 mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("users").child(key).child("number").setValue(passwprd);
+                mDatabase.child("users").child(key).child("password").setValue(passwprd);
                 Toast.makeText(ResetPasswordActivity.this, "Password Updated", Toast.LENGTH_SHORT).show();
                 Intent intent =new Intent(ResetPasswordActivity.this,LoginActivity.class);
                 startActivity(intent);

@@ -158,6 +158,16 @@
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:text="@string/btn_back"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent" />
 <!--        <Button-->
 <!--            android:id="@+id/btn_reset_password"-->
 <!--            android:layout_width="fill_parent"-->

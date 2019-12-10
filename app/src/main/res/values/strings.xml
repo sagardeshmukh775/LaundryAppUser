@@ -20,7 +20,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_mobile">Mobile Number</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
+    <string name="hint_name">User Name</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_link_to_register">Not a member? Get registered here.</string>
     <string name="btn_link_to_login">Already registered. Login Me!</string>
@@ -34,7 +34,7 @@
     <string name="btn_remove">Remove</string>
     <string name="btn_sign_out">Sign Out</string>
     <string name="lbl_forgot_password">Forgot password?</string>
-    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="forgot_password_msg">We just need your registered Mobile number and Username to reset your password.</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>

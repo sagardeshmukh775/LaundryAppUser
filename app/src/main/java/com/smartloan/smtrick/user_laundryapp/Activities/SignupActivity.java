@@ -42,7 +42,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private EditText inputUsername, inputAddress, inputPincode, inputOTP;
     Spinner spinnerRole;
 
-    private Button  btnSignUp, btnOTP;
+    private Button  btnSignUp, btnOTP,btnBack;
     private ProgressBar progressBar;
     private ProgressDialogClass progressDialogClass;
     private AppSharedPreference appSharedPreference;
@@ -61,6 +61,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         btnOTP = (Button) findViewById(R.id.button_generate_otp);
+        btnBack = (Button) findViewById(R.id.btn_back);
 
         inputUsername = (EditText) findViewById(R.id.username);
         inputMobile = (EditText) findViewById(R.id.mobilenumber);
@@ -71,8 +72,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
         String[] Userstypeall = new String[]{
-                "USER",
-                "SERVICE PROVIDER"};
+                "USER"};
         spinnerRole = (Spinner) findViewById(R.id.spinnerselectusertype);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, R.layout.sppinner_layout_listitem, Userstypeall);
@@ -89,6 +89,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }
 
 //        btnResetPassword.setOnClickListener(this);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         btnSignUp.setOnClickListener(this);
         btnOTP.setOnClickListener(this);
     }
