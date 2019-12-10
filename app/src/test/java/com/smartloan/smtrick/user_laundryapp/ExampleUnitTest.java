@@ -1,4 +1,4 @@
-package com.smartloan.smtrick.user_laundryapp;
+package com.washtag.smtrick.user_laundryapp;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.smartloan.smtrick.user_laundryapp;
+package com.washtag.smtrick.user_laundryapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.smartloan.smtrick.jagrutiapp", appContext.getPackageName());
+        assertEquals("com.washtag.smtrick.jagrutiapp", appContext.getPackageName());
     }
 }

@@ -111,17 +111,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:818270397083:android:dc23fc0fd1ccb40f81dc3e",
+        "mobilesdk_app_id": "1:818270397083:android:3e2fcbe4db78d29a81dc3e",
         "android_client_info": {
-          "package_name": "com.smartloan.smtrick.user_laundryapp"
+          "package_name": "com.washtag.smtrick.user_laundryapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "818270397083-813tg8k930nkio9l63ojlp6ck65gf2u1.apps.googleusercontent.com",
+          "client_id": "818270397083-89o9hgk0m4euho99sg0cetd154oenbp2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.smartloan.smtrick.user_laundryapp",
+            "package_name": "com.washtag.smtrick.user_laundryapp",
             "certificate_hash": "a058c77ec79e3080dd24bca3ee8567f802573eb9"
           }
         },
