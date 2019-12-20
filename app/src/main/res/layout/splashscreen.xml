@@ -10,6 +10,6 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/washtaglogo" />
+        android:background="@drawable/cleanandcomfort" />
 
 </RelativeLayout>

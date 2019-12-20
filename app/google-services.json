@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:818270397083:android:6e529b60d9c4cb9581dc3e",
+        "android_client_info": {
+          "package_name": "com.cleanandcomfort.smtrick.user_laundryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818270397083-lumkufe7kj9o7pq718fnl1jjqs01dds0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cleanandcomfort.smtrick.user_laundryapp",
+            "certificate_hash": "a058c77ec79e3080dd24bca3ee8567f802573eb9"
+          }
+        },
+        {
+          "client_id": "818270397083-d5d13gbun90a0l92ke85tsg8qm731ges.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXxIXiGykOafvy4-4wlOCN2cW-A-Y4jfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818270397083-d5d13gbun90a0l92ke85tsg8qm731ges.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:818270397083:android:e007156cc425dd7181dc3e",
         "android_client_info": {
           "package_name": "com.smartloan.smtrick.laundryapp"

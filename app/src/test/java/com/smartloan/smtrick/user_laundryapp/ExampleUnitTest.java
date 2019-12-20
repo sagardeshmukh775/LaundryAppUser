@@ -1,4 +1,4 @@
-package com.washtag.smtrick.user_laundryapp;
+package com.cleanandcomfort.smtrick.user_laundryapp;
 
 import org.junit.Test;
 

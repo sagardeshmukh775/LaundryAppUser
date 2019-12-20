@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#41C300</color>
+    <color name="colorPrimary">#33cc33</color>
     <color name="colorPrimaryDark">#a8a8a8</color>
-    <color name="colorAccent">#41C300</color>
+    <color name="colorAccent">#33cc33</color>
     <color name="bg_login">#ff4500</color>
     <color name="bg_register">#2e3237</color>
-    <color name="bg_main">#41C300</color>
+    <color name="bg_main">#33cc33</color>
     <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
     <color name="input_register_bg">#3b4148</color>
     <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#41C300</color>
+    <color name="btn_login">#33cc33</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#41C300</color>
+    <color name="btn_logut_bg">#33cc33</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
     <color name="backgroundcolor">#e0f2ec</color>
 
-    <item type="color" name="hederbackground">#41C300</item>
+    <item type="color" name="hederbackground">#33cc33</item>
     <color name="mainTextColor">#343d43</color>
 
-    <color name="toolbar">#41C300</color>
+    <color name="toolbar">#33cc33</color>
     <color name="whatsapp">#25D366</color>
     <item type="color" name="whitetextcolor">#000000</item>
     <color name="header_name_color">#2d2d2d</color>
