@@ -12,7 +12,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,9 +23,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.cleanandcomfort.smtrick.user_laundryapp.Fragments.Fragment_ContactUS;
 import com.cleanandcomfort.smtrick.user_laundryapp.Fragments.Fragment_Send_Request;
 import com.cleanandcomfort.smtrick.user_laundryapp.Fragments.Users_Requests_Tab_Fragment;
@@ -36,6 +32,9 @@ import com.cleanandcomfort.smtrick.user_laundryapp.Preferences.AppSharedPreferen
 import com.cleanandcomfort.smtrick.user_laundryapp.R;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.LeedRepository;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 
 public class MainActivity_User extends AppCompatActivity
@@ -112,17 +111,17 @@ public class MainActivity_User extends AppCompatActivity
         ft.replace(R.id.mainFrame, selectedFragement);
         ft.commit();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-        }
+//        if (ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.SEND_SMS)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                    Manifest.permission.SEND_SMS)) {
+//            } else {
+//                ActivityCompat.requestPermissions(this,
+//                        new String[]{Manifest.permission.SEND_SMS},
+//                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+//            }
+//        }
 
 //        ProfileImage.setOnClickListener(this);
     }
@@ -149,23 +148,23 @@ public class MainActivity_User extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(),
-                            "Permission Granted", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Permission Denied", Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-        }
-
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(getApplicationContext(),
+//                            "Permission Granted", Toast.LENGTH_LONG).show();
+//                } else {
+////                    Toast.makeText(getApplicationContext(),
+////                            "Permission Denied", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//            }
+//        }
+//
+//    }
 
     private void getCurrentuserdetails() {
 
