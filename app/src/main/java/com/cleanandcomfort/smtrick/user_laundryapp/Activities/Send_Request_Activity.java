@@ -1051,7 +1051,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 objData.put("body", msg);
                 objData.put("title", title);
                 objData.put("sound", "default");
-                objData.put("icon", "icon_name"); //   icon_name image must be there in drawable
+                objData.put("icon", R.drawable.laundrylogo); //   icon_name image must be there in drawable
                 objData.put("tag", token);
                 objData.put("priority", "high");
             } catch (JSONException e) {

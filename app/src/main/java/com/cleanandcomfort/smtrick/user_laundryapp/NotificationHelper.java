@@ -12,7 +12,7 @@ public class NotificationHelper {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, Constants.CHANNEL_ID)
-                        .setSmallIcon(R.drawable.album1)
+                        .setSmallIcon(R.drawable.laundrylogo)
                         .setContentTitle(title)
                         .setContentText(body)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
