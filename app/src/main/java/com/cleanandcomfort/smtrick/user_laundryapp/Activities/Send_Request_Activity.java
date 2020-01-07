@@ -47,12 +47,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.cleanandcomfort.smtrick.user_laundryapp.Adapters.AddsAdapter;
 import com.cleanandcomfort.smtrick.user_laundryapp.Adapters.Providers_Adapter;
 import com.cleanandcomfort.smtrick.user_laundryapp.Adapters.RateCardAdapter;
@@ -76,6 +70,12 @@ import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.LeedRepositor
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.UserRepositoryImpl;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.LeedRepository;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.UserRepository;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -1032,62 +1032,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         }
     }
 
-
-//    public void showDots() {
-//
-//        dots = new ImageView[uploads.size()];
-//
-//        // dots = new ImageView[dotscount];
-//
-//        for (int i = 0; i < uploads.size(); i++) {
-//
-//            dots[i] = new ImageView(getApplicationContext());
-//            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
-//
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//            params.setMargins(8, 0, 8, 0);
-//
-//            sliderDotspanel.addView(dots[i], params);
-//
-//        }
-//
-//        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
-//
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                try {
-//
-//                    for (int i = 0; i < uploads.size(); i++) {
-//                        dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
-//                    }
-//
-//                    dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
-//
-//                } catch (Exception e) {
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
-//    }
-
-
     private void sendFCMPush(String Token) {
 
         String Legacy_SERVER_KEY = "AIzaSyCM5Eb6ZrYBWhzGRSsm5WKYlzlT7BlhuKs";
-        String msg = "New Order From" + appSharedPreference.getName();
+        String msg = "New Order From " + appSharedPreference.getName();
         String title = "New Order Has Been Received";
         String token = Token;
 
@@ -1191,4 +1139,5 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             circularReveal.start();
         }
     }
+
 }

@@ -82,6 +82,9 @@
             android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.CropImageActivity"
             android:label="Crop Image" />
         <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.dummyActivity" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
     </application>
 
 </manifest>
