@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class User implements Serializable {
 
-    public String name, number, address, pincode, password,role, userid,generatedId,tokan;
+    public String name, number, address, pincode, password,role, userid,generatedId,tokan,status;
     String profileImage;
     private ArrayList<String> imageList;
 
@@ -18,7 +18,7 @@ public class User implements Serializable {
     }
 
     User(String name, String number, String userid,String address, String pincode, String password,String generatedId,
-         String role,String tokan, String profileImage) {
+         String role,String tokan, String profileImage,String status) {
         this.name = name;
         this.number = number;
         this.address = address;
@@ -29,6 +29,7 @@ public class User implements Serializable {
         this.role = role;
         this.imageList = new ArrayList<String>();
         this.tokan = tokan;
+        this.status = status;
         this.profileImage = profileImage;
 
     }
@@ -121,6 +122,14 @@ public class User implements Serializable {
         this.profileImage = profileImage;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
@@ -135,6 +144,7 @@ public class User implements Serializable {
         leedMap.put("generatedId", getGeneratedId());
         leedMap.put("imageList",getImageList() );
         leedMap.put("tokan",getTokan() );
+        leedMap.put("status",getStatus() );
         leedMap.put("profileImage", getProfileImage());
 
         return leedMap;

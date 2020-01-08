@@ -72,6 +72,8 @@ public class Constant {
 
     public static final String ROLE_SERVICE_PROVIDER = "SERVICE PROVIDER";
     public static final String ROLE_USER = "USER";
+    public static final String USER_STATUS_ACTIVE = "ACTIVE";
+    public static final String USER_STATUS_DEACTIVE = "DEACTIVE";
 
     public static final String STATUS_IN_PROGRESS = "IN-PROGRESS";
     public static final String GLOBAL_DATE_FORMATE = "dd MMM yyyy";

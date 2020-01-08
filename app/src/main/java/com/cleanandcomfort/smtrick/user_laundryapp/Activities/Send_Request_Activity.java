@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -179,7 +180,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_request);
-
 
         final Intent intent = getIntent();
 
@@ -596,7 +596,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                             } else if (weight.equalsIgnoreCase("piece Wise")) {
                                 type.addAll(types.getPiece());
                                 pieceCard.setVisibility(View.VISIBLE);
-                            }else if (weight.equalsIgnoreCase("Select Types")){
+                            } else if (weight.equalsIgnoreCase("Select Types")) {
                                 edtVenders.setText("");
                                 pieceCard.setVisibility(View.GONE);
                             }
@@ -723,7 +723,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 public void onSuccess(Object object) {
                     if (object != null) {
                         user1 = (User) object;
-                        userList.add(user1);
+                        if (user1.getStatus().equalsIgnoreCase(Constant.USER_STATUS_ACTIVE)) {
+                            userList.add(user1);
+                        }
                     }
 
                     adapter_new = new Providers_Adapter(getApplicationContext(), userList, (OnRecycleClickListener) Send_Request_Activity.this, dialog1);
@@ -733,8 +735,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 }
 
                 @Override
-                public void onError(Object object)
-                {
+                public void onError(Object object) {
                     progressDialog.dismiss();
                 }
             });
@@ -746,7 +747,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         if (v == SendRequest) {
 
-            if (edtVenders.getText().toString().equalsIgnoreCase("")){
+            if (edtVenders.getText().toString().equalsIgnoreCase("")) {
                 edtVenders.setError("Required");
                 edtVenders.setFocusable(true);
                 return;
@@ -784,6 +785,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             Add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    String date = edtDateTime.getText().toString();
+
+                    if (TextUtils.isEmpty(date)) {
+                        edtDateTime.setError("Requuired");
+                        return;
+                    }
 
                     if (chsp.isChecked()) {
                         serList.add(chsp.getText().toString() + " - " + edspcount.getText().toString());
@@ -932,10 +940,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 recyclerView.setLayoutManager(new LinearLayoutManager(Send_Request_Activity.this, LinearLayoutManager.HORIZONTAL, true));
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(uploadListAdapter);
-            }else {
-               recyclerView.setVisibility(View.GONE);
+            } else {
+                recyclerView.setVisibility(View.GONE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         uploads.clear();
@@ -1051,7 +1059,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 objData.put("body", msg);
                 objData.put("title", title);
                 objData.put("sound", "default");
-                objData.put("icon", R.drawable.laundrylogo); //   icon_name image must be there in drawable
+                objData.put("icon", "icon_name"); //   icon_name image must be there in drawable
                 objData.put("tag", token);
                 objData.put("priority", "high");
             } catch (JSONException e) {
