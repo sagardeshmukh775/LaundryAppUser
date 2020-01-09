@@ -56,7 +56,6 @@ public class Fragment_View_Users_Requests extends Fragment {
     private ArrayList<Requests> service_providers1;
     private LeedRepository leedRepository;
 
-    // int[] animationList = {R.anim.layout_animation_up_to_down};
     int i = 0;
 
     String number;
@@ -143,7 +142,6 @@ public class Fragment_View_Users_Requests extends Fragment {
                                 leedsArraylist1.add(leed);
                             }
                         } catch (Exception e) {
-//                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -196,7 +194,6 @@ public class Fragment_View_Users_Requests extends Fragment {
 
         }
     };
-
 
     private void serAdapter(ArrayList<Requests> leedsModels) {
         if (leedsModels != null) {

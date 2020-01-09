@@ -52,7 +52,6 @@ public class Fragment_View_Users_Approved_Requests extends Fragment {
   private ArrayList<Requests> service_providers;
   private ArrayList<Requests> service_providers1;
 
-  // int[] animationList = {R.anim.layout_animation_up_to_down};
   int i = 0;
 
   String number;
@@ -80,7 +79,7 @@ public class Fragment_View_Users_Approved_Requests extends Fragment {
     getServiceProviders();
 
     if (isNetworkAvailable()) {
-//            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+//
     } else {
       Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
     }

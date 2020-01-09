@@ -6,13 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.cleanandcomfort.smtrick.user_laundryapp.R;
 
 public class Fragment_ContactUS extends Fragment {
-
-    TextView Address;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

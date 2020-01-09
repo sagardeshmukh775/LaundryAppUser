@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
 
     <application
@@ -53,7 +52,6 @@
             android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.ShowImagesActivity" />
-        <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.SubCatalogActivity" />
         <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.UserDetailsActivity" />
         <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.Add_Updatelead__bankresult_Activity" />
         <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.Update_user_profile_activity" />
@@ -81,7 +79,6 @@
         <activity
             android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.CropImageActivity"
             android:label="Crop Image" />
-        <activity android:name="com.cleanandcomfort.smtrick.user_laundryapp.Activities.dummyActivity" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"

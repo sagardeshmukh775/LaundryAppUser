@@ -12,7 +12,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,6 +23,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cleanandcomfort.smtrick.user_laundryapp.Fragments.Doctors_TabFragment;
+import com.cleanandcomfort.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
+import com.cleanandcomfort.smtrick.user_laundryapp.Models.Users;
+import com.cleanandcomfort.smtrick.user_laundryapp.R;
+import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
+import com.cleanandcomfort.smtrick.user_laundryapp.Repository.LeedRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,12 +37,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.cleanandcomfort.smtrick.user_laundryapp.Fragments.Doctors_TabFragment;
-import com.cleanandcomfort.smtrick.user_laundryapp.Interface.OnFragmentInteractionListener;
-import com.cleanandcomfort.smtrick.user_laundryapp.Models.Users;
-import com.cleanandcomfort.smtrick.user_laundryapp.R;
-import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
-import com.cleanandcomfort.smtrick.user_laundryapp.Repository.LeedRepository;
 
 
 public class MainActivity extends AppCompatActivity
@@ -109,17 +108,6 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.mainFrame, selectedFragement);
         ft.commit();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-        }
     }
 
     public boolean isStoragePermissionGranted() {

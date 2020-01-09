@@ -151,12 +151,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     ArrayList<String> commonList;
     ArrayList<String> commonList3;
 
-    ImageView imspplus, imspminus, imlhpluse, imlhminus,
-            imblpluse, imblminus,
-            imspluse, imsminus,
-            imjhpluse, imjhminus,
-            imbedpluse, imbedminus,
-            imbkpluse, imbkminus;
     EditText edspcount, edlhcount, edblcount, edscount, edjhcount, edbedcount, edbkcount;
     CheckBox chsp, chlh, chbl, chs, chjh, chbed, chbk;
     int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0;
@@ -285,164 +279,10 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
         edbedcount = (EditText) findViewById(R.id.bedcount);
         edbkcount = (EditText) findViewById(R.id.bkcount);
 
-        imspplus = (ImageView) findViewById(R.id.spplus);
-        imspminus = (ImageView) findViewById(R.id.spminus);
-        imlhpluse = (ImageView) findViewById(R.id.lhplus);
-        imlhminus = (ImageView) findViewById(R.id.lhminus);
-        imblpluse = (ImageView) findViewById(R.id.blplus);
-        imblminus = (ImageView) findViewById(R.id.blminus);
-        imspluse = (ImageView) findViewById(R.id.splus);
-        imsminus = (ImageView) findViewById(R.id.sminus);
-        imjhpluse = (ImageView) findViewById(R.id.jhplus);
-        imjhminus = (ImageView) findViewById(R.id.jhminus);
-        imbedpluse = (ImageView) findViewById(R.id.bedplus);
-        imbedminus = (ImageView) findViewById(R.id.bedminus);
-        imbkpluse = (ImageView) findViewById(R.id.bkplus);
-        imbkminus = (ImageView) findViewById(R.id.bkminus);
-
-        imspplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i = i + 1;
-                edspcount.setText(String.valueOf(i));
-            }
-        });
-        imspminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edspcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i = i - 1;
-                    edspcount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imlhpluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                j = j + 1;
-                edlhcount.setText(String.valueOf(j));
-            }
-        });
-        imlhminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edlhcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i = i - 1;
-                    edlhcount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imblpluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                k = k + 1;
-                edblcount.setText(String.valueOf(k));
-            }
-        });
-        imblminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edblcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i = i - 1;
-                    edblcount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imspluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                l = l + 1;
-                edscount.setText(String.valueOf(l));
-            }
-        });
-        imsminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edscount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i--;
-                    edscount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imjhpluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                m = m + 1;
-                edjhcount.setText(String.valueOf(m));
-            }
-        });
-        imjhminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edjhcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i--;
-                    edjhcount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imbedpluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                n = n + 1;
-                edbedcount.setText(String.valueOf(n));
-            }
-        });
-        imbedminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edbedcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i--;
-                    edbedcount.setText(String.valueOf(i));
-                }
-            }
-        });
-        imbkpluse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                o = o + 1;
-                edbkcount.setText(String.valueOf(o));
-            }
-        });
-        imbkminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(edbkcount.getText().toString());
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Please increase", Toast.LENGTH_SHORT).show();
-                } else {
-                    i--;
-                    edbkcount.setText(String.valueOf(i));
-                }
-            }
-        });
         txtDeliveryCharges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Dialog dialogCharges = new Dialog(Send_Request_Activity.this);
-//                dialogCharges.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
                 dialogCharges.setContentView(R.layout.customdialogboximagedisplay);
                 dialogCharges.setContentView(R.layout.dialog_delivery_charges_layout);
 
@@ -651,7 +491,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < Time.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
                                 commonList.add(wash.get(i));
-//                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -663,7 +502,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(wash.get(i));
-//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -675,7 +513,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (Time.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(Time.get(i));
-//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -689,7 +526,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < Time.size(); j++) {
                             if (wash.get(i).equalsIgnoreCase(Time.get(j))) {
                                 commonList.add(wash.get(i));
-//                                Toast.makeText(Send_Request_Activity.this, commonList.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -697,7 +533,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         for (int j = 0; j < type.size(); j++) {
                             if (commonList.get(i).equalsIgnoreCase(type.get(j))) {
                                 commonList3.add(commonList.get(i));
-//                                Toast.makeText(Send_Request_Activity.this, commonList3.get(i), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -852,7 +687,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                 }
                             }.start();
 
-//                            Toast.makeText(Send_Request_Activity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                             dialog1.dismiss();
                         }
 
@@ -1007,7 +841,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
             }
             NUM_PAGES = adds1.size();
-//            showDots();
             AddsAdapter adapter = new AddsAdapter(getApplicationContext(), adds1);
             viewPager.setAdapter(adapter);
 
@@ -1142,7 +975,6 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                     finish();
                 }
             });
-
 
             circularReveal.start();
         }

@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -33,8 +33,6 @@ import com.cleanandcomfort.smtrick.user_laundryapp.R;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.Impl.LeedRepositoryImpl;
 import com.cleanandcomfort.smtrick.user_laundryapp.Repository.LeedRepository;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 
 public class MainActivity_User extends AppCompatActivity
@@ -44,22 +42,14 @@ public class MainActivity_User extends AppCompatActivity
 
     private NavigationView navigationView;
     private Fragment selectedFragement;
-    private FirebaseAuth firebaseAuth;
-
-    private String uid;
-    private FirebaseUser Fuser;
-    private DatabaseReference databaseReference;
 
     private TextView userEmail, userRole;
     private TextView username;
-    String Language, Userid, acctemail, acctname;
-    private Menu top_menu;
     Users user;
     LeedRepository leedRepository;
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     private AppSharedPreference appSharedPreference;
-//    ImageView ProfileImage;
-
+    //    ImageView ProfileImage;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +75,7 @@ public class MainActivity_User extends AppCompatActivity
 
         Boolean per = isStoragePermissionGranted();
         if (per) {
-            //   Toast.makeText(this, "Storage Premission Granted", Toast.LENGTH_SHORT).show();
+//               Toast.makeText(this, "Storage Premission Granted", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Storage Premission Required", Toast.LENGTH_SHORT).show();
         }
@@ -99,11 +89,7 @@ public class MainActivity_User extends AppCompatActivity
         userEmail = (TextView) headerview.findViewById(R.id.useremail);
         userRole = (TextView) headerview.findViewById(R.id.userrole);
 
-//        ProfileImage = (ImageView) headerview.findViewById(R.id.image_view_profile);
-
         getCurrentuserdetails();
-
-        //setMenuTitles();
 
         //NOTE:  Open fragment1 initially.
         selectedFragement = new Fragment_Send_Request();
@@ -111,19 +97,6 @@ public class MainActivity_User extends AppCompatActivity
         ft.replace(R.id.mainFrame, selectedFragement);
         ft.commit();
 
-//        if (ContextCompat.checkSelfPermission(this,
-//                Manifest.permission.SEND_SMS)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//                    Manifest.permission.SEND_SMS)) {
-//            } else {
-//                ActivityCompat.requestPermissions(this,
-//                        new String[]{Manifest.permission.SEND_SMS},
-//                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-//            }
-//        }
-
-//        ProfileImage.setOnClickListener(this);
     }
 
     public boolean isStoragePermissionGranted() {
@@ -148,24 +121,6 @@ public class MainActivity_User extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(getApplicationContext(),
-//                            "Permission Granted", Toast.LENGTH_LONG).show();
-//                } else {
-////                    Toast.makeText(getApplicationContext(),
-////                            "Permission Denied", Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//            }
-//        }
-//
-//    }
-
     private void getCurrentuserdetails() {
 
         try {
@@ -186,6 +141,22 @@ public class MainActivity_User extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -197,52 +168,18 @@ public class MainActivity_User extends AppCompatActivity
         if (id == R.id.serviceproviders) {
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Fragment_Send_Request()).commit();
-//            Intent intent = new Intent(MainActivity_User.this, Send_Request_Activity.class);
-//            startActivity(intent);
 
-        }
-//        else if (id == R.id.requests) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Requests_Tab_Fragment()).commit();
-//
-//        }
-        else if (id == R.id.user_requests) {
+        } else if (id == R.id.user_requests) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Users_Requests_Tab_Fragment()).commit();
 
-        }
-        else if (id == R.id.user_contactus) {
+        } else if (id == R.id.user_contactus) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
                     new Fragment_ContactUS()).commit();
 
-        }
-//        else if (id == R.id.home) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_Advertise()).commit();
-//        }
-//        else if (id == R.id.users) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Admin_Users_Tab_Fragment()).commit();
-//
-//        }
-//        else if (id == R.id.addcategory) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_Add_Categories()).commit();
-//
-//        }
-//        else if (id == R.id.services) {
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame,
-//                    new Fragment_Add_Services()).commit();
-//
-//        }
-        else if (id == R.id.logout) {
+        } else if (id == R.id.logout) {
 
 //             clearDataWithSignOut();
             appSharedPreference.clear();
@@ -295,9 +232,7 @@ public class MainActivity_User extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-//        if (v == ProfileImage) {
-//            Intent intent = new Intent(MainActivity_User.this, Update_user_profile_activity.class);
-//            startActivity(intent);
+
 //        }
     }
 }
