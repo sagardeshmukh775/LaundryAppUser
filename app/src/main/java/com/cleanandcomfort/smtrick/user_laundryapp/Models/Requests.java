@@ -19,6 +19,7 @@ public class Requests {
     public String status;
     public String date;
     public String userName;
+    public String timeSlot;
     List<String> serviceList;
     private Long createdDateTime;
 
@@ -27,7 +28,7 @@ public class Requests {
     }
 
     public Requests(String serviceProviderId, String userId, String userPinCode, String userMobile
-            , String userAddress, String requestId,String date,String status,String userName) {
+            , String userAddress, String requestId,String date,String status,String userName,String timeSlot) {
         this.serviceProviderId = serviceProviderId;
         this.userId = userId;
         this.userPinCode = userPinCode;
@@ -38,6 +39,7 @@ public class Requests {
         this.status = status;
         this.userName = userName;
         this.serviceList = new ArrayList<String>();
+        this.timeSlot = timeSlot;
     }
 
     public String getServiceProviderId() {
@@ -133,6 +135,14 @@ public class Requests {
         this.createdDateTime = (Long) createdDateTime;
     }
 
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
     @Exclude
     public Map getLeedStatusMap() {
         Map<String, Object> leedMap = new HashMap();
@@ -148,6 +158,7 @@ public class Requests {
         leedMap.put("userName",getUserName() );
         leedMap.put("serviceList",getServiceList() );
         leedMap.put("createdDateTime", getCreatedDateTime());
+        leedMap.put("timeSlot",getTimeSlot());
 
         return leedMap;
 

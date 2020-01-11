@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="30dp"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="30dp">
 
 
     <TextView
@@ -14,51 +14,147 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Delivery Charges"
+        android:textColor="@color/colorPrimary"
         android:textSize="17dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"/>
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="70"
+            android:text="Below 150 - " />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="30"
+            android:text="- 40 Rs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
-        android:text="Below 150 - 40र"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="5dp"
-        android:text="Between 150-200 - 30र"/>
+        android:layout_weight="70"
+        android:text="Between 150-200" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="30"
+            android:text="- 30 Rs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Btween 200-300 - 25र"/>
+        android:layout_marginTop="2dp"
+        android:layout_weight="70"
+        android:text="Btween 200-300" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="30"
+            android:text="- 25 Rs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Btween 300-400 - 15र"/>
+        android:layout_marginTop="2dp"
+        android:layout_weight="70"
+        android:text="Btween 300-400" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="30"
+            android:text="- 15 Rs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Between 400-500 - 10र"/>
+        android:layout_marginTop="2dp"
+        android:layout_weight="70"
+        android:text="Between 400-500" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="30"
+            android:text="- 10 Rs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Above 500 - 0र"/>
+        android:layout_marginTop="2dp"
+        android:layout_weight="70"
+        android:text="Above 500" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="30"
+            android:text="- 0 Rs" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewAvilability"
@@ -66,33 +162,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Available At"
+        android:textColor="@color/colorPrimary"
         android:textSize="17dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Pin Code - 411033"/>
+        android:layout_marginTop="2dp"
+        android:text="Pin Code - 411033" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Pin Code - 412101"/>
+        android:layout_marginTop="2dp"
+        android:text="Pin Code - 412101" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Pin Code - 411035"/>
+        android:layout_marginTop="2dp"
+        android:text="Pin Code - 411035" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
-        android:text="Pin Code - 411044"/>
+        android:layout_marginTop="2dp"
+        android:text="Pin Code - 411044" />
 
 </LinearLayout>

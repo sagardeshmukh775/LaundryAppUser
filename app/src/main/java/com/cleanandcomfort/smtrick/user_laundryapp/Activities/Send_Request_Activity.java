@@ -19,11 +19,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -238,7 +240,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
 
         String[] TimeSlot = new String[]{"Select Time Slot",
                 "24 Hours",
-                "12 Hours", "48 Hours", "Random"};
+                "72 Hours", "48 Hours", "Random"};
 
         String[] Weights = new String[]{"Select Types",
                 "Kg Wise",
@@ -285,6 +287,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 final Dialog dialogCharges = new Dialog(Send_Request_Activity.this);
                 dialogCharges.setContentView(R.layout.customdialogboximagedisplay);
                 dialogCharges.setContentView(R.layout.dialog_delivery_charges_layout);
+
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialogCharges.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.gravity = Gravity.CENTER;
+                dialogCharges.getWindow().setAttributes(lp);
 
                 dialogCharges.show();
             }
@@ -380,7 +389,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                                 Time.addAll(timeSlot.getOneday());
                                 hideotherRelation();
 
-                            } else if (time.equalsIgnoreCase("12 Hours")) {
+                            } else if (time.equalsIgnoreCase("72 Hours")) {
                                 Time.addAll(timeSlot.getHalfday());
                                 hideotherRelation();
 
@@ -650,6 +659,13 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                         serList.add(chbk.getText().toString() + " - " + edbkcount.getText().toString());
                     }
 
+                    String timeslote;
+                    if (spinnerTime.getSelectedItem().toString().equalsIgnoreCase("")){
+                         timeslote ="Random";
+                    }else {
+                         timeslote = spinnerTime.getSelectedItem().toString();
+                    }
+
                     Requests requests = new Requests();
                     requests.setServiceProviderId(user0.getUserid());
                     requests.setUserId(appSharedPreference.getUserid());
@@ -658,6 +674,7 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                     requests.setUserMobile(appSharedPreference.getNumber());
                     requests.setUserPinCode(appSharedPreference.getPincode());
                     requests.setDate(edtDateTime.getText().toString());
+                    requests.setTimeSlot(timeslote);
                     requests.setServiceList(serList);
                     requests.setStatus(Constant.STATUS_GENERATED);
                     requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());

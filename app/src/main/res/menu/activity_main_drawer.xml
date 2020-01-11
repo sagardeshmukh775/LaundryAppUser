@@ -21,7 +21,7 @@
         <item
             android:id="@+id/user_requests"
             android:icon="@drawable/information"
-            android:title="My Requests"/>
+            android:title="My Orders"/>
 
         <item
             android:id="@+id/user_contactus"
