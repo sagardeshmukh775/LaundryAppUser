@@ -3,6 +3,7 @@ package com.cleanandcomfort.smtrick.user_laundryapp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,8 @@ import com.cleanandcomfort.smtrick.user_laundryapp.R;
 public class Fragment_Send_Request extends Fragment {
 
     private Button btnCreate;
+    ConstraintLayout layout;
+    final int sdk = android.os.Build.VERSION.SDK_INT;
 
 
     @Override
@@ -31,6 +34,8 @@ public class Fragment_Send_Request extends Fragment {
         View view = inflater.inflate(R.layout.frgment_send_request, container, false);
 
         btnCreate = (Button) view.findViewById(R.id.btn);
+        layout = (ConstraintLayout) view.findViewById(R.id.layout);
+        layout.setBackground(getActivity().getResources().getDrawable(R.drawable.userbackground));
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override

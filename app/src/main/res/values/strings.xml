@@ -110,4 +110,33 @@ We also supply an extensive range of quality prefinished engineered flooring, co
     <string name="file_uploading_complited_message">Total uploaded files :&#160; </string>
     <string name="notification_message">Don\'t close the app.</string>
 
+
+
+
+    <string name="application">By using our services, you agree to be bound by the following terms and conditions which may change from time to time without notice
+</string>
+
+    <string name="PAYMENT_TERMS">All quoted prices are subject to change without notice. All invoices must be paid on collection of garments or as otherwise directed by us and we reserve the right to retain your goods until your payment in full is received.</string>
+
+    <string name="PICKUP_DELIVERY">Pickup- and delivery will be at our top priority. We will try to honor the times that you have specified for the pickup and delivery. However, due to certain restrictions and delays, we shall not be liable for delays. Kindly check the filled slip before handing over the clothes to the rider. Unless itemized list is sent with the laundry, our count must be accepted. In event that garments are not collected within thirty (30) days, we reserve the right to dispose them as we see fit and shall not be liable for any loss that you may suffer in such an event.
+
+We examine each garments after we receive them at our warehouse and notify if any damage is observed. However, we don\'t guarantee that every damage will be identified before processing.</string>
+
+    <string name="SAFE_CLEANING">We offer a safe cleaning guarantee. This means we will process every garments we accept safely. This does not mean we will remove every stain from every garment. If it is our professional opinion that stain removal will be unsafe, or will compromise our safe cleaning guarantee, stain removal efforts will cease.</string>
+
+    <string name="DAMAGE">We exercise utmost care in cleaning and processing garments entrusted to us and use such process which, in out opinion, are best suited to the nurture and conditions of each individual garment, Nevertheless, we cannot assume the responsibility for inherent weaknesses or defects in materials (such as sun fading) which may result in tears or the development of small holes in fabric that are not readily apparent prior to processing. In dry-cleaning and laundering we cannot guarantee against color loss, color bleeding, embroidery color beads, buttons, pasting damage or any kind of wear and tear and shrinkage; or against damage to weak and tender fabrics.
+
+Our liability with respect to any damage caused by us shall not exceed ten (10) times our charge for cleaning that garment regardless of brand or condition with an upper limit of Rs 2000. The compensation can only be redeemed as free service from Pick My Laundry.</string>
+
+    <string name="LOSS_GARMENTS">We take utmost care in processing garments received to avoid misplacement or loss of items. We count and tag with unique bar code to each garments once we receive them at our warehouse. The clothes after processing are counted and scanned before packaging. However, there may be instance when items get misplaced or lost. Our liability with respect to any loss item shall not exceed ten (10) times our charge for cleaning that garment regardless of brand or condition with an upper limit of Rs 2000. The compensation can only be redeemed as free service from Pick My Laundry.</string>
+
+    <string name="PERSONEL_ITEMS">Please check all your garments for money, jewelry or other valuables prior to handing over them to us. If we find any valuables in your garments, we will make every effort to return them to you but we cannot be held liable for the loss of any such articles that are forwarded to us.</string>
+
+    <string name="COUNTING_GARMENTS">Please count all the garments during pickup and get it mentioned on this slip. We recount the clothes at our warehouse as we receive it. If there is any mismatch, it will be notified to you. However, we won’t be liable if we do not receive any response from you. During delivery, it is advisable to count all the clothes in front of rider and report any anomaly. No complaint will be entertained if it is reported after rider has left.</string>
+
+    <string name="PRICING">The prices of laundry and dry-cleaning items are mentioned on our website and app. We reserve the right to change them without any prior notice to you. Furthermore, there are few specific garments such as lehenga, saree, kurta, etc. whose prices quoted are notional. The actual price can only be determined when our experts examine them at our warehouse.</string>
+
+    <string name="PRIVACY">We will use your information in regular course of providing services to you. We respect your privacy and warrant that any information you give us will be held with the utmost care and security, and will be used in way to which you have not consented.</string>
+
+
 </resources>

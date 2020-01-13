@@ -35,6 +35,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -98,6 +100,9 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
     private RecyclerView recyclerView;
     Button SendRequest;
     EditText edtDateTime;
+    RadioGroup GroupTimeSlote;
+    RadioButton radioTineSlote;
+    String Timeslote;
     TextView txtDeliveryCharges;
 
     //adapter object
@@ -603,6 +608,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
             edtDateTime = (EditText) dialog1.findViewById(R.id.txtdatetime);
             Button Add = (Button) dialog1.findViewById(R.id.btnsendrequest);
             Button cancle = (Button) dialog1.findViewById(R.id.btncancle);
+            GroupTimeSlote = (RadioGroup) dialog1.findViewById(R.id.groupTimeSlot);
+
 
             String name = edtVenders.getText().toString();
             userRepository.readServiceProviderByName(name, new CallBack() {
@@ -630,88 +637,102 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 @Override
                 public void onClick(View v) {
 
-                    String date = edtDateTime.getText().toString();
-
-                    if (TextUtils.isEmpty(date)) {
-                        edtDateTime.setError("Requuired");
-                        return;
-                    }
-
-                    if (chsp.isChecked()) {
-                        serList.add(chsp.getText().toString() + " - " + edspcount.getText().toString());
-                    }
-                    if (chlh.isChecked()) {
-                        serList.add(chlh.getText().toString() + " - " + edlhcount.getText().toString());
-                    }
-                    if (chbl.isChecked()) {
-                        serList.add(chbl.getText().toString() + " - " + edblcount.getText().toString());
-                    }
-                    if (chs.isChecked()) {
-                        serList.add(chs.getText().toString() + " - " + edscount.getText().toString());
-                    }
-                    if (chjh.isChecked()) {
-                        serList.add(chjh.getText().toString() + " - " + edjhcount.getText().toString());
-                    }
-                    if (chbed.isChecked()) {
-                        serList.add(chbed.getText().toString() + " - " + edbedcount.getText().toString());
-                    }
-                    if (chbk.isChecked()) {
-                        serList.add(chbk.getText().toString() + " - " + edbkcount.getText().toString());
-                    }
-
-                    String timeslote;
-                    if (spinnerTime.getSelectedItem().toString().equalsIgnoreCase("")){
-                         timeslote ="Random";
-                    }else {
-                         timeslote = spinnerTime.getSelectedItem().toString();
-                    }
-
-                    Requests requests = new Requests();
-                    requests.setServiceProviderId(user0.getUserid());
-                    requests.setUserId(appSharedPreference.getUserid());
-                    requests.setUserName(appSharedPreference.getName());
-                    requests.setUserAddress(appSharedPreference.getAddress());
-                    requests.setUserMobile(appSharedPreference.getNumber());
-                    requests.setUserPinCode(appSharedPreference.getPincode());
-                    requests.setDate(edtDateTime.getText().toString());
-                    requests.setTimeSlot(timeslote);
-                    requests.setServiceList(serList);
-                    requests.setStatus(Constant.STATUS_GENERATED);
-                    requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());
-                    leedRepository.sendRequest(requests, new CallBack() {
+                    GroupTimeSlote.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                         @Override
-                        public void onSuccess(Object object) {
-
-                            sendFCMPush(user0.getTokan());
-                            final Dialog dialog3 = new Dialog(Send_Request_Activity.this);
-                            dialog3.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
-                            dialog3.setContentView(R.layout.popup_layout);
-
-                            dialog3.show();
-                            new CountDownTimer(2000, 1000) {
-
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    // TODO Auto-generated method stub
-
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    // TODO Auto-generated method stub
-
-                                    dialog3.dismiss();
-                                }
-                            }.start();
-
-                            dialog1.dismiss();
-                        }
-
-                        @Override
-                        public void onError(Object object) {
+                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                            radioTineSlote = (RadioButton) findViewById(checkedId);
+                            Timeslote = radioTineSlote.getText().toString();
 
                         }
                     });
+                    if (GroupTimeSlote.getCheckedRadioButtonId() != -1) {
+                        RadioButton btn = (RadioButton) GroupTimeSlote.getChildAt(GroupTimeSlote.indexOfChild(GroupTimeSlote.findViewById(GroupTimeSlote.getCheckedRadioButtonId())));
+                        Timeslote = btn.getText().toString();
+
+                        String date = edtDateTime.getText().toString() + " Between " + Timeslote;
+
+                        if (TextUtils.isEmpty(date)) {
+                            edtDateTime.setError("Requuired");
+                            return;
+                        }
+
+                        if (chsp.isChecked()) {
+                            serList.add(chsp.getText().toString() + " - " + edspcount.getText().toString());
+                        }
+                        if (chlh.isChecked()) {
+                            serList.add(chlh.getText().toString() + " - " + edlhcount.getText().toString());
+                        }
+                        if (chbl.isChecked()) {
+                            serList.add(chbl.getText().toString() + " - " + edblcount.getText().toString());
+                        }
+                        if (chs.isChecked()) {
+                            serList.add(chs.getText().toString() + " - " + edscount.getText().toString());
+                        }
+                        if (chjh.isChecked()) {
+                            serList.add(chjh.getText().toString() + " - " + edjhcount.getText().toString());
+                        }
+                        if (chbed.isChecked()) {
+                            serList.add(chbed.getText().toString() + " - " + edbedcount.getText().toString());
+                        }
+                        if (chbk.isChecked()) {
+                            serList.add(chbk.getText().toString() + " - " + edbkcount.getText().toString());
+                        }
+
+                        String timeslote;
+                        if (spinnerTime.getSelectedItem().toString().equalsIgnoreCase("")) {
+                            timeslote = "Random";
+                        } else {
+                            timeslote = spinnerTime.getSelectedItem().toString();
+                        }
+
+                        Requests requests = new Requests();
+                        requests.setServiceProviderId(user0.getUserid());
+                        requests.setUserId(appSharedPreference.getUserid());
+                        requests.setUserName(appSharedPreference.getName());
+                        requests.setUserAddress(appSharedPreference.getAddress());
+                        requests.setUserMobile(appSharedPreference.getNumber());
+                        requests.setUserPinCode(appSharedPreference.getPincode());
+                        requests.setDate(edtDateTime.getText().toString() + "Btween" + Timeslote);
+                        requests.setTimeSlot(timeslote);
+                        requests.setServiceList(serList);
+                        requests.setStatus(Constant.STATUS_GENERATED);
+                        requests.setRequestId(Constant.REQUESTS_TABLE_REF.push().getKey());
+                        leedRepository.sendRequest(requests, new CallBack() {
+                            @Override
+                            public void onSuccess(Object object) {
+
+                                sendFCMPush(user0.getTokan());
+                                final Dialog dialog3 = new Dialog(Send_Request_Activity.this);
+                                dialog3.getWindow().setBackgroundDrawableResource(R.drawable.dialogboxanimation);
+                                dialog3.setContentView(R.layout.popup_layout);
+
+                                dialog3.show();
+                                new CountDownTimer(2000, 1000) {
+
+                                    @Override
+                                    public void onTick(long millisUntilFinished) {
+                                        // TODO Auto-generated method stub
+
+                                    }
+
+                                    @Override
+                                    public void onFinish() {
+                                        // TODO Auto-generated method stub
+
+                                        dialog3.dismiss();
+                                    }
+                                }.start();
+
+                                dialog1.dismiss();
+                            }
+
+                            @Override
+                            public void onError(Object object) {
+
+                            }
+                        });
+
+                    }
                 }
             });
             cancle.setOnClickListener(new View.OnClickListener() {
@@ -735,8 +756,8 @@ public class Send_Request_Activity extends AppCompatActivity implements View.OnC
                 SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
                 final Date startDate = newDate.getTime();
                 fdate = sd.format(startDate);
-
-                timePicker();
+                edtDateTime.setText(fdate);
+//                timePicker();
             }
 
             private void timePicker() {

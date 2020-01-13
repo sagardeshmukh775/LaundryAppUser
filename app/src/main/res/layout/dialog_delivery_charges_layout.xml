@@ -46,13 +46,13 @@
         android:layout_height="wrap_content"
         android:weightSum="100">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_weight="50"
-        android:text="Between 150-200" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="50"
+            android:text="Between 150-200" />
 
         <TextView
             android:layout_width="match_parent"
@@ -69,13 +69,13 @@
         android:layout_height="wrap_content"
         android:weightSum="100">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_weight="50"
-        android:text="Btween 200-300" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="50"
+            android:text="Btween 200-300" />
 
         <TextView
             android:layout_width="match_parent"
@@ -92,13 +92,13 @@
         android:layout_height="wrap_content"
         android:weightSum="100">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_weight="50"
-        android:text="Btween 300-400" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="50"
+            android:text="Btween 300-400" />
 
         <TextView
             android:layout_width="match_parent"
@@ -115,13 +115,13 @@
         android:layout_height="wrap_content"
         android:weightSum="100">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_weight="50"
-        android:text="Between 400-500" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="50"
+            android:text="Between 400-500" />
 
         <TextView
             android:layout_width="match_parent"
@@ -138,13 +138,13 @@
         android:layout_height="wrap_content"
         android:weightSum="100">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_weight="50"
-        android:text="Above 500" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="50"
+            android:text="Above 500" />
 
         <TextView
             android:layout_width="match_parent"
